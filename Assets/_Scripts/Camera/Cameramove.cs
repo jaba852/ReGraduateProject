@@ -22,15 +22,18 @@ public class Cameramove : MonoBehaviour
         if (target != null)
         {
             warriorStatus = target.GetComponent<WarriorStatus>();
-        }
-        if (warriorStatus != null)
-        {
             previousHealth = (float)warriorStatus.currentHealth;
         }
     }
 
     void LateUpdate()
     {
+        if (target == null)
+        {
+            FindPlayer();
+            return;
+        }
+
         if (warriorStatus != null)
         {
             if (warriorStatus.currentHealth < previousHealth)
@@ -72,6 +75,7 @@ public class Cameramove : MonoBehaviour
             shakeMagnitude = 0.08f; // 진동 세기 설정 (원하는 값으로 조정)
         }
     }
+
     // Player를 찾는 함수
     private void FindPlayer()
     {
@@ -79,6 +83,8 @@ public class Cameramove : MonoBehaviour
         if (player != null)
         {
             target = player.transform;
+            warriorStatus = player.GetComponent<WarriorStatus>();
+            previousHealth = (float)warriorStatus.currentHealth;
         }
         else
         {
@@ -96,13 +102,9 @@ public class Cameramove : MonoBehaviour
             {
                 target = player.transform;
                 warriorStatus = player.GetComponent<WarriorStatus>();
+                previousHealth = (float)warriorStatus.currentHealth;
             }
             yield return new WaitForSeconds(0.5f);
-        }
-
-        if (warriorStatus != null)
-        {
-            previousHealth = (float)warriorStatus.currentHealth;
         }
     }
 }

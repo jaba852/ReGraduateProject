@@ -44,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
-                Wander();
+ //               Wander();
             }
         }
 

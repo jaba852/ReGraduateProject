@@ -33,6 +33,16 @@ public class EnemyAttackManager : MonoBehaviour
 
     private bool DeepOneattacking = true; // DeepOne 침 뱉는중
 
+    public AudioClip EnemyattacksoundClip; // Enemy 공격 사운드 클립
+    public AudioClip PlayerHitsoundClip; // 피격 사운드 클립
+    public AudioClip DeepOnesoundClip; // 딥원 공격 사운드 클립
+    private AudioSource audioSource; // 오디오 소스 컴포넌트
+
+    private bool isEnemyAttackSoundPlaying = false; // Enemy 공격 사운드 재생 여부를 저장하는 변수
+    private bool isPlayerHitSoundPlaying = false; // 피격 사운드 재생 여부를 저장하는 변수
+    private bool isDeepOneAttackSoundPlaying = false; // 딥원 공격 사운드 재생 여부를 저장하는 변수
+
+
 
 
     public void Start()
@@ -47,6 +57,9 @@ public class EnemyAttackManager : MonoBehaviour
         {
             playerTransform = playerObject.transform; // 찾은 게임 오브젝트의 Transform을 가져옵니다.
         }
+
+        // 게임 오브젝트에 AudioSource 컴포넌트를 추가
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -150,23 +163,48 @@ public class EnemyAttackManager : MonoBehaviour
             collider.enabled = false;
         }
         Destroy(obj, 10.0f);
-        //        PointSystem.Instance.AddPoint(1);
+        PointSystem.Instance.AddPoint(1);
     }
 
     public void Enemyattack()
     {
+        if (!isEnemyAttackSoundPlaying)
+        {
+            audioSource.PlayOneShot(EnemyattacksoundClip);
+            isEnemyAttackSoundPlaying = true;
+            StartCoroutine(ResetSoundFlags());
+        }
+
 
         if (Vector2.Distance(transform.position, warriorStatus.transform.position) <= attackRange)
         {
-            warriorStatus.TakeDamagePlayer(10);
+            if (!isPlayerHitSoundPlaying)
+            {
+                audioSource.PlayOneShot(PlayerHitsoundClip);
+                isPlayerHitSoundPlaying = true;
+                StartCoroutine(ResetSoundFlags());
+            }
+                warriorStatus.TakeDamagePlayer(10);
             UnityEngine.Debug.Log("적 데미지");
 
         }
+
+    }
+
+    IEnumerator ResetSoundFlags()
+    {
+        yield return new WaitForSeconds(0.1f); // 적절한 딜레이를 설정합니다. 여기서는 0.1초를 사용하였습니다.
+
+        isEnemyAttackSoundPlaying = false;
+        isPlayerHitSoundPlaying = false;
+        isDeepOneAttackSoundPlaying = false;
+
     }
 
 
     public void Enemyreaction()
     {
+
         animator.SetBool("isEnemyHit", false);
     }
 
@@ -179,6 +217,7 @@ public class EnemyAttackManager : MonoBehaviour
 
             if (warningPrefab != null) // warningPrefab이 null인지 확인
             {
+
                 // 경고 표시 생성 및 초기화
                 warning = Instantiate(warningPrefab, transform.position, Quaternion.identity);
                 targetPosition = playerTransform.position;
@@ -224,6 +263,8 @@ public class EnemyAttackManager : MonoBehaviour
         // energyPoint 애니메이션의 재생 시간 가져오기 - 뭔가 값이 안들어옴
         // float animationDuration = energyPointAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
 
+        StartCoroutine(PlayDeepOneshotSound());
+
 
         // energyPoint 애니메이션이 모두 재생될 때까지 기다림- 값이 안들어와서 animationDuration대신 값을 일일히 넣어줘야함
         yield return new WaitForSeconds(3f);
@@ -232,6 +273,19 @@ public class EnemyAttackManager : MonoBehaviour
         Destroy(energyPoint);
 
 
+    }
+
+    IEnumerator PlayDeepOneshotSound()
+    {
+        yield return new WaitForSeconds(1.5f); // 사운드 재생 시작을 f초로 지연합니다.
+        if (!isDeepOneAttackSoundPlaying)
+        {
+            audioSource.PlayOneShot(DeepOnesoundClip);
+            yield return new WaitForSeconds(1.5f); // 사운드가 f초 동안 실행되도록 지연합니다.
+            audioSource.Stop(); // 사운드 재생을 중지합니다.
+            isDeepOneAttackSoundPlaying = true;
+            StartCoroutine(ResetSoundFlags());
+        }
     }
 
 

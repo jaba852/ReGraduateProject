@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WarriorMovement : MonoBehaviour
 {
-    private WarriorStatus stats;
+    public WarriorStatus stats;
     private Rigidbody2D rb;
     private Animator anim;
     private Vector2 MovementInput;
@@ -13,7 +13,7 @@ public class WarriorMovement : MonoBehaviour
 
     private Vector2 dashingDir;
     public static bool isDashing;
-    public static bool canDash = true;
+    public bool canDash = true;
 
     private int AttackCount;
     private bool isAttack;
@@ -26,12 +26,21 @@ public class WarriorMovement : MonoBehaviour
     private bool isAttacking = true;
     private float SecondARatio = 1.5f;
 
+    public AudioClip WarriorattacksoundClip; // Warrior 공격 사운드 클립
+    public AudioClip WarriorSecondattacksoundClip; // Warrior 두번째공격 사운드 클립
+    public AudioClip EnemyHitsoundClip; // 적 피격 사운드 클립
+    public AudioClip BoxHitClip; // 상자피격 사운드 클립
+    private AudioSource audioSource; // 오디오 소스 컴포넌트
+
+
     public void Awake()    //  시작되면서 스테이터스,rigidbody,애니메이터 컴포넌트 호출
     {
         stats = GetComponent<WarriorStatus>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        
+        // 게임 오브젝트에 AudioSource 컴포넌트를 추가
+        audioSource = GetComponent<AudioSource>();
+
     }
     public void Update()
     {
@@ -46,7 +55,7 @@ public class WarriorMovement : MonoBehaviour
                 rb.velocity = Vector2.zero;
             }
         }
-        
+
     }
     public void Move() //  이동,구르기 애니메이션과 움직임 처리하는 함수
     {
@@ -203,7 +212,7 @@ public class WarriorMovement : MonoBehaviour
         AttackCount = 0;
         anim.SetInteger("AttackCount", AttackCount);
     }
-    private IEnumerator StopDashing()   // 대쉬 지속을 돌리기 위한 코루틴
+    private IEnumerator StopDashing()   // 대쉬 쿨타임 돌리기 위한 코루틴
     {
         if (stats.deadCount)
         {
@@ -225,6 +234,7 @@ public class WarriorMovement : MonoBehaviour
         AttackPoint.position = attackPointPosition;
         if (isAttacking)
         {
+            audioSource.PlayOneShot(WarriorattacksoundClip);// Warrior 공격 사운드
             isAttacking = false;
             Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPointPosition, firstattackRange * stats.atkRangeRatio, enemyLayers);
             foreach (Collider2D enemy in hitenemies)
@@ -236,18 +246,22 @@ public class WarriorMovement : MonoBehaviour
                     {
                         enemyStatus.TakeDamage(stats.power + stats.attackAddness);
                         Debug.Log("적이름" + enemy.name + "받은데미지" + (stats.power + stats.attackAddness) + "현재 체력" + enemyStatus.currentHealth);
+                        audioSource.PlayOneShot(EnemyHitsoundClip);// Warrior 공격 사운드
                         yield return new WaitForSeconds(0.2f / stats.atkSpeed);
                         enemyStatus.TakeDamage(stats.power + stats.attackAddness);
                         Debug.Log("적이름" + enemy.name + "받은데미지" + (stats.power + stats.attackAddness) + "현재 체력" + enemyStatus.currentHealth);
+                        audioSource.PlayOneShot(EnemyHitsoundClip);// Warrior 공격 사운드
                     }
                     DoorStatus doorStatus = enemy.GetComponent<DoorStatus>();
                     if (doorStatus != null)
                     {
                         doorStatus.TakeDamage(stats.power + stats.attackAddness);
                         Debug.Log("문 이름: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + doorStatus.currentHealth);
+                        audioSource.PlayOneShot(BoxHitClip);// Warrior 공격 사운드
                         yield return new WaitForSeconds(0.2f / stats.atkSpeed);
                         doorStatus.TakeDamage(stats.power + stats.attackAddness);
                         Debug.Log("문 이름: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + doorStatus.currentHealth);
+                        audioSource.PlayOneShot(BoxHitClip);// Warrior 공격 사운드
                     }
                 }
             }
@@ -268,6 +282,7 @@ public class WarriorMovement : MonoBehaviour
         AttackPoint.position = attackPointPosition;
         if (isAttacking)
         {
+            audioSource.PlayOneShot(WarriorSecondattacksoundClip); // Warrior 공격 사운드
             isAttacking = false;
             Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPointPosition, secondatattackRange * stats.atkRangeRatio, enemyLayers);
             foreach (Collider2D enemy in hitenemies)
@@ -277,15 +292,18 @@ public class WarriorMovement : MonoBehaviour
                 {
                     enemyStatus.TakeDamage(stats.power * SecondARatio + stats.attackAddness);
                     Debug.Log("적이름" + enemy.name + "받은데미지" + (stats.power * SecondARatio + stats.attackAddness) + "현재 체력" + enemyStatus.currentHealth);
+                    audioSource.PlayOneShot(EnemyHitsoundClip);// Warrior 공격 사운드
                 }
                 DoorStatus doorStatus = enemy.GetComponent<DoorStatus>();
                 if (doorStatus != null)
                 {
                     doorStatus.TakeDamage(stats.power + stats.attackAddness);
                     Debug.Log("문 이름: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + doorStatus.currentHealth);
+                    audioSource.PlayOneShot(BoxHitClip);// Warrior 공격 사운드
                     yield return new WaitForSeconds(0.2f / stats.atkSpeed);
                     doorStatus.TakeDamage(stats.power + stats.attackAddness);
                     Debug.Log("문 이름: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + doorStatus.currentHealth);
+                    audioSource.PlayOneShot(BoxHitClip);// Warrior 공격 사운드
                 }
             }
             StartCoroutine(isAttackingD());
@@ -297,7 +315,9 @@ public class WarriorMovement : MonoBehaviour
         yield return new WaitForSeconds(1f / stats.atkSpeed);
         isAttacking = true;
     }
-    private IEnumerator DashCoolDownC()   // 대쉬 쿨타임 돌리기 위한 코루틴
+
+
+private IEnumerator DashCoolDownC()   // 대쉬 쿨타임 돌리기 위한 코루틴
     {
         yield return new WaitForSeconds(stats.DashCoolDown);         //대쉬 쿨다운만큼만큼 대기
         canDash = true;                                             //대쉬 가능하게 활성화

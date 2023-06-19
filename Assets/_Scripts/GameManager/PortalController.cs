@@ -9,13 +9,9 @@ public class PortalController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // Get the current scene's build index
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-            // Calculate the build index of the next scene by adding 1
-            int nextSceneIndex = currentSceneIndex + 1;
 
             // Load the next scene
-            SceneManager.LoadScene(nextSceneIndex);
+            SceneManager.LoadScene(2);
         }
     }
 }

@@ -56,7 +56,7 @@ public class CharacterPlacement : MonoBehaviour
                 int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
                 GameObject doorObjectPrefab = doorObjectPrefabs[randomIndex];
                 GameObject doorObject = Instantiate(doorObjectPrefab);
-                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y + 0.5f, 0f);
+                doorObject.transform.position = new Vector3(doorPosition.x - 0.23f, doorPosition.y - 0.25f + 1f, 0f);
             }
         }
 
