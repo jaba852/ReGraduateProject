@@ -32,5 +32,8 @@ public class ObjectData : ScriptableObject
     [Header("PlacementRatio")]
     public int PlacementWeight = 1;
 
+    [Header("isLight")]
+    public bool isLight = true;
+
 }
 

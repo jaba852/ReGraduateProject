@@ -12,8 +12,8 @@ public class WarriorMovement : MonoBehaviour
     public LayerMask enemyLayers;
 
     private Vector2 dashingDir;
-    private bool isDashing;
-    private bool canDash = true;
+    public static bool isDashing;
+    public static bool canDash = true;
 
     private int AttackCount;
     private bool isAttack;
@@ -88,6 +88,7 @@ public class WarriorMovement : MonoBehaviour
                 canDash = false;
                 dashingDir = new Vector2(Horizontal, Vertical);
                 StartCoroutine(StopDashing());
+                StartCoroutine(DashCoolDownC());
             }
 
             if (isDashing)
@@ -202,7 +203,7 @@ public class WarriorMovement : MonoBehaviour
         AttackCount = 0;
         anim.SetInteger("AttackCount", AttackCount);
     }
-    private IEnumerator StopDashing()   // 대쉬 쿨타임 돌리기 위한 코루틴
+    private IEnumerator StopDashing()   // 대쉬 지속을 돌리기 위한 코루틴
     {
         if (stats.deadCount)
         {
@@ -210,7 +211,6 @@ public class WarriorMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(stats.dashingTime);         //대쉬 시간만큼 대기
         isDashing = false;
-        canDash = true;                                             //대쉬 가능하게 활성화
         anim.SetBool("isRolling", false);                           //대쉬 애니메이션 끝
     }
     private IEnumerator FirstAttackBdelay(Vector2 direction)    // 첫번째 공격으로 두번 공격해서 추가 데미지가 높아질수록 효율상승
@@ -297,6 +297,9 @@ public class WarriorMovement : MonoBehaviour
         yield return new WaitForSeconds(1f / stats.atkSpeed);
         isAttacking = true;
     }
-
-
+    private IEnumerator DashCoolDownC()   // 대쉬 쿨타임 돌리기 위한 코루틴
+    {
+        yield return new WaitForSeconds(stats.DashCoolDown);         //대쉬 쿨다운만큼만큼 대기
+        canDash = true;                                             //대쉬 가능하게 활성화
+    }
 }

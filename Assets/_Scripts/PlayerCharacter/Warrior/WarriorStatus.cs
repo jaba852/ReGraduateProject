@@ -42,6 +42,9 @@ public class WarriorStatus : MonoBehaviour
     [Header("피격무적시간")]
     [SerializeField] public float invincibleDuration = 1f;
 
+    [Header("구르기 쿨타임")]
+    [SerializeField] public float DashCoolDown = 3f;
+
     public bool deadCount;
 
     private bool isInvincible = false; // 피격 무적 상태를 나타내는 변수
@@ -73,7 +76,7 @@ public class WarriorStatus : MonoBehaviour
         power = PlayerPrefs.GetInt("Power", power);
         attackAddness = PlayerPrefs.GetInt("Attack_Addness", attackAddness);
         invincibleDuration = PlayerPrefs.GetFloat("InvincibleDuration", invincibleDuration);
-        // 나머지 스텟도 동일한 방식으로 로드
+        DashCoolDown = PlayerPrefs.GetFloat("DashCoolDown", DashCoolDown);
 
 
     }
@@ -91,15 +94,16 @@ public class WarriorStatus : MonoBehaviour
         PlayerPrefs.SetInt("Power", power);
         PlayerPrefs.SetInt("Attack_Addness", attackAddness);
         PlayerPrefs.SetFloat("InvincibleDuration", invincibleDuration);
+        PlayerPrefs.SetFloat("DashCoolDown", DashCoolDown);
         // PlayerPrefs 변경 사항을 저장
         PlayerPrefs.Save();
     }
 
     public void TakeDamagePlayer(int damage)
     {
-        if (isInvincible || deadCount)
+        if (isInvincible || deadCount || WarriorMovement.isDashing)
         {
-            return; // 피격 무적 상태이거나 이미 사망한 경우, 데미지를 받지 않음
+            return; // 피격무적, 사망, 대쉬 중에 무적
         }
 
         currentHealth -= damage;
@@ -169,6 +173,8 @@ public class WarriorStatus : MonoBehaviour
         attackAddness = 1;
 
         invincibleDuration = 1f;
+
+        DashCoolDown = 3f;
 
         // 플레이어의 체력을 초기화된 값으로 설정
         currentHealth = maxHealth;

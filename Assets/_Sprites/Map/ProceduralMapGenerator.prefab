@@ -449,8 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToPlace:
   - {fileID: 11400000, guid: 8524c0d11d3389f4c898f91fc83c046b, type: 2}
-  - {fileID: 11400000, guid: 8524c0d11d3389f4c898f91fc83c046b, type: 2}
-  cornerObjectPlacementChance: 0.854
+  cornerObjectPlacementChance: 0.1
   objectPrefab: {fileID: 8822911626867129864, guid: b692066b831fb8840a4eb2b008983578, type: 3}
   OnFinished:
     m_PersistentCalls:

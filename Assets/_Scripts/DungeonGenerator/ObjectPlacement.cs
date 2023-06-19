@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 
 public class ObjectPlacement : MonoBehaviour
 {
@@ -226,6 +227,12 @@ public class ObjectPlacement : MonoBehaviour
         propSpriteRenderer.sprite = objectData.ObjectSprite;
 
         CapsuleCollider2D collider = propSpriteRenderer.gameObject.AddComponent<CapsuleCollider2D>();
+        if (objectData.isLight)
+        {
+            Light2D light2D = propSpriteRenderer.gameObject.AddComponent<Light2D>();
+
+        }
+
         collider.offset = Vector2.zero;
         if (objectData.ObjectSize.x > objectData.ObjectSize.y)
         {
@@ -234,7 +241,7 @@ public class ObjectPlacement : MonoBehaviour
         Vector2 size = new Vector2(objectData.ObjectSize.x * 0.8f, objectData.ObjectSize.y * 0.8f);
         collider.size = size;
         objectInstance.transform.localPosition = (Vector2)placementPosition;
-
+                
         propSpriteRenderer.transform.localPosition = (Vector2)objectData.ObjectSize * 0.5f;
 
         room.ObjectPositions.Add(placementPosition);
