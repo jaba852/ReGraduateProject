@@ -36,8 +36,13 @@ public class ObjectPlacement : MonoBehaviour
         {
             PlaceAllObject(room);
         }
+        StartCoroutine(RoomOBJFinishCo());
         OnFinished?.Invoke();
 
+    }
+    private IEnumerator RoomOBJFinishCo()
+    {
+        yield return new WaitForSeconds(2f);
     }
 
     private void PlaceAllObject(DungeonData.Room room)
@@ -241,7 +246,7 @@ public class ObjectPlacement : MonoBehaviour
         Vector2 size = new Vector2(objectData.ObjectSize.x * 0.8f, objectData.ObjectSize.y * 0.8f);
         collider.size = size;
         objectInstance.transform.localPosition = (Vector2)placementPosition;
-
+                
         propSpriteRenderer.transform.localPosition = (Vector2)objectData.ObjectSize * 0.5f;
 
         room.ObjectPositions.Add(placementPosition);

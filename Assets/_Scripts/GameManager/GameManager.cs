@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public static bool isPaused = false; // 게임 일시정지 여부를 저장할 변수
     public GameObject pauseCanvas; // 일시정지시 나타날 캔버스
-    private GraphicRaycaster canvasRaycaster; // 캔버스의 Graphic Raycaster 컴포넌트
     public GameObject settingsCanvas; // 환경설정 버튼
 
     private void Awake()

@@ -26,9 +26,6 @@ public class CharacterPlacement : MonoBehaviour
 
     DungeonData dungeonData; // 던전 데이터 객체
 
-    [SerializeField]
-    private bool showGizmo = false; // Gizmo 표시 여부 변수
-
     private GameObject exitPortal; // Exit Portal 오브젝트 변수
 
     private void Awake()
@@ -56,7 +53,7 @@ public class CharacterPlacement : MonoBehaviour
                 int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
                 GameObject doorObjectPrefab = doorObjectPrefabs[randomIndex];
                 GameObject doorObject = Instantiate(doorObjectPrefab);
-                doorObject.transform.position = new Vector3(doorPosition.x - 0.23f, doorPosition.y - 0.25f + 1f, 0f);
+                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y + 0.5f, 0f);
             }
         }
 
@@ -99,39 +96,26 @@ public class CharacterPlacement : MonoBehaviour
 
     private void PlaceEnemies(DungeonData.Room room, int enemyCount)
     {
+        StartCoroutine(PlaceEnemiesCoroutine(room, enemyCount));
+    }
+
+    private IEnumerator PlaceEnemiesCoroutine(DungeonData.Room room, int enemyCount)
+    {
         for (int k = 0; k < enemyCount; k++)
         {
             if (room.PositionsAccessibleFromPath.Count <= k) // 접근 가능한 위치의 수가 현재 적을 배치할 인덱스보다 작은 경우 종료
             {
-                return;
+                yield break;
             }
+            yield return new WaitForSeconds(.0f); // 1초 대기
 
             GameObject enemyPrefab = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Count)]; // 적 프리팹 중에서 랜덤하게 선택
             GameObject enemy = Instantiate(enemyPrefab); // 적 프리팹을 인스턴스화하여 생성
             enemy.transform.localPosition = (Vector2)room.PositionsAccessibleFromPath[k] + Vector2.one * 0.5f; // 적을 접근 가능한 위치에 배치
+
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        if (dungeonData == null || showGizmo == false) // 던전 데이터가 없거나 Gizmo 표시가 비활성화된 경우
-        {
-            Debug.Log("오류발생");
-            return;
-        }
-
-        foreach (DungeonData.Room room in dungeonData.Rooms)
-        {
-            Color color = Color.green;
-            color.a = 0.3f;
-            Gizmos.color = color;
-
-            foreach (Vector2Int pos in room.PositionsAccessibleFromPath)
-            {
-                Gizmos.DrawCube((Vector2)pos + Vector2.one * 0.5f, Vector2.one); // 접근 가능한 위치에 사각형 형태의 Gizmo를 그림
-            }
-        }
-    }
 }
 
 public class RoomGraph

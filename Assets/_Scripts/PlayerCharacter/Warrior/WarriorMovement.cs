@@ -315,11 +315,10 @@ public class WarriorMovement : MonoBehaviour
         yield return new WaitForSeconds(1f / stats.atkSpeed);
         isAttacking = true;
     }
-
-
-private IEnumerator DashCoolDownC()   // 대쉬 쿨타임 돌리기 위한 코루틴
+    private IEnumerator DashCoolDownC()   // 대쉬 쿨타임 돌리기 위한 코루틴
     {
         yield return new WaitForSeconds(stats.DashCoolDown);         //대쉬 쿨다운만큼만큼 대기
         canDash = true;                                             //대쉬 가능하게 활성화
     }
+
 }

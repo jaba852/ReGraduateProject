@@ -7,10 +7,6 @@ public class DungeonDataExtrator : MonoBehaviour
 {
     private DungeonData dungeonData;
 
-    [SerializeField]
-    private bool Gizmo = false;
-
-
     public UnityEvent OnFinishedRoomProcessing;
 
     private void Awake()
@@ -98,81 +94,10 @@ public class DungeonDataExtrator : MonoBehaviour
 
         }
         OnFinishedRoomProcessing?.Invoke();
+        StartCoroutine(RoomDataExtFinishCo());
     }
-
-    private void OnDrawGizmosSelected()
+    private IEnumerator RoomDataExtFinishCo()
     {
-        if (dungeonData == null || Gizmo == false)
-        {
-            return;
-        }
-        foreach (DungeonData.Room room in dungeonData.Rooms)
-        {
-            Gizmos.color = Color.white;
-            foreach (Vector2Int floorPosition in room.InnerTiles)
-            {
-                if (dungeonData.Path.Contains(floorPosition))
-                {
-                    continue;
-                }
-                Gizmos.DrawCube(floorPosition + Vector2.one * 0.5f, Vector2.one);
-            }
-            Gizmos.color = Color.red;
-            foreach (Vector2Int floorPosition in room.NearWallTilesUp)
-            {
-                if (dungeonData.Path.Contains(floorPosition))
-                {
-                    continue;
-                }
-                Gizmos.DrawCube(floorPosition + Vector2.one * 0.5f, Vector2.one);
-            }
-            Gizmos.color = Color.blue;
-            foreach (Vector2Int floorPosition in room.NearWallTilesDown)
-            {
-                if (dungeonData.Path.Contains(floorPosition))
-                {
-                    continue;
-                }
-                Gizmos.DrawCube(floorPosition + Vector2.one * 0.5f, Vector2.one);
-            }
-            Gizmos.color = Color.yellow;
-            foreach (Vector2Int floorPosition in room.NearWallTilesRight)
-            {
-                if (dungeonData.Path.Contains(floorPosition))
-                {
-                    continue;
-                }
-                Gizmos.DrawCube(floorPosition + Vector2.one * 0.5f, Vector2.one);
-            }
-            Gizmos.color = Color.green;
-            foreach (Vector2Int floorPosition in room.NearWallTilesLeft)
-            {
-                if (dungeonData.Path.Contains(floorPosition))
-                {
-                    continue;
-                }
-                Gizmos.DrawCube(floorPosition + Vector2.one * 0.5f, Vector2.one);
-            }
-            Gizmos.color = Color.black;
-            foreach (Vector2Int floorPosition in room.CornerTiles)
-            {
-                if (dungeonData.Path.Contains(floorPosition))
-                {
-                    continue;
-                }
-                Gizmos.DrawCube(floorPosition + Vector2.one * 0.5f, Vector2.one);
-            }
-        }
-        // dungeonData.Path에 있는 위치만 보라색 기즈모로 그리기
-        Gizmos.color = Color.magenta;
-        foreach (Vector2Int pathPosition in dungeonData.Path)
-        {
-            Gizmos.DrawCube(pathPosition + Vector2.one * 0.5f, Vector2.one);
-        }
-        Gizmos.color = Color.gray;
-        foreach(Vector2Int doorPosition in dungeonData.doorPos) // 문예정 위치 기즈모
-        {
-            Gizmos.DrawCube(doorPosition + Vector2.one * 0.5f, Vector2.one);
-        }
+        yield return new WaitForSeconds(2f);
     }
 }

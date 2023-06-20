@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 706369630044576159}
   - component: {fileID: 252470994}
   - component: {fileID: 6726521136932822294}
-  - component: {fileID: 511126715588989124}
+  - component: {fileID: 4163551167088792041}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,7 +126,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!58 &706369630044576158
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c54f59085a99e204f90c459ff879821c, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -222,11 +222,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRange: 10
-  speed: 5
+  speed: 3
   wanderInterval: 2
   distanceToPlayer: 1
-  playerTransform: {fileID: 0}
-  enemyTransform: {fileID: 0}
+  playerTransform: {fileID: 229181341328472075, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
+  enemyTransform: {fileID: 706369630044576154}
 --- !u!114 &6726521136932822294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
   EnemyattacksoundClip: {fileID: 8300000, guid: d64e91cef03af304fa237225b23c5707, type: 3}
   PlayerHitsoundClip: {fileID: 8300000, guid: 5f81bdff582c2fc4488e1129bc037245, type: 3}
   DeepOnesoundClip: {fileID: 8300000, guid: f066f3ebedc79dc429b921d5076e5491, type: 3}
---- !u!82 &511126715588989124
+--- !u!82 &4163551167088792041
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,7 +262,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -429,4 +429,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.05, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 1

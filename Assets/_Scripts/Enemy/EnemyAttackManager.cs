@@ -59,7 +59,7 @@ public class EnemyAttackManager : MonoBehaviour
         }
 
         // 게임 오브젝트에 AudioSource 컴포넌트를 추가
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
 
     }
 
@@ -163,7 +163,7 @@ public class EnemyAttackManager : MonoBehaviour
             collider.enabled = false;
         }
         Destroy(obj, 10.0f);
-        PointSystem.Instance.AddPoint(1);
+        //        PointSystem.Instance.AddPoint(1);
     }
 
     public void Enemyattack()
@@ -184,7 +184,7 @@ public class EnemyAttackManager : MonoBehaviour
                 isPlayerHitSoundPlaying = true;
                 StartCoroutine(ResetSoundFlags());
             }
-                warriorStatus.TakeDamagePlayer(10);
+            warriorStatus.TakeDamagePlayer(10);
             UnityEngine.Debug.Log("적 데미지");
 
         }

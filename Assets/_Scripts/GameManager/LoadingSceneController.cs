@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingSceneController : MonoBehaviour
 {
+
     public void LoadSceneAsync(int sceneBuildIndex)
     {
         StartCoroutine(LoadSceneAsyncCoroutine(sceneBuildIndex));

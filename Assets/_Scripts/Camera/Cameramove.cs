@@ -22,18 +22,15 @@ public class Cameramove : MonoBehaviour
         if (target != null)
         {
             warriorStatus = target.GetComponent<WarriorStatus>();
+        }
+        if (warriorStatus != null)
+        {
             previousHealth = (float)warriorStatus.currentHealth;
         }
     }
 
     void LateUpdate()
     {
-        if (target == null)
-        {
-            FindPlayer();
-            return;
-        }
-
         if (warriorStatus != null)
         {
             if (warriorStatus.currentHealth < previousHealth)
@@ -41,27 +38,29 @@ public class Cameramove : MonoBehaviour
                 StartCameraShake();
             }
             previousHealth = (float)warriorStatus.currentHealth;
-            Debug.Log(previousHealth);
         }
 
-        Vector3 desiredPosition = target.position + cameraOffset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-
-        if (isShaking)
+        if (target != null)
         {
-            if (shakeTimer < shakeDuration)
-            {
-                Vector2 shakeOffset = Random.insideUnitCircle * shakeMagnitude;
-                smoothedPosition += new Vector3(shakeOffset.x, shakeOffset.y, 0f);
-                shakeTimer += Time.deltaTime;
-            }
-            else
-            {
-                isShaking = false;
-            }
-        }
+            Vector3 desiredPosition = target.position + cameraOffset;
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
 
-        transform.position = smoothedPosition;
+            if (isShaking)
+            {
+                if (shakeTimer < shakeDuration)
+                {
+                    Vector2 shakeOffset = Random.insideUnitCircle * shakeMagnitude;
+                    smoothedPosition += new Vector3(shakeOffset.x, shakeOffset.y, 0f);
+                    shakeTimer += Time.deltaTime;
+                }
+                else
+                {
+                    isShaking = false;
+                }
+            }
+
+            transform.position = smoothedPosition;
+        }
     }
 
     // 진동 효과 시작
@@ -84,7 +83,6 @@ public class Cameramove : MonoBehaviour
         {
             target = player.transform;
             warriorStatus = player.GetComponent<WarriorStatus>();
-            previousHealth = (float)warriorStatus.currentHealth;
         }
         else
         {
@@ -102,9 +100,13 @@ public class Cameramove : MonoBehaviour
             {
                 target = player.transform;
                 warriorStatus = player.GetComponent<WarriorStatus>();
-                previousHealth = (float)warriorStatus.currentHealth;
             }
             yield return new WaitForSeconds(0.5f);
+        }
+
+        if (warriorStatus != null)
+        {
+            previousHealth = (float)warriorStatus.currentHealth;
         }
     }
 }

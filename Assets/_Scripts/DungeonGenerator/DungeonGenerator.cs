@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,9 +68,14 @@ public class DungeonGenerator : MonoBehaviour
 
         GenerateDungeonCollider(); // 던전의 충돌 영역 생성
 
+        StartCoroutine(RoomFinishCo());
+
         OnFinishedRoomGeneration?.Invoke(); // 방 생성 완료 이벤트 호출
     }
-
+    private IEnumerator RoomFinishCo()
+    {
+        yield return new WaitForSeconds(2f);
+    }
 
     private void GenerateBranch(Vector2Int startPosition, int roomCount, int branchCount)
     {

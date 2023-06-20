@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -13,27 +12,47 @@ public class EnemyMovement : MonoBehaviour
     public Transform playerTransform;
     public Transform enemyTransform;
     private bool playerDetected = false;
-    private float wanderTimer = 0.0f;
+    private float wanderTimer = 10.0f;
     private Vector2 wanderDirection;
     private Animator animator;
     private Rigidbody2D rb;
     private WarriorStatus warriorStatus;
     private EnemyAttackManager attackManager;
+
+    // Added variables for player detection delay
+    private bool isPlayerDetectionDelayed = false;
+    private float playerDetectionDelay = 2.0f;
+    private float playerDetectionTimer = 0.0f;
+
     void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         enemyTransform = transform;
         wanderDirection = GetRandomWanderDirection();
         animator = GetComponent<Animator>();
         warriorStatus = FindObjectOfType<WarriorStatus>();
-        attackManager = gameObject.AddComponent<EnemyAttackManager>();
         attackManager = GetComponent<EnemyAttackManager>();
 
+        // Start the delay timer
+        playerDetectionTimer = playerDetectionDelay;
     }
 
     void Update()
     {
+        // If player detection is delayed, reduce the timer
+        if (isPlayerDetectionDelayed)
+        {
+            playerDetectionTimer -= Time.deltaTime;
+
+            // If the timer reaches 0, try to find the player again
+            if (playerDetectionTimer <= 0.0f)
+            {
+                FindPlayer();
+                isPlayerDetectionDelayed = false;
+            }
+        }
+
         attackManager.UpdateAttack(playerTransform);
 
         if (attackManager.enemyMove)
@@ -44,7 +63,7 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
- //               Wander();
+                Wander();
             }
         }
 
@@ -73,6 +92,14 @@ public class EnemyMovement : MonoBehaviour
 
     private void ChasePlayer()
     {
+        if (playerTransform == null)
+        {
+            // Player transform is missing, delay player detection
+            isPlayerDetectionDelayed = true;
+            playerDetectionTimer = playerDetectionDelay;
+            return;
+        }
+
         Vector2 direction = playerTransform.position - enemyTransform.position;
         float distance = Vector2.Distance(enemyTransform.position, playerTransform.position);
 
@@ -82,6 +109,22 @@ public class EnemyMovement : MonoBehaviour
             animator.SetFloat("EnemyMoveX", direction.x);
             animator.SetFloat("EnemyMoveY", direction.y);
             animator.SetBool("isEnemyMove", true);
+        }
+    }
+
+    private void FindPlayer()
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+        if (playerObject != null)
+        {
+            playerTransform = playerObject.transform;
+        }
+        else
+        {
+            // Player not found, delay player detection again
+            isPlayerDetectionDelayed = true;
+            playerDetectionTimer = playerDetectionDelay;
         }
     }
 
@@ -118,16 +161,10 @@ public class EnemyMovement : MonoBehaviour
             attackManager.StopAttack();
         }
     }
-    // 여기 오류만 발생하고  지워도 문제없길래 일단은 주석화해둠
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    attackManager.OnCollisionEnter2D(collision);
-    //}
 
     private Vector2 GetRandomWanderDirection()
     {
         float randomAngle = Random.Range(0f, 2f * Mathf.PI);
         return new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
     }
-
 }
