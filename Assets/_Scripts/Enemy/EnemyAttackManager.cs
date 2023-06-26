@@ -59,7 +59,7 @@ public class EnemyAttackManager : MonoBehaviour
         }
 
         // 게임 오브젝트에 AudioSource 컴포넌트를 추가
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -204,7 +204,6 @@ public class EnemyAttackManager : MonoBehaviour
 
     public void Enemyreaction()
     {
-
         animator.SetBool("isEnemyHit", false);
     }
 
