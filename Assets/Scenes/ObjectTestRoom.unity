@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6228728821691595417, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -4116746141011046207, guid: 54acf72aaac57064fba978829db4eaf9, type: 2}
     - target: {fileID: 283459755811666217, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
       propertyPath: m_Name
       value: DeepOne
@@ -1211,6 +1215,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4163551167088792041, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -4116746141011046207, guid: 54acf72aaac57064fba978829db4eaf9, type: 2}
     m_RemovedComponents:
     - {fileID: 706369630044576158, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
     m_RemovedGameObjects: []
@@ -3444,6 +3452,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6228728821691595417, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -4116746141011046207, guid: 54acf72aaac57064fba978829db4eaf9, type: 2}
     - target: {fileID: 283459755811666217, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
       propertyPath: m_Name
       value: DeepOne (1)
