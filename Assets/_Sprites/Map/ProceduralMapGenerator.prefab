@@ -518,6 +518,7 @@ MonoBehaviour:
   exitPortalPrefab: {fileID: 466687832610999445, guid: 387c3b1fa46640f47956e43c33cc9382, type: 3}
   playerRoomIndex: 0
   roomEnemiesCount: 000000000a0000000a0000000a00000000000000
+  showGizmo: 0
 --- !u!1 &3453755166274454276
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974e04810f20f9349b1185b32003588d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gizmo: 0
   OnFinishedRoomProcessing:
     m_PersistentCalls:
       m_Calls:
