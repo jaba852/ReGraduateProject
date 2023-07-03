@@ -1,89 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &283459754499198960
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 283459754499198963}
-  - component: {fileID: 283459754499198965}
-  - component: {fileID: 283459754499198962}
-  m_Layer: 8
-  m_Name: hitPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &283459754499198963
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283459754499198960}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 283459755811666218}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &283459754499198965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283459754499198960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c092d63544e02046bdf500c7f14cfcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  parentObject: {fileID: 283459755811666217}
-  animatorToChange: {fileID: 0}
---- !u!58 &283459754499198962
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283459754499198960}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.05, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.4
 --- !u!1 &283459755811666217
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,11 +11,11 @@ GameObject:
   - component: {fileID: 283459755811666218}
   - component: {fileID: 283459755811666219}
   - component: {fileID: 283459755811666220}
-  - component: {fileID: 283459755811666222}
   - component: {fileID: 283459755811666221}
   - component: {fileID: 283459755811666223}
-  - component: {fileID: 730298144124290658}
+  - component: {fileID: 1956169148}
   - component: {fileID: -8022715097765678376}
+  - component: {fileID: 1956169149}
   - component: {fileID: -6228728821691595417}
   m_Layer: 8
   m_Name: DeepOne
@@ -119,10 +35,9 @@ Transform:
   m_LocalPosition: {x: -3.55, y: 1.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 283459754499198963}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &283459755811666219
 SpriteRenderer:
@@ -211,41 +126,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!58 &283459755811666222
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283459755811666217}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 3
 --- !u!50 &283459755811666221
 Rigidbody2D:
   serializedVersion: 4
@@ -293,7 +173,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &730298144124290658
+--- !u!114 &1956169148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,15 +182,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 283459755811666217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df943123b3d5b7a43870cc8b3e27dad5, type: 3}
+  m_Script: {fileID: 11500000, guid: e01daeca1e8acd84bb40ab1f2b33c1b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 10
-  speed: 5
-  wanderInterval: 2
-  distanceToPlayer: 1
-  playerTransform: {fileID: 229181341328472075, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
-  enemyTransform: {fileID: 283459755811666218}
+  detectionRange: 20
+  attackRange: 5
+  moveSpeed: 3
+  attackDelay: 2
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &-8022715097765678376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMove: 1
-  attackStop: 0
+  attackStop: 1
   enemydead: 0
   count: 1
   attackRange: 2
@@ -334,6 +215,20 @@ MonoBehaviour:
   EnemyattacksoundClip: {fileID: 8300000, guid: d64e91cef03af304fa237225b23c5707, type: 3}
   PlayerHitsoundClip: {fileID: 8300000, guid: f066f3ebedc79dc429b921d5076e5491, type: 3}
   DeepOnesoundClip: {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
+--- !u!114 &1956169149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283459755811666217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c092d63544e02046bdf500c7f14cfcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!82 &-6228728821691595417
 AudioSource:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 706369630044576157}
   - component: {fileID: 706369630044576159}
   - component: {fileID: 252470994}
-  - component: {fileID: 6726521136932822294}
+  - component: {fileID: 2863334167573484026}
   - component: {fileID: 4163551167088792041}
   m_Layer: 8
   m_Name: Enemy
@@ -38,7 +38,7 @@ Transform:
   m_Children:
   - {fileID: 706369631348125507}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &706369630044576155
 SpriteRenderer:
@@ -221,13 +221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df943123b3d5b7a43870cc8b3e27dad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 15
-  speed: 3
-  wanderInterval: 2
+  speed: 1
   distanceToPlayer: 1
   playerTransform: {fileID: 229181341328472075, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
   enemyTransform: {fileID: 706369630044576154}
---- !u!114 &6726521136932822294
+--- !u!114 &2863334167573484026
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -236,7 +234,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 706369630044576153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd6fd45bed2d714b86021fa6990c06d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3549c1a5d55bbde4aa83a9f265f58148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMove: 1
@@ -355,7 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706369631348125507}
-  - component: {fileID: 706369631348125509}
+  - component: {fileID: 4705277474952179780}
   - component: {fileID: 706369631348125506}
   m_Layer: 8
   m_Name: hitPoint
@@ -379,7 +377,7 @@ Transform:
   m_Father: {fileID: 706369630044576154}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &706369631348125509
+--- !u!114 &4705277474952179780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -388,13 +386,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 706369631348125504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c092d63544e02046bdf500c7f14cfcc, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c7b4449ac26e5c4c9f71e1cfdee0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  parentObject: {fileID: 706369630044576153}
-  animatorToChange: {fileID: 0}
 --- !u!58 &706369631348125506
 CircleCollider2D:
   m_ObjectHideFlags: 0

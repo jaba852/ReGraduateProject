@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 91318070}
   - component: {fileID: 91318069}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_77
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &194766613
 GameObject:
@@ -284,8 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de9bcff1c9354e4481f8d3cc4d65565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1219765672}
-  activationDelay: 2
 --- !u!212 &194766616
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -351,7 +349,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &194766618
 Rigidbody2D:
@@ -391,7 +389,7 @@ GameObject:
   - component: {fileID: 206514173}
   - component: {fileID: 206514172}
   - component: {fileID: 206514171}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +506,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &211477473
 GameObject:
@@ -520,7 +518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 211477475}
   - component: {fileID: 211477474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_68 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +590,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &305372072
 GameObject:
@@ -754,7 +752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370793744}
   - component: {fileID: 370793743}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_77 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +824,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &391566188
 GameObject:
@@ -839,7 +837,7 @@ GameObject:
   - component: {fileID: 391566191}
   - component: {fileID: 391566190}
   - component: {fileID: 391566189}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +954,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &420499389
 GameObject:
@@ -969,7 +967,7 @@ GameObject:
   - component: {fileID: 420499392}
   - component: {fileID: 420499391}
   - component: {fileID: 420499390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,7 +1084,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &536270871
 GameObject:
@@ -1099,7 +1097,7 @@ GameObject:
   - component: {fileID: 536270874}
   - component: {fileID: 536270873}
   - component: {fileID: 536270872}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1216,7 +1214,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &605154321
 PrefabInstance:
@@ -1298,7 +1296,7 @@ GameObject:
   - component: {fileID: 614784272}
   - component: {fileID: 614784271}
   - component: {fileID: 614784270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1415,7 +1413,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &822669518
 GameObject:
@@ -1429,7 +1427,7 @@ GameObject:
   - component: {fileID: 822669521}
   - component: {fileID: 822669520}
   - component: {fileID: 822669519}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_66
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1573,7 +1571,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &911324939
 GameObject:
@@ -1586,7 +1584,7 @@ GameObject:
   - component: {fileID: 911324942}
   - component: {fileID: 911324941}
   - component: {fileID: 911324940}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1703,7 +1701,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952728406
 GameObject:
@@ -1716,7 +1714,7 @@ GameObject:
   - component: {fileID: 952728409}
   - component: {fileID: 952728408}
   - component: {fileID: 952728407}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1833,86 +1831,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1219765672 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 229181341328472074, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
-  m_PrefabInstance: {fileID: 1754962763}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1263376255
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 252470994, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 252470994, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: detectionRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576153, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576154, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706369630044576155, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3f7ce31be3130cf4fa182882725d9d98, type: 3}
 --- !u!1 &1320254670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,7 +1844,7 @@ GameObject:
   - component: {fileID: 1320254673}
   - component: {fileID: 1320254672}
   - component: {fileID: 1320254671}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2041,7 +1961,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1581171147
 GameObject:
@@ -2053,7 +1973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1581171149}
   - component: {fileID: 1581171148}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_68
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2125,7 +2045,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1608571851
 GameObject:
@@ -2139,7 +2059,7 @@ GameObject:
   - component: {fileID: 1608571854}
   - component: {fileID: 1608571853}
   - component: {fileID: 1608571852}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_67
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2283,7 +2203,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1623249924
 PrefabInstance:
@@ -2293,6 +2213,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 197109639, guid: 85be4e2889da11b40bbd27decb5390fe, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3145172994259529462, guid: 85be4e2889da11b40bbd27decb5390fe, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2421,11 +2345,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 761192409, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 761192409, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
       propertyPath: m_FalloffIntensity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 761192409, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 229181340914738064, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2481,7 +2409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 229181341328472075, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 229181341328472075, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2755,7 +2683,7 @@ GameObject:
   - component: {fileID: 1775891031}
   - component: {fileID: 1775891030}
   - component: {fileID: 1775891032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2827,7 +2755,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1775891032
 BoxCollider2D:
@@ -2886,7 +2814,7 @@ GameObject:
   - component: {fileID: 1829749923}
   - component: {fileID: 1829749922}
   - component: {fileID: 1829749921}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_66 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3030,7 +2958,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1853418850
 GameObject:
@@ -3043,7 +2971,7 @@ GameObject:
   - component: {fileID: 1853418853}
   - component: {fileID: 1853418852}
   - component: {fileID: 1853418851}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_2 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3160,7 +3088,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1921409883
 PrefabInstance:
@@ -3223,6 +3151,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 036603592c690e6408fd88914a54653e, type: 3}
+--- !u!1 &1956169138 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 283459755811666217, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
+  m_PrefabInstance: {fileID: 2011386522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1956169149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956169138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7b4449ac26e5c4c9f71e1cfdee0a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1001 &2011386522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3237,15 +3184,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 283459755811666218, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 283459755811666218, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.5159774
+      value: 12.17
       objectReference: {fileID: 0}
     - target: {fileID: 283459755811666218, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.330836
+      value: -1.78
       objectReference: {fileID: 0}
     - target: {fileID: 283459755811666218, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3279,22 +3226,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 283459755811666219, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 730298144124290658, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 730298144124290658, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
-      propertyPath: detectionRange
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1956169149, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 283459755811666217, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 1956169149}
   m_SourcePrefab: {fileID: 100100000, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
 --- !u!1 &2063805141
 GameObject:
@@ -3308,7 +3247,7 @@ GameObject:
   - component: {fileID: 2063805144}
   - component: {fileID: 2063805143}
   - component: {fileID: 2063805142}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dungeon_Tileset_67 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3452,5 +3391,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

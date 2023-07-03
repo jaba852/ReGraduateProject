@@ -2,7 +2,7 @@ using System.Diagnostics;
 using UnityEngine;
 using System.Collections;
 
-public class EnemyAttackManager : MonoBehaviour
+public class DeepOneAttackManager : MonoBehaviour
 {
     private Animator animator;
     public bool enemyMove = true;
@@ -11,7 +11,7 @@ public class EnemyAttackManager : MonoBehaviour
     public int count = 1;
     private Rigidbody2D rb;
     private WarriorStatus warriorStatus;
-    private EnemyMovement enemyMovement;
+    private DeepOneMovement DeeponeMvmt;
 
 
     public float attackRange = 2.0f; // 일정 거리
@@ -51,7 +51,7 @@ public class EnemyAttackManager : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         warriorStatus = FindObjectOfType<WarriorStatus>();
-        enemyMovement = GetComponent<EnemyMovement>();
+        DeeponeMvmt = GetComponent<DeepOneMovement>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -65,7 +65,7 @@ public class EnemyAttackManager : MonoBehaviour
 
     public void UpdateAttack(Transform playerTransform)
     {
-        enemyMovement.playerTransform = playerTransform;
+    
 
         if (attackStop == true)
         {
@@ -105,12 +105,7 @@ public class EnemyAttackManager : MonoBehaviour
         }
     }
 
-    public void ResetAttackDirection()
-    {
-        Vector2 direction = enemyMovement.playerTransform.position - transform.position;
-        animator.SetFloat("EnemyMoveX", direction.x);
-        animator.SetFloat("EnemyMoveY", direction.y);
-    }
+
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -137,59 +132,10 @@ public class EnemyAttackManager : MonoBehaviour
         }
 
     }
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        // 충돌한 오브젝트를 확인하고 원하는 동작을 수행합니다.
-        if (other.CompareTag("Player"))
-        {
-            // 충돌한 오브젝트가 "Player" 태그를 가진 경우의 처리
-
-        }
-        else if (other.CompareTag("Enemy"))
-        {
-            // 충돌한 오브젝트가 "Enemy" 태그를 가진 경우의 처리
-        }
-        // ...
-    }
-
-    public void Enemydead(GameObject obj)
-    {
-        enemyMove = false;
-        enemydead = true;
-        CircleCollider2D[] colliders = obj.GetComponents<CircleCollider2D>();
-
-        foreach (CircleCollider2D collider in colliders)
-        {
-            collider.enabled = false;
-        }
-        Destroy(obj, 10.0f);
-        //        PointSystem.Instance.AddPoint(1);
-    }
-
-    public void Enemyattack()
-    {
-        if (!isEnemyAttackSoundPlaying)
-        {
-            audioSource.PlayOneShot(EnemyattacksoundClip);
-            isEnemyAttackSoundPlaying = true;
-            StartCoroutine(ResetSoundFlags());
-        }
 
 
-        if (Vector2.Distance(transform.position, warriorStatus.transform.position) <= attackRange)
-        {
-            if (!isPlayerHitSoundPlaying)
-            {
-                audioSource.PlayOneShot(PlayerHitsoundClip);
-                isPlayerHitSoundPlaying = true;
-                StartCoroutine(ResetSoundFlags());
-            }
-            warriorStatus.TakeDamagePlayer(10);
-            UnityEngine.Debug.Log("적 데미지");
 
-        }
 
-    }
 
     IEnumerator ResetSoundFlags()
     {
@@ -230,11 +176,17 @@ public class EnemyAttackManager : MonoBehaviour
         float elapsedTime = 0f;
         DeepOneattacking = true;
 
+
         while (DeepOneattacking)
         {
             // 경고 표시를 플레이어 위치로 이동
             warning.transform.position = Vector2.MoveTowards(warning.transform.position, targetPosition, warningmoveSpeed * Time.deltaTime);
             elapsedTime += Time.deltaTime;
+            // 2초 후에 탈출
+            if (elapsedTime >= 1f)
+            {
+                break;
+            }
             yield return null;
         }
 
