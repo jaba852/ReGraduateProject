@@ -1,171 +1,126 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class CloseEnemyMovement : MonoBehaviour
 {
-    public float detectionRange = 10.0f;
-    public float speed = 5.0f;
-    public float wanderInterval = 2.0f;
-    public float distanceToPlayer = 2.0f;
+    public float detectionRange = 10f; // 적군 감지 범위
+    public float attackRange = 5f; // 공격 사거리
+    public float moveSpeed = 3f; // 이동 속도
+    public float attackDelay = 2f; // 공격 딜레이
 
-    public Transform playerTransform;
-    public Transform enemyTransform;
-    private bool playerDetected = false;
-    private float wanderTimer = 10.0f;
-    private Vector2 wanderDirection;
+    public LayerMask wallLayer; // 벽 레이어
+
+    private Transform player; // 플레이어의 Transform 컴포넌트
+    private bool isAttacking = false; // 현재 공격 중인지 여부
+    private float attackTimer = 0f; // 공격 딜레이 타이머
+
     private Animator animator;
-    private Rigidbody2D rb;
-    private WarriorStatus warriorStatus;
+
     private CloseEnemyAttackManager attackManager;
 
-    // Added variables for player detection delay
-    private bool isPlayerDetectionDelayed = false;
-    private float playerDetectionDelay = 2.0f;
-    private float playerDetectionTimer = 0.0f;
+    private bool enemydead = false;
 
-    void Start()
+
+
+    private void Start()
     {
-
-        rb = GetComponent<Rigidbody2D>();
-        enemyTransform = transform;
-        wanderDirection = GetRandomWanderDirection();
-        animator = GetComponent<Animator>();
-        warriorStatus = FindObjectOfType<WarriorStatus>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         attackManager = GetComponent<CloseEnemyAttackManager>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
-        // Start the delay timer
-        playerDetectionTimer = playerDetectionDelay;
+        animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
-        // If player detection is delayed, reduce the timer
-        if (isPlayerDetectionDelayed)
+        // 플레이어 감지 및 공격
+        if (!isAttacking && !enemydead)
         {
-            playerDetectionTimer -= Time.deltaTime;
 
-            // If the timer reaches 0, try to find the player again
-            if (playerDetectionTimer <= 0.0f)
+
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+            if (distanceToPlayer <= detectionRange && distanceToPlayer > attackRange)
             {
-                FindPlayer();
-                isPlayerDetectionDelayed = false;
+                // 적군이 플레이어를 감지하고 벽에 가려지지 않은 경우에만 이동
+                if (!IsWallBetweenEnemyAndPlayer())
+                {
+                    MoveTowardsPlayer();
+                }
+                else
+                {
+                    animator.SetBool("isEnemyMove", false);
+                }
             }
-        }
-
-        attackManager.UpdateAttack(playerTransform);
-
-        if (attackManager.enemyMove)
-        {
-            if (playerDetected)
+            else if (distanceToPlayer <= attackRange && !enemydead)
             {
-                ChasePlayer();
+                // 플레이어가 공격 사거리 내에 있으면 공격 실행
+                Attack();
+                UnityEngine.Debug.Log("플레이어감지");
             }
-            else
-            {
-                Wander();
-            }
-        }
-
-        rb.velocity = Vector2.zero;
-    }
-
-    private void Wander()
-    {
-        wanderTimer -= Time.deltaTime;
-        if (wanderTimer < 0.0f)
-        {
-            wanderDirection = GetRandomWanderDirection();
-            wanderTimer = wanderInterval;
-        }
-
-        transform.Translate(wanderDirection * speed * Time.deltaTime);
-        animator.SetFloat("EnemyMoveX", wanderDirection.x);
-        animator.SetFloat("EnemyMoveY", wanderDirection.y);
-        animator.SetBool("isEnemyMove", true);
-
-        if (Vector2.Distance(transform.position, playerTransform.position) < detectionRange)
-        {
-            playerDetected = true;
-        }
-    }
-
-    private void ChasePlayer()
-    {
-        if (playerTransform == null)
-        {
-            // Player transform is missing, delay player detection
-            isPlayerDetectionDelayed = true;
-            playerDetectionTimer = playerDetectionDelay;
-            return;
-        }
-
-        Vector2 direction = playerTransform.position - enemyTransform.position;
-        float distance = Vector2.Distance(enemyTransform.position, playerTransform.position);
-
-        if (distance > distanceToPlayer)
-        {
-            enemyTransform.Translate(direction.normalized * speed * Time.deltaTime);
-            animator.SetFloat("EnemyMoveX", direction.x);
-            animator.SetFloat("EnemyMoveY", direction.y);
-            animator.SetBool("isEnemyMove", true);
-        }
-    }
-
-    private void FindPlayer()
-    {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
-        if (playerObject != null)
-        {
-            playerTransform = playerObject.transform;
         }
         else
         {
-            // Player not found, delay player detection again
-            isPlayerDetectionDelayed = true;
-            playerDetectionTimer = playerDetectionDelay;
-        }
-    }
+            // 공격 중일 때 타이머 갱신
+            attackTimer += Time.deltaTime;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            attackManager.StartAttack(other.transform);
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other == null) return;
-
-        if (other.CompareTag("Player"))
-        {
-
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-            if (stateInfo.IsName("Enemy_attack") && stateInfo.normalizedTime >= attackManager.count)
+            if (attackTimer >= attackDelay)
             {
-                attackManager.ResetAttackDirection();
-                attackManager.count += 1;
-                UnityEngine.Debug.Log("공격방향 재설정");
+                // 공격 딜레이 후 공격 완료
+                animator.SetBool("isEnemyAttack", false);
+                isAttacking = false;
+                attackTimer = 0f;
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void MoveTowardsPlayer()
     {
-        if (other.CompareTag("Player"))
-        {
-            attackManager.StopAttack();
-        }
+        // 플레이어 쪽으로 이동
+        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        Vector2 direction = player.position - transform.position;
+        animator.SetFloat("EnemyMoveX", direction.x);
+        animator.SetFloat("EnemyMoveY", direction.y);
+        animator.SetBool("isEnemyMove", true);
     }
 
-    private Vector2 GetRandomWanderDirection()
+    private void Attack()
     {
-        float randomAngle = Random.Range(0f, 2f * Mathf.PI);
-        return new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
+        // 공격 실행
+        UnityEngine.Debug.Log("Enemy attacks!");
+        Vector2 direction = player.position - transform.position;
+
+        animator.SetFloat("EnemyMoveX", direction.x);
+        animator.SetFloat("EnemyMoveY", direction.y);
+
+
+        animator.SetBool("isEnemyAttack", true);
+        // 여기에 공격에 관련된 코드를 작성
+        // 예를 들어, 탄환을 발사하거나 플레이어에게 데미지를 입힐 수 있음
+
+
+        isAttacking = true;
+    }
+
+    public void SetEnemyDead()
+    {
+        enemydead = true;
+
+        UnityEngine.Debug.Log("사망" + enemydead);
+    }
+
+    private bool IsWallBetweenEnemyAndPlayer()
+    {
+        // 적군과 플레이어 사이에 벽이 있는지 체크
+        Vector2 direction = player.position - transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionRange, wallLayer);
+
+        if (hit.collider != null)
+        {
+            // 레이캐스트가 벽과 충돌한 경우
+            return true;
+
+        }
+
+        // 벽이 없거나, 감지 범위 내에 벽이 없는 경우
+        return false;
     }
 }

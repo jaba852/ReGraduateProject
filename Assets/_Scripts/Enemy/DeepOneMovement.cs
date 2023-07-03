@@ -86,7 +86,7 @@ public class DeepOneMovement : MonoBehaviour
     private void Attack()
     {
         // 공격 실행
-        UnityEngine.Debug.Log("Enemy attacks!");
+        UnityEngine.Debug.Log("DeepOne attacks!");
         Vector2 direction = player.position - transform.position;
     
             animator.SetFloat("EnemyMoveX", direction.x);

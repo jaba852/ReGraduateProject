@@ -11,7 +11,7 @@ public class CloseEnemyAttackManager : MonoBehaviour
     public int count = 1;
     private Rigidbody2D rb;
     private WarriorStatus warriorStatus;
-    private CloseEnemyMovement enemyMovement;
+
 
 
     public float attackRange = 2.0f; // 일정 거리
@@ -36,7 +36,7 @@ public class CloseEnemyAttackManager : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         warriorStatus = FindObjectOfType<WarriorStatus>();
-        enemyMovement = GetComponent<CloseEnemyMovement>();
+
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -50,7 +50,7 @@ public class CloseEnemyAttackManager : MonoBehaviour
 
     public void UpdateAttack(Transform playerTransform)
     {
-        enemyMovement.playerTransform = playerTransform;
+     
 
         if (attackStop == true)
         {
@@ -92,7 +92,7 @@ public class CloseEnemyAttackManager : MonoBehaviour
 
     public void ResetAttackDirection()
     {
-        Vector2 direction = enemyMovement.playerTransform.position - transform.position;
+        Vector2 direction = playerTransform.position - transform.position;
         animator.SetFloat("EnemyMoveX", direction.x);
         animator.SetFloat("EnemyMoveY", direction.y);
     }

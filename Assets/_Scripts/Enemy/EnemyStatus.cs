@@ -9,7 +9,7 @@ public class EnemyStatus : MonoBehaviour
     private Animator animatorToChange;
 
     private DeepOneMovement DeeponeMvmt;
-    
+    private CloseEnemyMovement CloseEnemyMvmt;
 
 
     public void Start()
@@ -19,7 +19,7 @@ public class EnemyStatus : MonoBehaviour
         animatorToChange = transformObject.GetComponent<Animator>();
 
         DeeponeMvmt = GetComponent<DeepOneMovement>();
-
+        CloseEnemyMvmt = GetComponent<CloseEnemyMovement>();
     }
     public void TakeDamage(double damage)
     {
@@ -40,6 +40,10 @@ public class EnemyStatus : MonoBehaviour
         if (gameObject.CompareTag("DeepOne"))
         {
             DeeponeMvmt.SetEnemyDead();
+        }
+        if (gameObject.CompareTag("Enemy"))
+        {
+            CloseEnemyMvmt.SetEnemyDead();
         }
 
 
