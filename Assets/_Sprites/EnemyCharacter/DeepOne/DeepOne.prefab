@@ -37,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &283459755811666219
 SpriteRenderer:
@@ -138,9 +138,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_Mass: 100
+  m_LinearDrag: 100
+  m_AngularDrag: 100
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -212,8 +212,6 @@ MonoBehaviour:
   warningPrefab: {fileID: 8026824313315772519, guid: a84db70ccd098d441a2e379c845f8e26, type: 3}
   warningmoveSpeed: 8
   energyPointSpriteRenderer: {fileID: 8787928373663821334, guid: 70c8790000ded6b4ea002cb8a56e53f9, type: 3}
-  EnemyattacksoundClip: {fileID: 8300000, guid: d64e91cef03af304fa237225b23c5707, type: 3}
-  PlayerHitsoundClip: {fileID: 8300000, guid: f066f3ebedc79dc429b921d5076e5491, type: 3}
   DeepOnesoundClip: {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
 --- !u!114 &1956169149
 MonoBehaviour:
