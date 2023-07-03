@@ -1,19 +1,21 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool isPaused = false; // °ÔÀÓ ÀÏ½ÃÁ¤Áö ¿©ºÎ¸¦ ÀúÀåÇÒ º¯¼ö
-    public GameObject pauseCanvas; // ÀÏ½ÃÁ¤Áö½Ã ³ªÅ¸³¯ Äµ¹ö½º
-    public GameObject settingsCanvas; // È¯°æ¼³Á¤ ¹öÆ°
-
+    public static bool isPaused = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public GameObject pauseCanvas; // ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ Äµï¿½ï¿½ï¿½ï¿½
+    public GameObject settingsCanvas; // È¯ï¿½æ¼³ï¿½ï¿½ ï¿½ï¿½Æ°
+    [SerializeField] Texture2D cursorimage;
     private void Awake()
     {
-        // °ÔÀÓ¸Å´ÏÀú ¿ÀºêÁ§Æ®¸¦ ¾À ÀüÈ¯½Ã¿¡µµ À¯Áö
+        Cursor.SetCursor(cursorimage, Vector2.zero, CursorMode.ForceSoftware);
+        // ï¿½ï¿½ï¿½Ó¸Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ã¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         DontDestroyOnLoad(gameObject);
 
-        // Äµ¹ö½º ºñÈ°¼ºÈ­
+        // Äµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         pauseCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
 
@@ -21,8 +23,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        // ESC Å°¸¦ ´­·¶À» ¶§ ÀÏ½ÃÁ¤Áö/ÇØÁ¦ ±â´É ±¸Çö
+    {   
+        // ESC Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -34,15 +36,16 @@ public class GameManager : MonoBehaviour
                 PauseGame();
             }
         }
+        
     }
 
     public void PauseGame()
     {
-        // °ÔÀÓ ÀÏ½ÃÁ¤Áö Ã³¸®
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         isPaused = true;
-        Time.timeScale = 0; // °ÔÀÓ ½Ã°£À» 0À¸·Î ¼³Á¤ÇÏ¿© Á¤Áö
+        Time.timeScale = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // Äµ¹ö½º È°¼ºÈ­
+        // Äµï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
         pauseCanvas.SetActive(true);
 
     }
@@ -50,12 +53,12 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        Debug.Log("Àç½ÃÀÛ¹öÆ°");
-        // °ÔÀÓ ÀÏ½ÃÁ¤Áö ÇØÁ¦ Ã³¸®
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½Û¹ï¿½Æ°");
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         isPaused = false;
-        Time.timeScale = 1; // °ÔÀÓ ½Ã°£À» 1·Î ¼³Á¤ÇÏ¿© Àç°³
+        Time.timeScale = 1; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ç°³
 
-        // Äµ¹ö½º ºñÈ°¼ºÈ­
+        // Äµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         pauseCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
 
@@ -64,25 +67,25 @@ public class GameManager : MonoBehaviour
 
     public void GoToScene()
     {
-        Debug.Log("Àç½ÃÀÛ¹öÆ°");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½Û¹ï¿½Æ°");
         isPaused = false;
 
-        Time.timeScale = 1; // °ÔÀÓ ½Ã°£À» 1·Î ¼³Á¤ÇÏ¿© Àç°³
+        Time.timeScale = 1; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ç°³
         pauseCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
-        // ÁöÁ¤µÈ ¾ÀÀ¸·Î ÀÌµ¿
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         SceneManager.LoadScene(1);
 
 
     }
     public void OpenSettings()
     {
-        // È¯°æ¼³Á¤ UI¸¦ È°¼ºÈ­
+        // È¯ï¿½æ¼³ï¿½ï¿½ UIï¿½ï¿½ È°ï¿½ï¿½È­
         settingsCanvas.SetActive(true);
     }
     public void QuitGame()
     {
-        // °ÔÀÓ Á¾·á
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Application.Quit();
     }
 }

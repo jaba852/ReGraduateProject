@@ -7,7 +7,7 @@ public class EnemyStatus : MonoBehaviour
     public double currentHealth;
     private GameObject transformObject;
     private Animator animatorToChange;
-    private DeepOneAttackManager attackManager;
+
     private DeepOneMovement DeeponeMvmt;
     
 
@@ -17,7 +17,7 @@ public class EnemyStatus : MonoBehaviour
         currentHealth = maxHealth;
         transformObject = transform.gameObject;
         animatorToChange = transformObject.GetComponent<Animator>();
-        attackManager = FindObjectOfType<DeepOneAttackManager>();
+
         DeeponeMvmt = GetComponent<DeepOneMovement>();
 
     }
@@ -37,8 +37,11 @@ public class EnemyStatus : MonoBehaviour
         animatorToChange.SetBool("isEnemyMove", false);
         animatorToChange.SetBool("isEnemyAttack", false);
         animatorToChange.SetBool("isEnemyDead", true);
+        if (gameObject.CompareTag("DeepOne"))
+        {
+            DeeponeMvmt.SetEnemyDead();
+        }
 
-        DeeponeMvmt.SetEnemyDead();
 
         Destroy(transformObject, 10.0f);
 

@@ -29,17 +29,14 @@ public class DeepOneAttackManager : MonoBehaviour
     private GameObject warning;         // 경고 표시 오브젝트
     private Vector2 targetPosition;     // 플레이어 캐릭터 위치
     private bool isWarningActive = false; // 경고 표시 활성화 여부
-    private bool isInAttackState = false; // DeepOne이 때린 공격인지 여부
+
 
     private bool DeepOneattacking = true; // DeepOne 침 뱉는중
 
-    public AudioClip EnemyattacksoundClip; // Enemy 공격 사운드 클립
-    public AudioClip PlayerHitsoundClip; // 피격 사운드 클립
     public AudioClip DeepOnesoundClip; // 딥원 공격 사운드 클립
     private AudioSource audioSource; // 오디오 소스 컴포넌트
 
-    private bool isEnemyAttackSoundPlaying = false; // Enemy 공격 사운드 재생 여부를 저장하는 변수
-    private bool isPlayerHitSoundPlaying = false; // 피격 사운드 재생 여부를 저장하는 변수
+
     private bool isDeepOneAttackSoundPlaying = false; // 딥원 공격 사운드 재생 여부를 저장하는 변수
 
 
@@ -107,31 +104,7 @@ public class DeepOneAttackManager : MonoBehaviour
 
 
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            UnityEngine.Debug.Log("!!!!!!!!!!!!!!!!");
-            Rigidbody2D playerRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
-            Vector2 relativeVelocity = playerRigidbody.velocity - rb.velocity;
 
-            if (relativeVelocity.magnitude > 2.0f)
-            {
-                Vector2 force = relativeVelocity * 10.0f;
-                rb.AddForce(-force);
-                playerRigidbody.AddForce(force);
-            }
-
-            if (isInAttackState) // DeepOne 투사체에 플레이어 캐릭터가 맞았을때
-            {
-                warriorStatus.TakeDamagePlayer(10);
-                UnityEngine.Debug.Log("DeepOne 데미지");
-                isInAttackState = false;
-            }
-
-        }
-
-    }
 
 
 
@@ -141,8 +114,6 @@ public class DeepOneAttackManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f); // 적절한 딜레이를 설정합니다. 여기서는 0.1초를 사용하였습니다.
 
-        isEnemyAttackSoundPlaying = false;
-        isPlayerHitSoundPlaying = false;
         isDeepOneAttackSoundPlaying = false;
 
     }
