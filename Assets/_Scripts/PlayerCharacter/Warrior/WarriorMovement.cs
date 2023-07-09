@@ -61,9 +61,30 @@ public class WarriorMovement : MonoBehaviour
     {
         if (stats.deadCount == false)
         {
-            float Horizontal = Input.GetAxisRaw("Horizontal");
-            float Vertical = Input.GetAxisRaw("Vertical");
-            bool dashInput = Input.GetButtonDown("Dash");
+            float Horizontal = 0;
+            float Vertical = 0;
+            bool dashInput = false;
+            if (Input.GetKey(KeySetting.keys[KeyAction.Up]))
+            {
+                Vertical = 1;
+            }
+            if (Input.GetKey(KeySetting.keys[KeyAction.Down]))
+            {
+                Vertical = -1;
+
+            }
+            if (Input.GetKey(KeySetting.keys[KeyAction.Left]))
+            {
+                Horizontal = -1;
+            }
+            if (Input.GetKey(KeySetting.keys[KeyAction.Right]))
+            {
+                Horizontal = 1;
+            }
+            if (Input.GetKeyDown(KeySetting.keys[KeyAction.Dash]))
+            {
+                dashInput = true;
+            }
 
             MovementInput = new Vector2(Horizontal, Vertical);
 
