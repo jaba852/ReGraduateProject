@@ -105,7 +105,7 @@ public class CloseEnemyAttackManager : MonoBehaviour
             Rigidbody2D playerRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
             Vector2 relativeVelocity = playerRigidbody.velocity - rb.velocity;
 
-            if (relativeVelocity.magnitude > 2.0f)
+            if (relativeVelocity.magnitude > 1.0f)
             {
                 Vector2 force = relativeVelocity * 10.0f;
                 rb.AddForce(-force);
