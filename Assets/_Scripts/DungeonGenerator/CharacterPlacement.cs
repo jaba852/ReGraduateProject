@@ -30,7 +30,19 @@ public class CharacterPlacement : MonoBehaviour
     private bool showGizmo = false; // Gizmo 표시 여부 변수
 
     private GameObject exitPortal; // Exit Portal 오브젝트 변수
+    //추가된 사항
+    [SerializeField]
+    private List<GameObject> simpleDoorObjectTop; // 상단 door 프리팹 변수
 
+    [SerializeField]
+    private List<GameObject> simpleDoorObjectBottom; // 하단 door 프리팹 변수
+
+    [SerializeField]
+    private List<GameObject> simpleDoorObjectLeft; // 좌측 door 프리팹 변수
+
+    [SerializeField]
+    private List<GameObject> simpleDoorObjectRight; // 우측 door 프리팹 변수
+    //여기까지
     private void Awake()
     {
         dungeonData = FindObjectOfType<DungeonData>(); // DungeonData 컴포넌트를 찾아서 할당
@@ -47,17 +59,60 @@ public class CharacterPlacement : MonoBehaviour
             Destroy(exitPortal);
         }
 
-        foreach (Vector2Int doorPosition in dungeonData.doorPos.ToList()) // 배치된 위치를 복사하여 순회하면서 제거
+        foreach (Vector2Int doorPosition in dungeonData.topDoorPos.ToList()) // 배치된 위치를 복사하여 순회하면서 제거
         {
             dungeonData.doorPos.Remove(doorPosition);
 
             if (doorObjectPrefabs.Count > 0)
             {
                 int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
-                GameObject doorObjectPrefab = doorObjectPrefabs[randomIndex];
+                GameObject doorObjectPrefab = simpleDoorObjectTop[randomIndex];
                 GameObject doorObject = Instantiate(doorObjectPrefab);
-                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y + 0.5f, 0f);
+                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y + 1.9f, 0f);
             }
+
+        }
+        foreach (Vector2Int doorPosition in dungeonData.bottomDoorPos.ToList()) // 배치된 위치를 복사하여 순회하면서 제거
+        {
+            dungeonData.doorPos.Remove(doorPosition);
+
+            if (doorObjectPrefabs.Count > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
+                GameObject doorObjectPrefab = simpleDoorObjectBottom[randomIndex];
+                GameObject doorObject = Instantiate(doorObjectPrefab);
+                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y - 0.9f, 0f);
+            }
+
+
+        }
+        foreach (Vector2Int doorPosition in dungeonData.leftDoorPos.ToList()) // 배치된 위치를 복사하여 순회하면서 제거
+        {
+            dungeonData.doorPos.Remove(doorPosition);
+
+            if (doorObjectPrefabs.Count > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
+                GameObject doorObjectPrefab = simpleDoorObjectLeft[randomIndex];
+                GameObject doorObject = Instantiate(doorObjectPrefab);
+                doorObject.transform.position = new Vector3(doorPosition.x - 0.9f, doorPosition.y + 0.5f, 0f);
+            }
+
+
+        }
+        foreach (Vector2Int doorPosition in dungeonData.rightDoorPos.ToList()) // 배치된 위치를 복사하여 순회하면서 제거
+        {
+            dungeonData.doorPos.Remove(doorPosition);
+
+            if (doorObjectPrefabs.Count > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
+                GameObject doorObjectPrefab = simpleDoorObjectRight[randomIndex];
+                GameObject doorObject = Instantiate(doorObjectPrefab);
+                doorObject.transform.position = new Vector3(doorPosition.x + 1.9f, doorPosition.y + 0.5f, 0f);
+            }
+
+
         }
 
         for (int i = 0; i < dungeonData.Rooms.Count; i++)
@@ -77,6 +132,7 @@ public class CharacterPlacement : MonoBehaviour
 
     public IEnumerator EnemyPlacementCoroutine(DungeonData.Room room, int i)
     {
+        
         if (i == playerRoomIndex) // 현재 방이 플레이어가 위치할 방인지 확인
         {
             GameObject player = Instantiate(playerPrefab); // 플레이어 프리팹을 인스턴스화하여 생성
@@ -95,6 +151,7 @@ public class CharacterPlacement : MonoBehaviour
             Vector2 centerPos = room.RoomCenterPos;
             exitPortal = Instantiate(exitPortalPrefab, new Vector3(centerPos.x + 0.5f, centerPos.y + 0.5f, 0f), Quaternion.identity);
         }
+
     }
 
     private void PlaceEnemies(DungeonData.Room room, int enemyCount)

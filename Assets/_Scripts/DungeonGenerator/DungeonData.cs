@@ -9,7 +9,10 @@ public class DungeonData : MonoBehaviour
     public List<Room> Rooms { get; set; } = new List<Room>();
     public HashSet<Vector2Int> Path { get; set; } = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> doorPos { get; private set; } = new HashSet<Vector2Int>();
-
+    public HashSet<Vector2Int> topDoorPos { get; private set; } = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> bottomDoorPos { get; private set; } = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> leftDoorPos { get; private set; } = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> rightDoorPos { get; private set; } = new HashSet<Vector2Int>();
     public class Room
     {
 

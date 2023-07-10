@@ -10,7 +10,6 @@ public class DungeonDataExtrator : MonoBehaviour
     [SerializeField]
     private bool Gizmo = false;
 
-
     public UnityEvent OnFinishedRoomProcessing;
 
     private void Awake()
@@ -73,27 +72,34 @@ public class DungeonDataExtrator : MonoBehaviour
             {
                 if (room.NearWallTilesUp.Contains(doorPosition + Vector2Int.left))
                 {
-                    dungeonData.doorPos.Add(doorPosition);
+//                    dungeonData.doorPos.Add(doorPosition);
+                    dungeonData.topDoorPos.Add(doorPosition);
                 }
                 if (room.NearWallTilesDown.Contains(doorPosition + Vector2Int.left))
                 {
-                    dungeonData.doorPos.Add(doorPosition);
+//                    dungeonData.doorPos.Add(doorPosition);
+                    dungeonData.bottomDoorPos.Add(doorPosition);
                 }
                 if (room.NearWallTilesLeft.Contains(doorPosition + Vector2Int.up))
                 {
-                    dungeonData.doorPos.Add(doorPosition);
+//                    dungeonData.doorPos.Add(doorPosition);
+                    dungeonData.leftDoorPos.Add(doorPosition);
                 }
                 if (room.NearWallTilesRight.Contains(doorPosition + Vector2Int.up))
                 {
-                    dungeonData.doorPos.Add(doorPosition);
+//                    dungeonData.doorPos.Add(doorPosition);
+                    dungeonData.rightDoorPos.Add(doorPosition);
                 }
 
             }
-            dungeonData.Path.ExceptWith(dungeonData.doorPos);
-            room.NearWallTilesUp.ExceptWith(dungeonData.doorPos);
-            room.NearWallTilesRight.ExceptWith(dungeonData.doorPos);
-            room.NearWallTilesDown.ExceptWith(dungeonData.doorPos);
-            room.NearWallTilesLeft.ExceptWith(dungeonData.doorPos);
+            dungeonData.Path.ExceptWith(dungeonData.topDoorPos);
+            dungeonData.Path.ExceptWith(dungeonData.bottomDoorPos);
+            dungeonData.Path.ExceptWith(dungeonData.leftDoorPos);
+            dungeonData.Path.ExceptWith(dungeonData.rightDoorPos);
+            room.NearWallTilesUp.ExceptWith(dungeonData.topDoorPos);
+            room.NearWallTilesRight.ExceptWith(dungeonData.rightDoorPos);
+            room.NearWallTilesDown.ExceptWith(dungeonData.bottomDoorPos);
+            room.NearWallTilesLeft.ExceptWith(dungeonData.leftDoorPos);
 
 
         }
