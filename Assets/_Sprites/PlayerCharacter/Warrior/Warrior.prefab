@@ -330,7 +330,7 @@ Transform:
   - {fileID: 799711326}
   - {fileID: 1576677441}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &229181341328472085
 Rigidbody2D:
@@ -406,12 +406,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cf21f1043b9c84abea6c68a274fc3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 229181341328472082}
   AttackPoint: {fileID: 229181341713848440}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
   canDash: 1
+  skillPrefabQ: {fileID: 341313861822028306, guid: 6efe37c0dfa80c74fbcd93720e99548b, type: 3}
+  skillPrefabE: {fileID: 18950049969935747, guid: 23923a9ff51870c458cc2a6ceb49a47b, type: 3}
   WarriorattacksoundClip: {fileID: 8300000, guid: 13182107f288fdc47a11f9216c8f062b, type: 3}
   WarriorSecondattacksoundClip: {fileID: 8300000, guid: 7053294e066eb1945baa4d9cc9194f15, type: 3}
   EnemyHitsoundClip: {fileID: 8300000, guid: ac6034ade498bb94b87620cdf6eac48b, type: 3}

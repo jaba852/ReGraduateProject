@@ -26,6 +26,22 @@ public class WarriorMovement : MonoBehaviour
     private bool isAttacking = true;
     private float SecondARatio = 1.5f;
 
+
+
+    public GameObject skillPrefabQ; // Q 스킬 프리팹
+    public GameObject skillPrefabE; // E 스킬 프리팹
+    private Collider2D skillColliderQ;
+    private Collider2D skillColliderE;
+    private bool isUsingSkill = false; // 스킬 사용 중인지를 나타내는 변수
+
+
+    private bool canUseSkillQ = true; //
+    private bool canUseSkillE = true; //
+
+
+    private int skillQDamage = 30;
+    private int skillEDamage = 40;
+
     public AudioClip WarriorattacksoundClip; // Warrior 공격 사운드 클립
     public AudioClip WarriorSecondattacksoundClip; // Warrior 두번째공격 사운드 클립
     public AudioClip EnemyHitsoundClip; // 적 피격 사운드 클립
@@ -40,6 +56,8 @@ public class WarriorMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         // 게임 오브젝트에 AudioSource 컴포넌트를 추가
         audioSource = GetComponent<AudioSource>();
+        skillColliderQ = skillPrefabQ.GetComponent<Collider2D>(); // skillPrefabQ의 Collider2D 컴포넌트 가져오기
+        skillColliderE = skillPrefabE.GetComponent<Collider2D>();   ///////
 
     }
     public void Update()
@@ -53,6 +71,17 @@ public class WarriorMovement : MonoBehaviour
             if (stats.deadCount)
             {
                 rb.velocity = Vector2.zero;
+            }
+            if (!isUsingSkill) // 스킬을 사용 중이 아닐 때만 스킬 입력을 받음
+            {
+                if (Input.GetKey(KeySetting.keys[KeyAction.Skill1]))
+                {
+                    UseSkillQ();
+                }
+                else if (Input.GetKey(KeySetting.keys[KeyAction.Skill2]))
+                {
+                    UseSkillE();
+                }
             }
         }
 
@@ -340,6 +369,179 @@ public class WarriorMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(stats.DashCoolDown);         //대쉬 쿨다운만큼만큼 대기
         canDash = true;                                             //대쉬 가능하게 활성화
+    }
+    private void UseSkillQ()
+    {
+        float distance = 3f;
+        isUsingSkill = true; // 스킬 사용 중 플래그 설정
+        CircleCollider2D skillColliderQ = skillPrefabQ.GetComponent<CircleCollider2D>();
+        if (stats.deadCount == false && canUseSkillQ)
+        {
+
+            Vector3 mousePos = Input.mousePosition;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+            Vector3 playerPosition = transform.position;
+            Vector3 direction = (worldPos - playerPosition).normalized;
+            Vector2 skillPosition = playerPosition + (direction * distance);
+            Quaternion skillRotation = Quaternion.identity;
+
+            float maxSkillDistance = 1f; // 스킬의 최대 거리
+            float skillDistance = Vector2.Distance(skillPosition, playerPosition);
+            if (skillDistance > maxSkillDistance)
+            {
+                skillPosition = playerPosition + (direction * maxSkillDistance);
+            }
+
+            rb.velocity = direction * stats.AttackMove;
+            anim.SetFloat("MovementX", rb.velocity.x);
+            anim.SetFloat("MovementY", rb.velocity.y);
+            anim.SetBool("SkillQ", true);
+
+            if (skillColliderQ != null)
+            {
+                float skillRangeQ = skillColliderQ.radius * 2f;
+
+
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(skillPosition, skillRangeQ, enemyLayers);
+
+                foreach (Collider2D enemy in hitEnemies)
+                {
+                    if (enemy != null)
+                    {
+                        EnemyStatus enemyStatus = enemy.GetComponent<EnemyStatus>();
+                        if (enemyStatus != null)
+                        {
+                            // 적에게 데미지를 주는 처리를 수행합니다.
+                            enemyStatus.TakeDamage(skillQDamage + stats.attackAddness);
+                            Debug.Log("적이름" + enemy.name + "받은데미지" + (stats.power + stats.attackAddness) + "현재 체력" + enemyStatus.currentHealth);
+                            audioSource.PlayOneShot(EnemyHitsoundClip);// Warrior 공격 사운드
+                        }
+                    }
+                }
+            }
+            StartCoroutine(SpawnSkillQAfterAnimation(skillPosition, skillRotation));
+            StartCoroutine(SkillCooldownQ());
+
+        }
+        isUsingSkill = false; // 스킬 사용 종료 후 플래그 해제
+    }
+
+
+
+
+    private IEnumerator SpawnSkillQAfterAnimation(Vector2 skillPosition, Quaternion skillRotation)
+    {
+
+        yield return new WaitForEndOfFrame(); // 다음 프레임까지 대기하여 애니메이션이 업데이트되도록 함
+
+        // 스킬 프리팹을 인스턴스화하여 스킬 오브젝트 생성
+        GameObject skillInstance = Instantiate(skillPrefabQ, skillPosition, skillRotation);
+
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+
+        // 스킬 애니메이션 종료
+        anim.SetBool("SkillQ", false);
+
+        yield return new WaitForSeconds(1f); // 1초 대기
+
+        // 스킬 프리팹 제거
+        Destroy(skillInstance);
+    }
+
+    private IEnumerator SkillCooldownQ()
+    {
+        canUseSkillQ = false;
+        float cooldownTimeQ = 1f; // Q 스킬의 쿨다운 시간(초)
+        yield return new WaitForSeconds(cooldownTimeQ);
+        canUseSkillQ = true;
+    }
+
+
+    private void UseSkillE()
+    {
+        float distance = 2f;
+        isUsingSkill = true; // 스킬 사용 중 플래그 설정
+        BoxCollider2D skillColliderE = skillPrefabE.GetComponent<BoxCollider2D>();
+        if (stats.deadCount == false && canUseSkillE)
+        {
+
+            Vector3 mousePos = Input.mousePosition;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+            Vector3 playerPosition = transform.position;
+            Vector3 direction = (worldPos - playerPosition).normalized;
+            Vector2 skillPosition = playerPosition + (direction * distance);
+            Quaternion skillRotation = Quaternion.identity;
+
+            float maxSkillDistance = 1f; // 스킬의 최대 거리
+            float skillDistance = Vector2.Distance(skillPosition, playerPosition);
+            if (skillDistance > maxSkillDistance)
+            {
+                skillPosition = playerPosition + (direction * maxSkillDistance);
+            }
+
+            rb.velocity = direction * stats.AttackMove;
+            anim.SetFloat("MovementX", rb.velocity.x);
+            anim.SetFloat("MovementY", rb.velocity.y);
+            anim.SetBool("SkillE", true);
+
+            if (skillColliderE != null)
+            {
+                Vector2 skillSizeE = skillColliderE.size;
+                float skillRangeE = Mathf.Max(skillSizeE.x, skillSizeE.y);
+                // 이후에 skillRangeE를 사용할 수 있습니다.
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(skillPosition, skillRangeE, enemyLayers);
+
+
+                foreach (Collider2D enemy in hitEnemies)
+                {
+                    if (enemy != null)
+                    {
+                        EnemyStatus enemyStatus = enemy.GetComponent<EnemyStatus>();
+                        if (enemyStatus != null)
+                        {
+                            // 적에게 데미지를 주는 처리를 수행합니다.
+
+                            enemyStatus.TakeDamage(skillEDamage + stats.attackAddness);
+                            Debug.Log("적이름" + enemy.name + "받은데미지" + (stats.power + stats.attackAddness) + "현재 체력" + enemyStatus.currentHealth);
+                            audioSource.PlayOneShot(EnemyHitsoundClip);// Warrior 공격 사운드
+                        }
+                    }
+
+
+                }
+            }
+            StartCoroutine(SpawnSkillEAfterAnimation(skillPosition, skillRotation));
+            StartCoroutine(SkillCooldownE());
+        }
+        isUsingSkill = false; // 스킬 사용 종료 후 플래그 해제
+    }
+
+    private IEnumerator SpawnSkillEAfterAnimation(Vector2 skillPosition, Quaternion skillRotation)
+    {
+
+
+        yield return new WaitForEndOfFrame(); // 다음 프레임까지 대기하여 애니메이션이 업데이트되도록 함
+                                              // 스킬 애니메이션 종료
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+
+        anim.SetBool("SkillE", false);
+
+        GameObject skillInstance = Instantiate(skillPrefabE, skillPosition, skillRotation);
+
+
+
+        yield return new WaitForSeconds(1f); // 1초 대기
+
+        // 스킬 프리팹 제거
+        Destroy(skillInstance);
+    }
+
+    private IEnumerator SkillCooldownE()
+    {
+        canUseSkillE = false;
+        float cooldownTimeE = 2f; // E 스킬의 쿨다운 시간(초)
+        yield return new WaitForSeconds(cooldownTimeE);
+        canUseSkillE = true;
     }
 
 }
