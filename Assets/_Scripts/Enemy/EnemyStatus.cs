@@ -7,9 +7,10 @@ public class EnemyStatus : MonoBehaviour
     public double currentHealth;
     private GameObject transformObject;
     private Animator animatorToChange;
-
+    EnemyReaction enemyreaction;
     private DeepOneMovement DeeponeMvmt;
     private CloseEnemyMovement CloseEnemyMvmt;
+
 
 
     public void Start()
@@ -17,15 +18,17 @@ public class EnemyStatus : MonoBehaviour
         currentHealth = maxHealth;
         transformObject = transform.gameObject;
         animatorToChange = transformObject.GetComponent<Animator>();
-
+        enemyreaction = GetComponent<EnemyReaction>();
         DeeponeMvmt = GetComponent<DeepOneMovement>();
         CloseEnemyMvmt = GetComponent<CloseEnemyMovement>();
+
     }
     public void TakeDamage(double damage)
     {
         Debug.Log("ÀûÇÇ°Ý");
         currentHealth -= damage;
         animatorToChange.SetBool("isEnemyHit", true);
+        enemyreaction.Knockback();
         if (currentHealth <= 0)
         {
             Die();
