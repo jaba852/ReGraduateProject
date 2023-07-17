@@ -412,6 +412,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   canDash: 1
+  dashCharges: 2
   skillPrefabQ: {fileID: 341313861822028306, guid: 6efe37c0dfa80c74fbcd93720e99548b, type: 3}
   skillPrefabE: {fileID: 18950049969935747, guid: 23923a9ff51870c458cc2a6ceb49a47b, type: 3}
   WarriorattacksoundClip: {fileID: 8300000, guid: 13182107f288fdc47a11f9216c8f062b, type: 3}
@@ -518,7 +519,7 @@ MonoBehaviour:
   blinkTime: 1
   maxHealth: 100
   currentHealth: 100
-  movementSpeed: 5
+  movementSpeed: 10
   dashVelocity: 5
   dashingTime: 0.9
   atkRangeRatio: 1
@@ -1732,6 +1733,101 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uBB34\uC801\uC2DC\uAC04"
+--- !u!1 &7574214803093511546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 393689662993772027}
+  - component: {fileID: 2540409878966325068}
+  - component: {fileID: 8303941115152301723}
+  - component: {fileID: 4532983886341312069}
+  m_Layer: 5
+  m_Name: DashCharge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &393689662993772027
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7574214803093511546}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 224076272097683660}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -50.00004, y: 33.999985}
+  m_SizeDelta: {x: 78.25, y: 15.41}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2540409878966325068
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7574214803093511546}
+  m_CullTransparentMesh: 0
+--- !u!114 &8303941115152301723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7574214803093511546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.4292453, g: 1, b: 0.78571916, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 13
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 0
+--- !u!114 &4532983886341312069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7574214803093511546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1feb3be89855545458c33703a7991fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warriorMovement: {fileID: 229181341328472084}
+  dashChargeText: {fileID: 8303941115152301723}
 --- !u!1001 &1816346583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1992,18 +2088,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1506930017581893852, guid: 63bb3db9ef1b9d9488a2a08f8e3e83ef, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1506930017581893855, guid: 63bb3db9ef1b9d9488a2a08f8e3e83ef, type: 3}
       propertyPath: warriorStatus
       value: 
       objectReference: {fileID: 229181341328472082}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1726467396192194606, guid: 63bb3db9ef1b9d9488a2a08f8e3e83ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 393689662993772027}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63bb3db9ef1b9d9488a2a08f8e3e83ef, type: 3}
 --- !u!224 &1576677441 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1506930017581893795, guid: 63bb3db9ef1b9d9488a2a08f8e3e83ef, type: 3}
+  m_PrefabInstance: {fileID: 1506930016564132066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &224076272097683660 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1726467396192194606, guid: 63bb3db9ef1b9d9488a2a08f8e3e83ef, type: 3}
   m_PrefabInstance: {fileID: 1506930016564132066}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1866455457689874325

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
-public class ItemMace : MonoBehaviour, IItemFunction
+public class ItemMace : MonoBehaviour
 {
     public double MaceDamage = 5;
     public float Macespeed = 100;
@@ -12,30 +11,10 @@ public class ItemMace : MonoBehaviour, IItemFunction
     public GameObject prefab; // 생성할 오브젝트의 프리팹
     private bool isAttack = true;
     private GameObject PlayerObject;
-    private ItemData item;
-
-
-    public void Start()
+    public void MaceAttack() 
     {
-
-        PlayerObject = GameObject.FindGameObjectWithTag("Player");
-        prefab = Resources.Load<GameObject>("Prefabs/ItemSpinMace");
-        item = ItemDatabase.instance.GetItemByID(2);
-
-    }
-
-    public void ItemUsed(GameObject itemObject) 
-    {
-       
-        ItemController itemController = itemObject.GetComponent<ItemController>();
-        
-        if (itemController != null)
-        {
-            itemController.enabled = false; // ItemController 비활성화
-        }
-        item.itemGetNumbers += 1;
         Debug.Log("메이스 획득");
-        
+  
         if (PlayerObject != null)
         {
             for (int index = 0; index < Macecount; index++) 
@@ -48,11 +27,9 @@ public class ItemMace : MonoBehaviour, IItemFunction
                 Vector3 rotVec = Vector3.forward * 360f * index / Macecount;
                 obj.transform.Rotate(rotVec);
                 obj.transform.Translate(obj.transform.up * 2.0f, Space.World);
-
             }
 
         }
-        Destroy(itemObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -74,7 +51,10 @@ public class ItemMace : MonoBehaviour, IItemFunction
         yield return new WaitForSeconds(AttackDelay);
         isAttack = true;
     }
-
+        public void Start()
+    {
+        PlayerObject = GameObject.FindGameObjectWithTag("Player");
+    }
     public void Update()
     {
         if (transform.parent != null)
@@ -86,8 +66,6 @@ public class ItemMace : MonoBehaviour, IItemFunction
             // 회전 속도에 따라 오브젝트를 회전시킴
             transform.RotateAround(PlayerObject.transform.position, rotationAxis, Macespeed * Time.deltaTime);
         }
-
-
     }
 
 }

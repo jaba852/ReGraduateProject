@@ -26,7 +26,10 @@ public class WarriorMovement : MonoBehaviour
     private bool isAttacking = true;
     private float SecondARatio = 1.5f;
 
-
+    //대쉬
+    public int dashCharges = 2;  // 대쉬 충전 횟수
+    private bool isCooldownRunning = false;
+    //
 
     public GameObject skillPrefabQ; // Q 스킬 프리팹
     public GameObject skillPrefabE; // E 스킬 프리팹
@@ -57,11 +60,12 @@ public class WarriorMovement : MonoBehaviour
         // 게임 오브젝트에 AudioSource 컴포넌트를 추가
         audioSource = GetComponent<AudioSource>();
         skillColliderQ = skillPrefabQ.GetComponent<Collider2D>(); // skillPrefabQ의 Collider2D 컴포넌트 가져오기
-        skillColliderE = skillPrefabE.GetComponent<Collider2D>();   ///////
+        skillColliderE = skillPrefabE.GetComponent<Collider2D>();   /////// 
 
     }
     public void Update()
     {
+
         if (GameManager.isPaused == false)
         {
             Move();
@@ -82,8 +86,15 @@ public class WarriorMovement : MonoBehaviour
                 {
                     UseSkillE();
                 }
+
+            }
+
+            if (dashCharges < 2 && !isCooldownRunning)
+            {
+                StartCoroutine(DashCoolDownC());
             }
         }
+
 
     }
     public void Move() //  이동,구르기 애니메이션과 움직임 처리하는 함수
@@ -141,13 +152,19 @@ public class WarriorMovement : MonoBehaviour
                 rb.velocity = Vector2.zero;
             }
 
-            if (dashInput && canDash)
+            if (dashInput && canDash && dashCharges > 0)
             {
+                
                 isDashing = true;
-                canDash = false;
+                Debug.Log("대쉬 충전 수치: " + dashCharges); // 대쉬 충전 수치 디버그 출력
+                if (dashCharges == 0)
+                {
+                    canDash = false;
+                }
                 dashingDir = new Vector2(Horizontal, Vertical);
+
                 StartCoroutine(StopDashing());
-                StartCoroutine(DashCoolDownC());
+                
             }
 
             if (isDashing)
@@ -264,6 +281,7 @@ public class WarriorMovement : MonoBehaviour
     }
     private IEnumerator StopDashing()   // 대쉬 쿨타임 돌리기 위한 코루틴
     {
+
         if (stats.deadCount)
         {
             yield return null;
@@ -271,7 +289,26 @@ public class WarriorMovement : MonoBehaviour
         yield return new WaitForSeconds(stats.dashingTime);         //대쉬 시간만큼 대기
         isDashing = false;
         anim.SetBool("isRolling", false);                           //대쉬 애니메이션 끝
+        if (dashCharges > 0)
+          {
+            dashCharges--; // 대쉬 충전 감소
+          }
+
     }
+
+    private IEnumerator DashCoolDownC()   // 대쉬 쿨타임 돌리기 위한 코루틴
+    {
+        isCooldownRunning = true;
+        yield return new WaitForSeconds(stats.DashCoolDown);         //대쉬 쿨다운만큼만큼 대기        
+        if (dashCharges < 2)
+        {
+            dashCharges++;
+            Debug.Log("대쉬 충전 수치: " + dashCharges); // 대쉬 충전 수치 디버그 출력    
+            canDash = true; // 대쉬 쿨다운이 끝났으므로 다시 대쉬 가능하도록 설정
+        }
+        isCooldownRunning = false;
+    }
+
     private IEnumerator FirstAttackBdelay(Vector2 direction)    // 첫번째 공격으로 두번 공격해서 추가 데미지가 높아질수록 효율상승
     {
         if (stats.deadCount)
@@ -365,11 +402,7 @@ public class WarriorMovement : MonoBehaviour
         yield return new WaitForSeconds(1f / stats.atkSpeed);
         isAttacking = true;
     }
-    private IEnumerator DashCoolDownC()   // 대쉬 쿨타임 돌리기 위한 코루틴
-    {
-        yield return new WaitForSeconds(stats.DashCoolDown);         //대쉬 쿨다운만큼만큼 대기
-        canDash = true;                                             //대쉬 가능하게 활성화
-    }
+
     private void UseSkillQ()
     {
         float distance = 3f;

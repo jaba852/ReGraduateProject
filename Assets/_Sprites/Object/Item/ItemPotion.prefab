@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1672477608796440279}
   - component: {fileID: 1672477608796440276}
   - component: {fileID: 1672477608796440277}
+  - component: {fileID: 327565832}
   m_Layer: 0
   m_Name: ItemPotion
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1672477608796440279
 SpriteRenderer:
@@ -133,9 +134,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f974364054cd8b34cb7035adbd1f777c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 1
+  itemList: {fileID: 327565832}
   ItemInformation: {fileID: 0}
   shakeAmount: 0.1
   shakeSpeed: 5
   ItemName: Test Name
-  ItemDescription: Test Information
+  ItemValue: Test Information
+--- !u!114 &327565832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672477608796440272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169a639bb4ba9ee439b1639136b3c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1672477608796440277}
+  status: {fileID: 0}

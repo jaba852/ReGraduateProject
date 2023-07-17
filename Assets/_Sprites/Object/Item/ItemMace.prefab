@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 9191043383100049964}
   - component: {fileID: 9191043383100049967}
   - component: {fileID: 9191043383100049954}
+  - component: {fileID: 9191043383100049965}
+  - component: {fileID: 1072162809}
   - component: {fileID: 9191043383100049966}
   m_Layer: 0
   m_Name: ItemMace
@@ -32,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9191043383100049967
 SpriteRenderer:
@@ -98,12 +100,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f974364054cd8b34cb7035adbd1f777c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 2
+  itemList: {fileID: 9191043383100049965}
   ItemInformation: {fileID: 0}
   shakeAmount: 0.1
   shakeSpeed: 5
   ItemName: Test Name
-  ItemDescription: Test Information
+  ItemValue: Test Information
+--- !u!114 &9191043383100049965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9191043383100049961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169a639bb4ba9ee439b1639136b3c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 9191043383100049954}
+  status: {fileID: 0}
+  ItemMace: {fileID: 1072162809}
+--- !u!114 &1072162809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9191043383100049961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7a6bda17fe5c14982b33bbc4a31cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaceDamage: 5
+  Macespeed: 100
+  Macecount: 3
+  AttackDelay: 1
+  prefab: {fileID: 9191043383100049961}
 --- !u!61 &9191043383100049966
 BoxCollider2D:
   m_ObjectHideFlags: 0

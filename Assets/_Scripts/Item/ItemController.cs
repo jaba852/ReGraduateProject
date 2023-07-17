@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using static UnityEditor.Progress;
 
 public class ItemController : MonoBehaviour
 {
-
     [SerializeField]
-    private int ItemID = 0;
+    public ItemList itemList;
     [SerializeField]
     public ItemInformation ItemInformation;
-
     public float shakeAmount = 0.1f; // 흔들림 정도
     public float shakeSpeed = 5f; // 흔들림 속도
     
@@ -21,10 +18,9 @@ public class ItemController : MonoBehaviour
     private float time;
     
     public string ItemName = "Test Name";
-    public string ItemDescription = "Test Information";
+    public string ItemValue = "Test Information";
 
     private bool isUsing = true;
-    private ItemData item;
 
     public void Awake()
     {
@@ -32,28 +28,17 @@ public class ItemController : MonoBehaviour
         {
             ItemInformation = FindObjectOfType<ItemInformation>();
         }
-        if (ItemID == 0) { Debug.Log("ID값이 안들어감"); }
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            itemList.ItemSearch(objectName);
+            Debug.Log(ItemInformation.name);
+            ItemInformation.gameObject.SetActive(true);
+            ItemInformation.SetupTooltip(ItemName, ItemValue, initialPosition);
 
 
-            item = ItemDatabase.instance.GetItemByID(ItemID);
-            if (item != null)
-            {
-                ItemInformation.gameObject.SetActive(true);
-                ItemName = item.itemName;
-                ItemDescription = item.itemDescription;
-                ItemInformation.SetupTooltip(ItemName, ItemDescription, initialPosition);
-
-
-            }
-            else
-            {
-                Debug.Log("아이템을 찾지못함");
-            }
 
         }
     }
@@ -63,7 +48,7 @@ public class ItemController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F) && isUsing)
             {
-                // 특정 키를 누르면 아이템 활성화
+                // 특정 키를 누르면 체력 회복 실행
                 ItemInformation.gameObject.SetActive(false);
                 UseItem();
                 isUsing = false;
@@ -86,11 +71,10 @@ public class ItemController : MonoBehaviour
     {
         Debug.Log("아이템을 사용합니다.");
         ItemInformation.gameObject.SetActive(false);
-        item.itemGetNumbers += 1;
-        ItemDatabase.instance.UseItemByID(ItemID, gameObject);
+        itemList.ItemUsed(objectName);
         // 회복된 후 UI 요소 비활성화
-
-
+  
+  
 
     }
 
