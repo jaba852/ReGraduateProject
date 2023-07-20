@@ -16,11 +16,13 @@ public class DashCoolBoard : MonoBehaviour
 
     void Update()
     {
-        if (warriorMovement.canDash != dashAvailable)
+
+        if (warriorMovement.isCooldownRunning != dashAvailable)
         {
-            dashAvailable = warriorMovement.canDash;  // 대쉬 사용 가능 상태를 업데이트
-            if (!dashAvailable) StartCoroutine(DashCoolDownVisualize());  // 쿨다운 시작
+            dashAvailable = warriorMovement.isCooldownRunning;  // 대쉬 쿨다운 상태를 업데이트
+            if (dashAvailable) StartCoroutine(DashCoolDownVisualize());  // 쿨다운 시작
         }
+
     }
 
     // 쿨다운이 동작하는 동안 쿨타임 바를 조정하는 코루틴

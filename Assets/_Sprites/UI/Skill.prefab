@@ -2577,7 +2577,7 @@ GameObject:
   - component: {fileID: 1866455458098846563}
   - component: {fileID: 1866455458098846562}
   - component: {fileID: 1866455458098846573}
-  - component: {fileID: 1866455458098846560}
+  - component: {fileID: 5349809939068979137}
   m_Layer: 5
   m_Name: UtillSkill2
   m_TagString: Untagged
@@ -2687,7 +2687,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1866455458098846560
+--- !u!114 &5349809939068979137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2696,13 +2696,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866455458098846575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42e61268853850f42866d442958052b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 83e2be4eeaeed0b49a8d067af0ed3245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillButton: {fileID: 1866455458098846573}
   otherSkillsToDisable: []
   skillCost: 1
-  AttackSpeedBoostAmount: 0
+  CoolDownDecrease: 1
 --- !u!1 &1866455458102962724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3959,14 +3959,14 @@ RectTransform:
   - {fileID: 1866455458139093054}
   - {fileID: 1866455457530328687}
   - {fileID: 1866455458822579739}
-  - {fileID: 1866455459545851815}
   - {fileID: 1866455458098846572}
-  - {fileID: 1866455457736438514}
-  - {fileID: 1866455458506618678}
+  - {fileID: 1866455459545851815}
   - {fileID: 1866455457641925302}
-  - {fileID: 1866455457878070769}
+  - {fileID: 1866455458506618678}
   - {fileID: 1866455457583231302}
+  - {fileID: 1866455457878070769}
   - {fileID: 1866455458528409611}
+  - {fileID: 1866455457736438514}
   - {fileID: 1866455458687361852}
   - {fileID: 1866455459457668359}
   - {fileID: 1866455459079656840}
@@ -5742,7 +5742,7 @@ GameObject:
   - component: {fileID: 1866455458822579742}
   - component: {fileID: 1866455458822579737}
   - component: {fileID: 1866455458822579736}
-  - component: {fileID: 1866455458822579743}
+  - component: {fileID: 4525861738723589371}
   m_Layer: 5
   m_Name: UtillSkill1
   m_TagString: Untagged
@@ -5852,7 +5852,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1866455458822579743
+--- !u!114 &4525861738723589371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5861,13 +5861,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866455458822579738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42e61268853850f42866d442958052b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fab4ece819e619419692aa53b4e5eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillButton: {fileID: 1866455458822579736}
   otherSkillsToDisable: []
   skillCost: 1
-  AttackSpeedBoostAmount: 0
+  SpeedBoostAmount: 1
 --- !u!1 &1866455458840242408
 GameObject:
   m_ObjectHideFlags: 0

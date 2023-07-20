@@ -28,7 +28,7 @@ public class WarriorMovement : MonoBehaviour
 
     //대쉬
     public int dashCharges = 2;  // 대쉬 충전 횟수
-    private bool isCooldownRunning = false;
+    public bool isCooldownRunning = false;
     //
 
     public GameObject skillPrefabQ; // Q 스킬 프리팹
@@ -38,9 +38,11 @@ public class WarriorMovement : MonoBehaviour
     private bool isUsingSkill = false; // 스킬 사용 중인지를 나타내는 변수
 
 
-    private bool canUseSkillQ = true; //
-    private bool canUseSkillE = true; //
+    public bool canUseSkillQ = true; //
+    public bool canUseSkillE = true; //
 
+    public float skillQCooldownTime = 3f; // Q 스킬의 쿨다운 시간(초)
+    public float skillECooldownTime = 5f; // E 스킬의 쿨다운 시간(초)
 
     private int skillQDamage = 30;
     private int skillEDamage = 40;
@@ -69,7 +71,6 @@ public class WarriorMovement : MonoBehaviour
         if (GameManager.isPaused == false)
         {
             Move();
-
             Attack();
 
             if (stats.deadCount)
@@ -99,6 +100,13 @@ public class WarriorMovement : MonoBehaviour
     }
     public void Move() //  이동,구르기 애니메이션과 움직임 처리하는 함수
     {
+        if (anim.GetBool("SkillQ") || anim.GetBool("SkillE")) // 스킬 애니메이션이 재생 중인 경우 움직임 멈춤
+        {
+            rb.velocity = Vector2.zero;
+            anim.SetBool("isMoving", false);
+            return;
+        }
+
         if (stats.deadCount == false)
         {
             float Horizontal = 0;
@@ -154,7 +162,7 @@ public class WarriorMovement : MonoBehaviour
 
             if (dashInput && canDash && dashCharges > 0)
             {
-                
+
                 isDashing = true;
                 Debug.Log("대쉬 충전 수치: " + dashCharges); // 대쉬 충전 수치 디버그 출력
                 if (dashCharges == 0)
@@ -164,7 +172,7 @@ public class WarriorMovement : MonoBehaviour
                 dashingDir = new Vector2(Horizontal, Vertical);
 
                 StartCoroutine(StopDashing());
-                
+
             }
 
             if (isDashing)
@@ -290,9 +298,9 @@ public class WarriorMovement : MonoBehaviour
         isDashing = false;
         anim.SetBool("isRolling", false);                           //대쉬 애니메이션 끝
         if (dashCharges > 0)
-          {
+        {
             dashCharges--; // 대쉬 충전 감소
-          }
+        }
 
     }
 
@@ -406,8 +414,8 @@ public class WarriorMovement : MonoBehaviour
     private void UseSkillQ()
     {
         float distance = 3f;
-        isUsingSkill = true; // 스킬 사용 중 플래그 설정
-        CircleCollider2D skillColliderQ = skillPrefabQ.GetComponent<CircleCollider2D>();
+        isUsingSkill = true; // 스킬 사용 중 플래그 설정  
+        BoxCollider2D skillColliderQ = skillPrefabQ.GetComponent<BoxCollider2D>();
         if (stats.deadCount == false && canUseSkillQ)
         {
 
@@ -416,7 +424,7 @@ public class WarriorMovement : MonoBehaviour
             Vector3 playerPosition = transform.position;
             Vector3 direction = (worldPos - playerPosition).normalized;
             Vector2 skillPosition = playerPosition + (direction * distance);
-            Quaternion skillRotation = Quaternion.identity;
+            Quaternion skillRotation = Quaternion.LookRotation(Vector3.forward, direction); // 방향에 맞게 회전값 계산
 
             float maxSkillDistance = 1f; // 스킬의 최대 거리
             float skillDistance = Vector2.Distance(skillPosition, playerPosition);
@@ -432,8 +440,8 @@ public class WarriorMovement : MonoBehaviour
 
             if (skillColliderQ != null)
             {
-                float skillRangeQ = skillColliderQ.radius * 2f;
-
+                Vector2 skillSizeQ = skillColliderQ.size;
+                float skillRangeQ = Mathf.Max(skillSizeQ.x, skillSizeQ.y);
 
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(skillPosition, skillRangeQ, enemyLayers);
 
@@ -464,7 +472,6 @@ public class WarriorMovement : MonoBehaviour
 
     private IEnumerator SpawnSkillQAfterAnimation(Vector2 skillPosition, Quaternion skillRotation)
     {
-
         yield return new WaitForEndOfFrame(); // 다음 프레임까지 대기하여 애니메이션이 업데이트되도록 함
 
         // 스킬 프리팹을 인스턴스화하여 스킬 오브젝트 생성
@@ -484,8 +491,7 @@ public class WarriorMovement : MonoBehaviour
     private IEnumerator SkillCooldownQ()
     {
         canUseSkillQ = false;
-        float cooldownTimeQ = 1f; // Q 스킬의 쿨다운 시간(초)
-        yield return new WaitForSeconds(cooldownTimeQ);
+        yield return new WaitForSeconds(skillQCooldownTime);
         canUseSkillQ = true;
     }
 
@@ -493,7 +499,7 @@ public class WarriorMovement : MonoBehaviour
     private void UseSkillE()
     {
         float distance = 2f;
-        isUsingSkill = true; // 스킬 사용 중 플래그 설정
+        isUsingSkill = true; // 스킬 사용 중 플래그 설정      
         BoxCollider2D skillColliderE = skillPrefabE.GetComponent<BoxCollider2D>();
         if (stats.deadCount == false && canUseSkillE)
         {
@@ -503,7 +509,7 @@ public class WarriorMovement : MonoBehaviour
             Vector3 playerPosition = transform.position;
             Vector3 direction = (worldPos - playerPosition).normalized;
             Vector2 skillPosition = playerPosition + (direction * distance);
-            Quaternion skillRotation = Quaternion.identity;
+            Quaternion skillRotation = Quaternion.LookRotation(Vector3.forward, direction); // 방향에 맞게 회전값 계산
 
             float maxSkillDistance = 1f; // 스킬의 최대 거리
             float skillDistance = Vector2.Distance(skillPosition, playerPosition);
@@ -551,7 +557,7 @@ public class WarriorMovement : MonoBehaviour
 
     private IEnumerator SpawnSkillEAfterAnimation(Vector2 skillPosition, Quaternion skillRotation)
     {
-
+        rb.velocity = Vector2.zero;
 
         yield return new WaitForEndOfFrame(); // 다음 프레임까지 대기하여 애니메이션이 업데이트되도록 함
                                               // 스킬 애니메이션 종료
@@ -572,8 +578,7 @@ public class WarriorMovement : MonoBehaviour
     private IEnumerator SkillCooldownE()
     {
         canUseSkillE = false;
-        float cooldownTimeE = 2f; // E 스킬의 쿨다운 시간(초)
-        yield return new WaitForSeconds(cooldownTimeE);
+        yield return new WaitForSeconds(skillECooldownTime);
         canUseSkillE = true;
     }
 
