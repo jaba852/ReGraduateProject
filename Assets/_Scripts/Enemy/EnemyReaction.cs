@@ -11,7 +11,7 @@ public class EnemyReaction : MonoBehaviour
     public float hitDuration = 0.2f;
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
-    private ParticleSystem ImpactFlash;
+    private ParticleSystem enemyHitparticleSystem;
     private bool Knock=false;
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class EnemyReaction : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.material.color;
         Animator animator = GetComponent<Animator>();
-        ImpactFlash = GameObject.Find("ImpactFlash").GetComponent<ParticleSystem>();
+        enemyHitparticleSystem = GameObject.Find("ImpactFlash").GetComponent<ParticleSystem>();
     }
     void FixedUpdate()
     {
@@ -47,7 +47,7 @@ public class EnemyReaction : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
 
         // 파티클 생성
-        Instantiate(ImpactFlash, transform.position, rotation);
+        Instantiate(enemyHitparticleSystem, transform.position, rotation);
 
         // 일정 시간 후에 원래 색상으로 되돌리기
         StartCoroutine(ResetColor());

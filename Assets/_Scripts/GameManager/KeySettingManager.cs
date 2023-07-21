@@ -44,7 +44,7 @@ public class KeySettingManager : MonoBehaviour
             // 중복된 키가 있다면 경고 창을 띄우고 기존 키로 유지
             if (isDuplicate)
             {
-                EditorUtility.DisplayDialog("Warning", "The key is already assigned to another action.", "OK");
+
             }
             else
             {

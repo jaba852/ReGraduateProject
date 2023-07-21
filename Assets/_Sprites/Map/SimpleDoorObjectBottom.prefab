@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 224781079219241606}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7334264394973696495
 MonoBehaviour:
@@ -47,16 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811bf1f039753c942823d35da0853edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 100
   currentHealth: 0
   disableTime: 5
   defaultSprite: {fileID: 3863522924673642101, guid: 4b2a82e144d32d14292f3a3accc9d003, type: 3}
   disabledSprite: {fileID: -2412370790303328926, guid: 4b2a82e144d32d14292f3a3accc9d003, type: 3}
-  shakeAmount: 0.1
-  shakeSpeed: 0.1
-  shakeDuration: 0.1
-  moveDistance: 0.1
-  initialPosition: {x: 0, y: 0}
 --- !u!61 &6513024707389728713
 BoxCollider2D:
   m_ObjectHideFlags: 0
