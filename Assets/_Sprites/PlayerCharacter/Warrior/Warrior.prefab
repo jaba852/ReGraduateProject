@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 2031117218}
   - component: {fileID: 761192409}
   - component: {fileID: 7334522606555953274}
+  - component: {fileID: 544403256}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Player
@@ -330,7 +331,7 @@ Transform:
   - {fileID: 799711326}
   - {fileID: 1576677441}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &229181341328472085
 Rigidbody2D:
@@ -602,7 +603,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 229181341328472074}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -770,6 +771,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &544403256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229181341328472074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1eaceba4abd714187da00dd92378d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDatabase: {fileID: 0}
+  ItemCount: 0
 --- !u!1 &229181341564885215
 GameObject:
   m_ObjectHideFlags: 0
