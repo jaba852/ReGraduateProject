@@ -370,6 +370,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 229181341328472084, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
+      propertyPath: skillPrefabE
+      value: 
+      objectReference: {fileID: 7656064284829384529, guid: 1e3e64e8973516d44b471d0946f3a1ce, type: 3}
+    - target: {fileID: 229181341328472084, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
+      propertyPath: skillPrefabQ
+      value: 
+      objectReference: {fileID: 9108097851823544628, guid: eb00d70f952db364c81b9e7d488beb0f, type: 3}
     - target: {fileID: 229181341701728884, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

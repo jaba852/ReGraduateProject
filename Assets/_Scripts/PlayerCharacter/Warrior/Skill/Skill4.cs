@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Skill4 : Skill
 {
-    public int AttackSpeedBoostAmount = 10;
+    public int AttackSpeedBoostAmount = 1;
     internal object skillImage;
 
     protected override void ApplyEffect()

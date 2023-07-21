@@ -26,7 +26,10 @@ public class WarriorMovement : MonoBehaviour
     private bool isAttacking = true;
     private float SecondARatio = 1.5f;
 
-
+    //대쉬
+    public int dashCharges = 2;  // 대쉬 충전 횟수
+    public bool isCooldownRunning = false;
+    //
 
     public GameObject skillPrefabQ; // Q 스킬 프리팹
     public GameObject skillPrefabE; // E 스킬 프리팹
@@ -35,9 +38,11 @@ public class WarriorMovement : MonoBehaviour
     private bool isUsingSkill = false; // 스킬 사용 중인지를 나타내는 변수
 
 
-    private bool canUseSkillQ = true; //
-    private bool canUseSkillE = true; //
+    public bool canUseSkillQ = true; //
+    public bool canUseSkillE = true; //
 
+    public float skillQCooldownTime = 3f; // Q 스킬의 쿨다운 시간(초)
+    public float skillECooldownTime = 5f; // E 스킬의 쿨다운 시간(초)
 
     private int skillQDamage = 30;
     private int skillEDamage = 40;
@@ -57,15 +62,15 @@ public class WarriorMovement : MonoBehaviour
         // 게임 오브젝트에 AudioSource 컴포넌트를 추가
         audioSource = GetComponent<AudioSource>();
         skillColliderQ = skillPrefabQ.GetComponent<Collider2D>(); // skillPrefabQ의 Collider2D 컴포넌트 가져오기
-        skillColliderE = skillPrefabE.GetComponent<Collider2D>();   ///////
+        skillColliderE = skillPrefabE.GetComponent<Collider2D>();   /////// 
 
     }
     public void Update()
     {
+
         if (GameManager.isPaused == false)
         {
             Move();
-
             Attack();
 
             if (stats.deadCount)
@@ -82,12 +87,26 @@ public class WarriorMovement : MonoBehaviour
                 {
                     UseSkillE();
                 }
+
+            }
+
+            if (dashCharges < 2 && !isCooldownRunning)
+            {
+                StartCoroutine(DashCoolDownC());
             }
         }
+
 
     }
     public void Move() //  이동,구르기 애니메이션과 움직임 처리하는 함수
     {
+        if (anim.GetBool("SkillQ") || anim.GetBool("SkillE")) // 스킬 애니메이션이 재생 중인 경우 움직임 멈춤
+        {
+            rb.velocity = Vector2.zero;
+            anim.SetBool("isMoving", false);
+            return;
+        }
+
         if (stats.deadCount == false)
         {
             float Horizontal = 0;
@@ -141,13 +160,19 @@ public class WarriorMovement : MonoBehaviour
                 rb.velocity = Vector2.zero;
             }
 
-            if (dashInput && canDash)
+            if (dashInput && canDash && dashCharges > 0)
             {
+
                 isDashing = true;
-                canDash = false;
+                Debug.Log("대쉬 충전 수치: " + dashCharges); // 대쉬 충전 수치 디버그 출력
+                if (dashCharges == 0)
+                {
+                    canDash = false;
+                }
                 dashingDir = new Vector2(Horizontal, Vertical);
+
                 StartCoroutine(StopDashing());
-                StartCoroutine(DashCoolDownC());
+
             }
 
             if (isDashing)
@@ -264,6 +289,7 @@ public class WarriorMovement : MonoBehaviour
     }
     private IEnumerator StopDashing()   // 대쉬 쿨타임 돌리기 위한 코루틴
     {
+
         if (stats.deadCount)
         {
             yield return null;
@@ -271,7 +297,26 @@ public class WarriorMovement : MonoBehaviour
         yield return new WaitForSeconds(stats.dashingTime);         //대쉬 시간만큼 대기
         isDashing = false;
         anim.SetBool("isRolling", false);                           //대쉬 애니메이션 끝
+        if (dashCharges > 0)
+        {
+            dashCharges--; // 대쉬 충전 감소
+        }
+
     }
+
+    private IEnumerator DashCoolDownC()   // 대쉬 쿨타임 돌리기 위한 코루틴
+    {
+        isCooldownRunning = true;
+        yield return new WaitForSeconds(stats.DashCoolDown);         //대쉬 쿨다운만큼만큼 대기        
+        if (dashCharges < 2)
+        {
+            dashCharges++;
+            Debug.Log("대쉬 충전 수치: " + dashCharges); // 대쉬 충전 수치 디버그 출력    
+            canDash = true; // 대쉬 쿨다운이 끝났으므로 다시 대쉬 가능하도록 설정
+        }
+        isCooldownRunning = false;
+    }
+
     private IEnumerator FirstAttackBdelay(Vector2 direction)    // 첫번째 공격으로 두번 공격해서 추가 데미지가 높아질수록 효율상승
     {
         if (stats.deadCount)
@@ -365,16 +410,12 @@ public class WarriorMovement : MonoBehaviour
         yield return new WaitForSeconds(1f / stats.atkSpeed);
         isAttacking = true;
     }
-    private IEnumerator DashCoolDownC()   // 대쉬 쿨타임 돌리기 위한 코루틴
-    {
-        yield return new WaitForSeconds(stats.DashCoolDown);         //대쉬 쿨다운만큼만큼 대기
-        canDash = true;                                             //대쉬 가능하게 활성화
-    }
+
     private void UseSkillQ()
     {
         float distance = 3f;
-        isUsingSkill = true; // 스킬 사용 중 플래그 설정
-        CircleCollider2D skillColliderQ = skillPrefabQ.GetComponent<CircleCollider2D>();
+        isUsingSkill = true; // 스킬 사용 중 플래그 설정  
+        BoxCollider2D skillColliderQ = skillPrefabQ.GetComponent<BoxCollider2D>();
         if (stats.deadCount == false && canUseSkillQ)
         {
 
@@ -383,7 +424,7 @@ public class WarriorMovement : MonoBehaviour
             Vector3 playerPosition = transform.position;
             Vector3 direction = (worldPos - playerPosition).normalized;
             Vector2 skillPosition = playerPosition + (direction * distance);
-            Quaternion skillRotation = Quaternion.identity;
+            Quaternion skillRotation = Quaternion.LookRotation(Vector3.forward, direction); // 방향에 맞게 회전값 계산
 
             float maxSkillDistance = 1f; // 스킬의 최대 거리
             float skillDistance = Vector2.Distance(skillPosition, playerPosition);
@@ -399,8 +440,8 @@ public class WarriorMovement : MonoBehaviour
 
             if (skillColliderQ != null)
             {
-                float skillRangeQ = skillColliderQ.radius * 2f;
-
+                Vector2 skillSizeQ = skillColliderQ.size;
+                float skillRangeQ = Mathf.Max(skillSizeQ.x, skillSizeQ.y);
 
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(skillPosition, skillRangeQ, enemyLayers);
 
@@ -431,7 +472,6 @@ public class WarriorMovement : MonoBehaviour
 
     private IEnumerator SpawnSkillQAfterAnimation(Vector2 skillPosition, Quaternion skillRotation)
     {
-
         yield return new WaitForEndOfFrame(); // 다음 프레임까지 대기하여 애니메이션이 업데이트되도록 함
 
         // 스킬 프리팹을 인스턴스화하여 스킬 오브젝트 생성
@@ -451,8 +491,7 @@ public class WarriorMovement : MonoBehaviour
     private IEnumerator SkillCooldownQ()
     {
         canUseSkillQ = false;
-        float cooldownTimeQ = 1f; // Q 스킬의 쿨다운 시간(초)
-        yield return new WaitForSeconds(cooldownTimeQ);
+        yield return new WaitForSeconds(skillQCooldownTime);
         canUseSkillQ = true;
     }
 
@@ -460,7 +499,7 @@ public class WarriorMovement : MonoBehaviour
     private void UseSkillE()
     {
         float distance = 2f;
-        isUsingSkill = true; // 스킬 사용 중 플래그 설정
+        isUsingSkill = true; // 스킬 사용 중 플래그 설정      
         BoxCollider2D skillColliderE = skillPrefabE.GetComponent<BoxCollider2D>();
         if (stats.deadCount == false && canUseSkillE)
         {
@@ -470,7 +509,7 @@ public class WarriorMovement : MonoBehaviour
             Vector3 playerPosition = transform.position;
             Vector3 direction = (worldPos - playerPosition).normalized;
             Vector2 skillPosition = playerPosition + (direction * distance);
-            Quaternion skillRotation = Quaternion.identity;
+            Quaternion skillRotation = Quaternion.LookRotation(Vector3.forward, direction); // 방향에 맞게 회전값 계산
 
             float maxSkillDistance = 1f; // 스킬의 최대 거리
             float skillDistance = Vector2.Distance(skillPosition, playerPosition);
@@ -518,7 +557,7 @@ public class WarriorMovement : MonoBehaviour
 
     private IEnumerator SpawnSkillEAfterAnimation(Vector2 skillPosition, Quaternion skillRotation)
     {
-
+        rb.velocity = Vector2.zero;
 
         yield return new WaitForEndOfFrame(); // 다음 프레임까지 대기하여 애니메이션이 업데이트되도록 함
                                               // 스킬 애니메이션 종료
@@ -539,8 +578,7 @@ public class WarriorMovement : MonoBehaviour
     private IEnumerator SkillCooldownE()
     {
         canUseSkillE = false;
-        float cooldownTimeE = 2f; // E 스킬의 쿨다운 시간(초)
-        yield return new WaitForSeconds(cooldownTimeE);
+        yield return new WaitForSeconds(skillECooldownTime);
         canUseSkillE = true;
     }
 

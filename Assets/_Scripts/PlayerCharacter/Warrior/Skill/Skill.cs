@@ -27,10 +27,10 @@ public class Skill : MonoBehaviour
             ApplyEffect(); // 스킬 효과 적용
             pointSystem.CurrentPoints -= Mathf.FloorToInt(skillCost); // 스킬 비용만큼 포인트 감소
 
-            foreach (Image skill in otherSkillsToDisable) // 다른 스킬들을 비활성화
-            {
-                skill.enabled = false;
-            }
+            //foreach (Image skill in otherSkillsToDisable) // 다른 스킬들을 비활성화
+           // {
+           //     skill.enabled = false;
+           // }
 
             skillCost *= 1.2f; // 스킬 비용 20% 증가
         }
