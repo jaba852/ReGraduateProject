@@ -19,6 +19,9 @@ public class CharacterPlacement : MonoBehaviour
     private GameObject exitPortalPrefab; // Exit Portal 프리팹 변수
 
     [SerializeField]
+    private GameObject itemBoxPrefab; // ItemBox 프리팹 변수
+
+    [SerializeField]
     private int playerRoomIndex; // 플레이어가 위치할 방의 인덱스 변수
 
     [SerializeField]
@@ -68,7 +71,7 @@ public class CharacterPlacement : MonoBehaviour
                 int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
                 GameObject doorObjectPrefab = simpleDoorObjectTop[randomIndex];
                 GameObject doorObject = Instantiate(doorObjectPrefab);
-                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y + 1.9f, 0f);
+                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y + 0.9f, 0f);
             }
 
         }
@@ -109,7 +112,7 @@ public class CharacterPlacement : MonoBehaviour
                 int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
                 GameObject doorObjectPrefab = simpleDoorObjectRight[randomIndex];
                 GameObject doorObject = Instantiate(doorObjectPrefab);
-                doorObject.transform.position = new Vector3(doorPosition.x + 1.9f, doorPosition.y + 0.5f, 0f);
+                doorObject.transform.position = new Vector3(doorPosition.x + 0.9f, doorPosition.y + 0.5f, 0f);
             }
 
 
@@ -132,7 +135,7 @@ public class CharacterPlacement : MonoBehaviour
 
     public IEnumerator EnemyPlacementCoroutine(DungeonData.Room room, int i)
     {
-        
+
         if (i == playerRoomIndex) // 현재 방이 플레이어가 위치할 방인지 확인
         {
             GameObject player = Instantiate(playerPrefab); // 플레이어 프리팹을 인스턴스화하여 생성
@@ -143,6 +146,14 @@ public class CharacterPlacement : MonoBehaviour
         {
             PlaceEnemies(room, roomEnemiesCount[i]); // 적 배치
             yield return new WaitForSeconds(0.2f); // 0.2초 대기
+        }
+
+        // Item Box 배치
+        if (i == 4) // 마지막 방인지 확인
+        {
+            Vector2 centerPos = room.RoomCenterPos;
+            GameObject ItemBox = Instantiate(itemBoxPrefab);
+            ItemBox.transform.position = new Vector3(centerPos.x + 0.5f, centerPos.y + 0.5f, 0f);
         }
 
         // Exit Portal 배치

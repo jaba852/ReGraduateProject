@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4269040060314762119}
-  - component: {fileID: 6310089262046141913}
   - component: {fileID: 7510758626852154367}
   - component: {fileID: 7889440209154281910}
+  - component: {fileID: -5243839681713282207}
   m_Layer: 8
   m_Name: SimpleDoorObjectTop
   m_TagString: Enemy
@@ -35,23 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6310089262046141913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2276195149105162033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 811bf1f039753c942823d35da0853edb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  disableTime: 5
-  defaultSprite: {fileID: 5447937193657406780, guid: 4b2a82e144d32d14292f3a3accc9d003, type: 3}
-  disabledSprite: {fileID: -5583721329939422842, guid: 4b2a82e144d32d14292f3a3accc9d003, type: 3}
 --- !u!61 &7510758626852154367
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,6 +132,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5243839681713282207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276195149105162033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b6e85fd46f3f941a97e30c91808a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 12
 --- !u!1 &5562113295951922178
 GameObject:
   m_ObjectHideFlags: 0

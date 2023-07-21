@@ -179,13 +179,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterCamera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5015863295157716520, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5015863295157716525, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2013659399}
+    - targetCorrespondingSourceObject: {fileID: 5015863295157716525, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2013659400}
   m_SourcePrefab: {fileID: 100100000, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
 --- !u!1001 &1140729530
 PrefabInstance:
@@ -231,6 +235,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: itemBoxPrefab
+      value: 
+      objectReference: {fileID: 2406086735455771086, guid: 0d000e9ab33059044b739ce7f96c79a0, type: 3}
     - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: doorObjectPrefabs.Array.size
       value: 1
@@ -368,6 +376,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+--- !u!114 &1140729531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3453755166612212921, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+  m_PrefabInstance: {fileID: 1140729530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c356826ea0077d4cad959b6e299c60e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2013659398 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5015863295157716525, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
@@ -469,3 +488,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2013659400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013659398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37dcd25dfab4af4b83df67ace2411ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeonData: {fileID: 1140729531}
