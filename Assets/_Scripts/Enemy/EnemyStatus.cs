@@ -10,6 +10,7 @@ public class EnemyStatus : MonoBehaviour
     EnemyReaction enemyreaction;
     private DeepOneMovement DeeponeMvmt;
     private CloseEnemyMovement CloseEnemyMvmt;
+    public int expReward = 10; // 적 처치 시 플레이어가 얻는 경험치량
 
 
 
@@ -64,7 +65,7 @@ public class EnemyStatus : MonoBehaviour
             CloseEnemyMvmt.SetEnemyDead();
         }
 
-
+        PlayerLevelSystem.Instance.AddExperience(expReward); //죽으면 플레이어 경험치 획득
         Destroy(transformObject, 10.0f);
 
         GetComponent<Collider2D>().enabled = false; // Collider2D를 비활성화하여 충돌 처리 방지
