@@ -27,7 +27,7 @@ public class ItemController : MonoBehaviour
     private bool isUsing = true;
     private ItemData item;
     private SpriteRenderer itemImage;
-
+   
     public void Awake()
     {
         ItemInformation = FindObjectOfType<ItemInformation>();
@@ -35,6 +35,7 @@ public class ItemController : MonoBehaviour
         {
             ItemInformation = ItemDatabase.instance.itemInfor();
         }
+ 
         if (ItemID == 0) { Debug.Log("ID값이 안들어감"); }
     }
     public void OnTriggerEnter2D(Collider2D collision)

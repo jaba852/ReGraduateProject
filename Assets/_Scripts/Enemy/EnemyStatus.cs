@@ -34,6 +34,21 @@ public class EnemyStatus : MonoBehaviour
             Die();
         }
     }
+
+    public void EnemyStunDamage(double damage,float stunDuration) 
+    {
+        Debug.Log("적 스턴");
+        currentHealth -= damage;
+        animatorToChange.SetBool("isEnemyHit", true);
+        animatorToChange.SetBool("isEnemyStun", true);
+        enemyreaction.Knockback();
+        enemyreaction.Stun(stunDuration);
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
+    }
     private void Die()
     {
         Debug.Log("enemy주금 10초뒤소멸");
