@@ -56,12 +56,18 @@ public class EnemyStatus : MonoBehaviour
         animatorToChange.SetBool("isEnemyMove", false);
         animatorToChange.SetBool("isEnemyAttack", false);
         animatorToChange.SetBool("isEnemyDead", true);
+
+        // "DeepOne" 태그를 가진 오브젝트인 경우 "deadEnemy" 태그로 변경합니다.
         if (gameObject.CompareTag("DeepOne"))
         {
+            gameObject.tag = "DeadEnemy";
             DeeponeMvmt.SetEnemyDead();
         }
+
+        // "Enemy" 태그를 가진 오브젝트인 경우 "deadEnemy" 태그로 변경합니다.
         if (gameObject.CompareTag("Enemy"))
         {
+            gameObject.tag = "DeadEnemy";
             CloseEnemyMvmt.SetEnemyDead();
         }
 
