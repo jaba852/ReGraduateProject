@@ -44,8 +44,8 @@ public class WarriorMovement : MonoBehaviour
     public float skillQCooldownTime = 3f; // Q 스킬의 쿨다운 시간(초)
     public float skillECooldownTime = 5f; // E 스킬의 쿨다운 시간(초)
 
-    private int skillQDamage = 30;
-    private int skillEDamage = 40;
+    private int skillQDamage = 50;
+    private int skillEDamage = 80;
 
     public AudioClip WarriorattacksoundClip; // Warrior 공격 사운드 클립
     public AudioClip WarriorSecondattacksoundClip; // Warrior 두번째공격 사운드 클립

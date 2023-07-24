@@ -13,7 +13,7 @@ public class InventoryUI : MonoBehaviour
     public Slot[] slots;
     public Transform slotHolder;
     public ItemDatabase itemDatabase;
-
+    private ItemTooltip itemTooltip;
     private void Start()
     {
         inven = Inventory.Instance;
@@ -22,6 +22,7 @@ public class InventoryUI : MonoBehaviour
         inven.onChangeItem += RedrawSlotUI;
         InventoryPanel.SetActive(activeInventory);
         itemDatabase = FindObjectOfType<ItemDatabase>();
+        itemTooltip = FindObjectOfType<ItemTooltip>();
     }
 
     private void SlotChange(int val)
@@ -46,6 +47,7 @@ public class InventoryUI : MonoBehaviour
         {
             activeInventory = !activeInventory;
             InventoryPanel.SetActive(activeInventory);
+            itemTooltip.RemoveTooltip();
         }
     }
 
@@ -63,6 +65,7 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < inven.ItemCount; i++)
         {
             slots[i].Image = itemDatabase.ItemsList[i];
+            slots[i].SlotIndex = itemDatabase.itemindex[i];
             slots[i].UpdateSlotUI();
         }
 

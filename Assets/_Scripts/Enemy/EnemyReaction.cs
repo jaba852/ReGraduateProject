@@ -13,6 +13,9 @@ public class EnemyReaction : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private ParticleSystem enemyHitparticleSystem;
     private bool Knock=false;
+    private Animator animator;
+    public GameObject stunEffect;
+    public GameObject stunEffect2;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,7 @@ public class EnemyReaction : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.material.color;
-        Animator animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         enemyHitparticleSystem = GameObject.Find("ImpactFlash").GetComponent<ParticleSystem>();
     }
     void FixedUpdate()
@@ -61,6 +64,29 @@ public class EnemyReaction : MonoBehaviour
         // 원래 색상으로 되돌리기
         spriteRenderer.material.color = originalColor;
         Knock = false;
+    }
+
+    public void Stun(float stunDuration)
+    {        
+        stunEffect.SetActive(true); // 빙글빙글 효과 활성화
+        Debug.Log(stunEffect);
+        Debug.Log(stunEffect2);
+        StartCoroutine(RecoverFromStun(stunDuration));
+
+    }
+
+    private IEnumerator RecoverFromStun(float stunDuration)
+    {
+        stunEffect2.SetActive(true); // 빙글빙글 효과 활성화
+        yield return new WaitForSeconds(stunDuration);
+ 
+        stunEffect2.SetActive(false); // 빙글빙글 효과 활성화
+        ReleaseStun();
+    }
+    private void ReleaseStun()
+    {
+
+        animator.SetBool("isEnemyStun", false); // 애니메이션 종료
     }
 }
 

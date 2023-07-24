@@ -7,6 +7,7 @@ public class Slot : MonoBehaviour
 {
     public Image UIImage;
     public Sprite Image;
+    public int SlotIndex;
     public void UpdateSlotUI()
     {
         UIImage.sprite = Image;

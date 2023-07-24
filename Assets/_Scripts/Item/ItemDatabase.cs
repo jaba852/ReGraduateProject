@@ -21,7 +21,9 @@ public class ItemDatabase : MonoBehaviour
     public List<ItemData> items = new List<ItemData>();
     private int getItemCount;
     public List<Sprite> ItemsList = new List<Sprite>();
+    public List<int> itemindex = new List<int>();
     private ItemInformation itemInformation;
+    private ItemTooltip itemTooltip;
 
     private void Awake()
     {
@@ -36,6 +38,10 @@ public class ItemDatabase : MonoBehaviour
         if (itemInformation == null)
         {
             itemInformation = FindObjectOfType<ItemInformation>();
+        }
+        if(itemTooltip == null) 
+        {
+            itemTooltip = FindObjectOfType<ItemTooltip>();
         }
     }
 
@@ -89,6 +95,7 @@ public class ItemDatabase : MonoBehaviour
         if (itemData != null && itemData.itemFunction != null && itemData.itemFunction is IItemFunction)
         {
             ItemsList.Add(ItemDatabase.instance.GetItemByID(itemID).itemImage);
+            itemindex.Add(ItemDatabase.instance.GetItemByID(itemID).itemID);
             getItemCount++;
             IItemFunction itemFunction = (IItemFunction)itemData.itemFunction;
             itemFunction.ItemUsed(itemObject);
@@ -105,6 +112,10 @@ public class ItemDatabase : MonoBehaviour
     {
 
         return itemInformation;
+    }
+    public ItemTooltip itemTool()
+    {
+        return itemTooltip;
     }
 }
 

@@ -32,7 +32,7 @@ public class CloseEnemyMovement : MonoBehaviour
     private void Update()
     {
         // 플레이어 감지 및 공격
-        if (!isAttacking && !enemydead || animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_reaction"))
+        if (!isAttacking && !enemydead && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_reaction") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_stun"))
         {
 
 
