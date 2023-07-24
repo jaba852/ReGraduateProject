@@ -347,15 +347,15 @@ public class WarriorMovement : MonoBehaviour
                         Debug.Log("적이름" + enemy.name + "받은데미지" + (stats.power + stats.attackAddness) + "현재 체력" + enemyStatus.currentHealth);
                         audioSource.PlayOneShot(EnemyHitsoundClip);// Warrior 공격 사운드
                     }
-                    DoorStatus doorStatus = enemy.GetComponent<DoorStatus>();
-                    if (doorStatus != null)
+                    BossStatus bossStatus = enemy.GetComponent<BossStatus>();
+                    if (bossStatus != null)
                     {
-                        doorStatus.TakeDamage(stats.power + stats.attackAddness);
-                        Debug.Log("문 이름: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + doorStatus.currentHealth);
+                        bossStatus.TakeNeutralizeGauge(stats.power + stats.attackAddness);
+                        Debug.Log("보스: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + bossStatus.currentNeutralizeGauge);
                         audioSource.PlayOneShot(BoxHitClip);// Warrior 공격 사운드
                         yield return new WaitForSeconds(0.2f / stats.atkSpeed);
-                        doorStatus.TakeDamage(stats.power + stats.attackAddness);
-                        Debug.Log("문 이름: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + doorStatus.currentHealth);
+                        bossStatus.TakeNeutralizeGauge(stats.power + stats.attackAddness);
+                        Debug.Log("보스: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + bossStatus.currentNeutralizeGauge);
                         audioSource.PlayOneShot(BoxHitClip);// Warrior 공격 사운드
                     }
                 }
@@ -389,15 +389,11 @@ public class WarriorMovement : MonoBehaviour
                     Debug.Log("적이름" + enemy.name + "받은데미지" + (stats.power * SecondARatio + stats.attackAddness) + "현재 체력" + enemyStatus.currentHealth);
                     audioSource.PlayOneShot(EnemyHitsoundClip);// Warrior 공격 사운드
                 }
-                DoorStatus doorStatus = enemy.GetComponent<DoorStatus>();
-                if (doorStatus != null)
+                BossStatus bossStatus = enemy.GetComponent<BossStatus>();
+                if (bossStatus != null)
                 {
-                    doorStatus.TakeDamage(stats.power + stats.attackAddness);
-                    Debug.Log("문 이름: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + doorStatus.currentHealth);
-                    audioSource.PlayOneShot(BoxHitClip);// Warrior 공격 사운드
-                    yield return new WaitForSeconds(0.2f / stats.atkSpeed);
-                    doorStatus.TakeDamage(stats.power + stats.attackAddness);
-                    Debug.Log("문 이름: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + doorStatus.currentHealth);
+                    bossStatus.TakeNeutralizeGauge(stats.power + stats.attackAddness);
+                    Debug.Log("문 이름: " + enemy.name + ", 받은 데미지: " + (stats.power + stats.attackAddness) + ", 현재 체력: " + bossStatus.currentNeutralizeGauge);
                     audioSource.PlayOneShot(BoxHitClip);// Warrior 공격 사운드
                 }
             }

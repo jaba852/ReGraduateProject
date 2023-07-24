@@ -181,7 +181,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5015863295157716520, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4033774099817494191, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5015863295157716525, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
@@ -222,6 +223,10 @@ PrefabInstance:
     - target: {fileID: 1750515870, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755164640503881, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: objectsToPlace.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3453755164640503881, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: cornerObjectPlacementChance

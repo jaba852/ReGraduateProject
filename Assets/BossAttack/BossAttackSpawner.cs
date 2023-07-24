@@ -23,117 +23,109 @@ public class BossAttackSpawner : MonoBehaviour
     public int repeatCount = 10;
     public float patternDelay = 3f;
 
-    public int lastP;
+    private int patternCount;
+
+
+    public GameObject LeftArm;
+    public GameObject RightArm;
+    public GameObject LeftHandAtk;
+    public GameObject RightHandAtk;
+    public BossStatus LeftStun;
+    public BossStatus RightStun;
+    
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        LeftArm.SetActive(false);
+        RightArm.SetActive(false);
+        LeftHandAtk.SetActive(false);
+        RightHandAtk.SetActive(false);
+
     }
 
     private void Start()
     {
-        lastP = 0;
-
+        patternCount = 0;
         anim.SetBool("isIdle", isidle);
+        StartCoroutine(RandomPattern());
+    }
+    private void Update()
+    {
+        if (RightStun.isNeutralize)
+        {
+            LeftArm.SetActive(false);
+            RightArm.SetActive(false);
+            anim.SetBool("isStun", RightStun.isNeutralize);
+        }
+        if (LeftStun.isNeutralize)
+        {
+            LeftArm.SetActive(false);
+            RightArm.SetActive(false);
+            anim.SetBool("isStun", LeftStun.isNeutralize);
+        }
+
+    }
+    private void StunRecover()
+    {
+        LeftStun.isNeutralize = false;
+        RightStun.isNeutralize = false;
+        LeftStun.currentNeutralizeGauge = 100;
+        RightStun.currentNeutralizeGauge = 100;
+        anim.SetBool("isStun", LeftStun.isNeutralize);
+    }
+    private void RestartPattern()
+    {
         StartCoroutine(RandomPattern());
     }
 
     private IEnumerator RandomPattern()
     {
-        Debug.Log(lastP);
 
         yield return new WaitForSeconds(patternDelay);
-
-        if (lastP == 0)
+        Debug.Log("패턴 카운트" + patternCount);
+        if (patternCount == 5)
         {
-            Debug.Log("경우의수1");
-            int randomIndex = UnityEngine.Random.Range(0, 3);
+            PatternCanim();
+            patternCount = 0;
+        }
+        else
+        {
+        int randomIndex = UnityEngine.Random.Range(0, 2);
             switch (randomIndex)
             {
                 case 0:
                     PatternAanim();
+                    patternCount++;
                     break;
                 case 1:
                     PatternBanim();
-                    break;
-                case 2:
-                    PatternCanim();
+                    patternCount++;
                     break;
             }
-
         }
-        else if (lastP == 1)
-        {
-            Debug.Log("경우의수2");
-            int randomIndex = UnityEngine.Random.Range(0, 2);
-            switch (randomIndex)
-            {
-                case 0:
-                    PatternBanim();
-                    break;
-                case 1:
-                    PatternCanim();
-                    break;
-            }
-
-        }
-        else if (lastP == 2)
-        {
-            Debug.Log("경우의수3");
-            int randomIndex = UnityEngine.Random.Range(0, 2);
-            switch (randomIndex)
-            {
-                case 0:
-                    PatternAanim();
-                    break;
-                case 1:
-                    PatternCanim();
-                    break;
-            }
-
-        }
-        else if (lastP == 3)
-        {
-            Debug.Log("경우의수4");
-            int randomIndex = UnityEngine.Random.Range(0, 2);
-            switch (randomIndex)
-            {
-                case 0:
-                    PatternAanim();
-                    break;
-                case 1:
-                    PatternBanim();
-                    break;
-            }
-
-        }
-
+        
     }
 
     private void PatternAanim()
     {
-        lastP = 1;
-
         ispatternL = true;
         anim.SetBool("LeftPattern", ispatternL);
     }
     private void PatternBanim()
     {
-        lastP = 2;
-
         ispatternR = true;
         anim.SetBool("RightPattern", ispatternR);
     }
     private void PatternCanim()
     {
-        lastP = 3;
-
         ispatternM = true;
         anim.SetBool("CenterPattern", ispatternM);
     }
 
     private IEnumerator PatternAattack()
     {
+        LeftArm.SetActive(true);
         for (int i = 0; i < repeatCount; i++)
         {
             Instantiate(BossAttackPrefabs, PatternA + spacing * i, quaternion.identity);
@@ -144,6 +136,7 @@ public class BossAttackSpawner : MonoBehaviour
     }
     private IEnumerator PatternBattack()
     {
+        RightArm.SetActive(true);
         for (int i = 0; i < repeatCount; i++)
         {
             Instantiate(BossAttackPrefabs, PatternB - spacing * i, quaternion.identity);
@@ -177,4 +170,31 @@ public class BossAttackSpawner : MonoBehaviour
         StartCoroutine(RandomPattern());
     }
 
+    private void LeftAttackRBoff()
+    {
+        
+        LeftArm.SetActive(false);
+    }
+    private void RightAttackRBoff()
+    {
+        RightArm.SetActive(false);
+
+    }
+
+    private void LeftHandAttack()
+    {
+        LeftHandAtk.SetActive(true);
+    }
+    private void LeftHandAttackF()
+    {
+        LeftHandAtk.SetActive(false);
+    }
+    private void RightHandAttack()
+    {
+        RightHandAtk.SetActive(true);
+    }
+    private void RightHandAttackF()
+    {
+        RightHandAtk.SetActive(false);
+    }
 }
