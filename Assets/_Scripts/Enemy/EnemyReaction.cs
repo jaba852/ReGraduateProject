@@ -11,7 +11,7 @@ public class EnemyReaction : MonoBehaviour
     public float hitDuration = 0.2f;
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
-    private ParticleSystem enemyHitparticleSystem;
+    public ParticleSystem enemyHitparticleSystem;
     private bool Knock=false;
     private Animator animator;
     public GameObject stunEffect;
@@ -24,7 +24,6 @@ public class EnemyReaction : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.material.color;
         animator = GetComponent<Animator>();
-        enemyHitparticleSystem = GameObject.Find("ImpactFlash").GetComponent<ParticleSystem>();
     }
     void FixedUpdate()
     {
@@ -50,7 +49,8 @@ public class EnemyReaction : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
 
         // 파티클 생성
-        Instantiate(enemyHitparticleSystem, transform.position, rotation);
+        if(enemyHitparticleSystem!=null)
+            Instantiate(enemyHitparticleSystem, transform.position, rotation);
 
         // 일정 시간 후에 원래 색상으로 되돌리기
         StartCoroutine(ResetColor());
