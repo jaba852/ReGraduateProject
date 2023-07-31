@@ -46,6 +46,8 @@ public class WarriorMovement : MonoBehaviour
 
     private int skillQDamage = 50;
     private int skillEDamage = 80;
+    public static bool isStunSkillLearned = false; // 스턴 스킬을 배웠는지 여부
+    public float StunTime = 1.5f;
 
     public AudioClip WarriorattacksoundClip; // Warrior 공격 사운드 클립
     public AudioClip WarriorSecondattacksoundClip; // Warrior 두번째공격 사운드 클립
@@ -449,9 +451,13 @@ public class WarriorMovement : MonoBehaviour
                         if (enemyStatus != null)
                         {
                             // 적에게 데미지를 주는 처리를 수행합니다.
+                            if (isStunSkillLearned == true)
+                                        {
+                                           enemyStatus.EnemyStunDamage(1, StunTime); // 
+                                        }
                             enemyStatus.TakeDamage(skillQDamage + stats.attackAddness);
                             Debug.Log("적이름" + enemy.name + "받은데미지" + (stats.power + stats.attackAddness) + "현재 체력" + enemyStatus.currentHealth);
-                            audioSource.PlayOneShot(EnemyHitsoundClip);// Warrior 공격 사운드
+                            audioSource.PlayOneShot(EnemyHitsoundClip);// Warrior 공격 사운드                         
                         }
                     }
                 }

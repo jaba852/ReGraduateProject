@@ -15,7 +15,7 @@ public class Skill : MonoBehaviour
     protected virtual void Start()
     {
         warriorStatus = FindObjectOfType<WarriorStatus>(); // 전사 상태에 대한 참조 획득
-        pointSystem = PointSystem.Instance; // 포인트 시스템 인스턴스 획득
+        //pointSystem = PointSystem.Instance; // 포인트 시스템 인스턴스 획득
 
         skillButton.onClick.AddListener(UseSkill); // 스킬 사용을 버튼 클릭 이벤트 리스너에 추가
     }
