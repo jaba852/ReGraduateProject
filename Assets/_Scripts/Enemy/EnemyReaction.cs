@@ -12,7 +12,7 @@ public class EnemyReaction : MonoBehaviour
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
     public ParticleSystem enemyHitparticleSystem;
-    private bool Knock = false;
+    private bool Knock=false;
     private Animator animator;
     public GameObject stunEffect;
     public GameObject stunEffect2;
@@ -27,7 +27,7 @@ public class EnemyReaction : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!Knock)
+        if (!Knock) 
         {
             rb.velocity = Vector2.zero;
         }
@@ -49,7 +49,7 @@ public class EnemyReaction : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
 
         // 파티클 생성
-        if (enemyHitparticleSystem != null)
+        if(enemyHitparticleSystem!=null)
             Instantiate(enemyHitparticleSystem, transform.position, rotation);
 
         // 일정 시간 후에 원래 색상으로 되돌리기
@@ -67,7 +67,7 @@ public class EnemyReaction : MonoBehaviour
     }
 
     public void Stun(float stunDuration)
-    {
+    {        
         stunEffect.SetActive(true); // 빙글빙글 효과 활성화
         Debug.Log(stunEffect);
         Debug.Log(stunEffect2);
@@ -79,7 +79,7 @@ public class EnemyReaction : MonoBehaviour
     {
         stunEffect2.SetActive(true); // 빙글빙글 효과 활성화
         yield return new WaitForSeconds(stunDuration);
-
+ 
         stunEffect2.SetActive(false); // 빙글빙글 효과 활성화
         ReleaseStun();
     }
@@ -91,4 +91,4 @@ public class EnemyReaction : MonoBehaviour
 }
 
 
-//Movement에  if (!isAttacking && !enemydead || animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_reaction")) ,EnemyStatus에 enemyreaction.Knockback();
+//Movement에  if (!isAttacking && !enemydead || animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_reaction")) ,EnemyStatus에 enemyreaction.Knockback(); 
