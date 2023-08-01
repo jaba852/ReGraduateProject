@@ -125,16 +125,17 @@ public class CloseEnemyMovement : MonoBehaviour
         // 적군과 플레이어 사이에 벽이 있는지 체크
         Vector2 direction = player.position - transform.position;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionRange, wallLayer);
-
+        
         if (hit.collider != null)
         {
             // 레이캐스트가 벽과 충돌한 경우
-
+            UnityEngine.Debug.Log("벽!");
             return true;
 
         }
 
         // 벽이 없거나, 감지 범위 내에 벽이 없는 경우
+        UnityEngine.Debug.Log("감지");
         return false;
     }
 }

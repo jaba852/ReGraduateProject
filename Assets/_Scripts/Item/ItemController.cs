@@ -118,6 +118,8 @@ public class ItemController : MonoBehaviour
 
         // 시간 증가
         time += Time.deltaTime;
+
     }
+
 
 }

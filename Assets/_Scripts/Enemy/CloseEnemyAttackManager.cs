@@ -75,6 +75,7 @@ public class CloseEnemyAttackManager : MonoBehaviour
         }
 
         animator.SetBool("isEnemyAttack", true);
+        rb.velocity = new Vector2(0, 0);
         enemyMove = false;
         attackStop = false;
     }
@@ -117,20 +118,7 @@ public class CloseEnemyAttackManager : MonoBehaviour
         }
 
     }
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        // 충돌한 오브젝트를 확인하고 원하는 동작을 수행합니다.
-        if (other.CompareTag("Player"))
-        {
-            // 충돌한 오브젝트가 "Player" 태그를 가진 경우의 처리
 
-        }
-        else if (other.CompareTag("Enemy"))
-        {
-            // 충돌한 오브젝트가 "Enemy" 태그를 가진 경우의 처리
-        }
-        // ...
-    }
 
     public void Enemydead(GameObject obj)
     {
