@@ -41,7 +41,7 @@ Transform:
   - {fileID: 3125908672310896785}
   - {fileID: 5659291355297130523}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &706369630044576155
 SpriteRenderer:
@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  expReward: 10
 --- !u!114 &1299291605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   hitDuration: 0.2
+  enemyHitparticleSystem: {fileID: 1780417840195589788}
   stunEffect: {fileID: 3125908672310896786}
   stunEffect2: {fileID: 5659291355297130520}
 --- !u!82 &4163551167088792041
@@ -552,6 +554,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8bcb4d476ca7ca4f99f9415a54c02f7, type: 3}
+--- !u!198 &1780417840195589788 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8175035170481665426, guid: c8bcb4d476ca7ca4f99f9415a54c02f7, type: 3}
+  m_PrefabInstance: {fileID: 7622025413996454670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1780417840195589789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8175035170481665427, guid: c8bcb4d476ca7ca4f99f9415a54c02f7, type: 3}
