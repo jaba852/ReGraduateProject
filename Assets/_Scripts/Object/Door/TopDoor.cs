@@ -8,10 +8,19 @@ public class TopDoor : MonoBehaviour
     [SerializeField]
     private float moveDistance = 12f;
 
+    [SerializeField] // 적이 보일 때 변경할 스프라이트를 참조하기 위한 변수
+    private Sprite alternateSprite;
+
+    private Sprite originalSprite;
+    private SpriteRenderer spriteRenderer;
+
     private void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
         mainCamera = Camera.main.gameObject; // 메인 카메라 참조
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalSprite = spriteRenderer.sprite;
     }
 
     private void Update()
@@ -29,6 +38,17 @@ public class TopDoor : MonoBehaviour
 
             // 2D 맵에서 플레이어 오브젝트를 이동시킴
             playerObject.transform.position = playerPosition;
+        }
+
+        // 적이 보이는지 확인하고 스프라이트를 변경
+        bool areEnemiesVisible = IsEnemyVisible();
+        if (areEnemiesVisible)
+        {
+            spriteRenderer.sprite = alternateSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = originalSprite;
         }
     }
 
