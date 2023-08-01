@@ -32,7 +32,10 @@ public class BossAttackSpawner : MonoBehaviour
     public GameObject RightHandAtk;
     public BossStatus LeftStun;
     public BossStatus RightStun;
-    
+
+    public GameObject Bosshead;
+    public BossHeadHP Bossheadhp;
+
 
     private void Awake()
     {
@@ -41,7 +44,7 @@ public class BossAttackSpawner : MonoBehaviour
         RightArm.SetActive(false);
         LeftHandAtk.SetActive(false);
         RightHandAtk.SetActive(false);
-
+        Bosshead.SetActive(false);
     }
 
     private void Start()
@@ -64,6 +67,13 @@ public class BossAttackSpawner : MonoBehaviour
             RightArm.SetActive(false);
             anim.SetBool("isStun", LeftStun.isNeutralize);
         }
+        if (Bossheadhp.isDead)
+        {
+            LeftArm.SetActive(false);
+            RightArm.SetActive(false);
+            Bosshead.SetActive(false);
+            anim.SetBool("isDead", Bossheadhp.isDead);
+        }
 
     }
     private void StunRecover()
@@ -78,7 +88,6 @@ public class BossAttackSpawner : MonoBehaviour
     {
         StartCoroutine(RandomPattern());
     }
-
     private IEnumerator RandomPattern()
     {
 
@@ -106,7 +115,6 @@ public class BossAttackSpawner : MonoBehaviour
         }
         
     }
-
     private void PatternAanim()
     {
         ispatternL = true;
@@ -122,7 +130,6 @@ public class BossAttackSpawner : MonoBehaviour
         ispatternM = true;
         anim.SetBool("CenterPattern", ispatternM);
     }
-
     private IEnumerator PatternAattack()
     {
         LeftArm.SetActive(true);
@@ -169,10 +176,8 @@ public class BossAttackSpawner : MonoBehaviour
         anim.SetBool("CenterPattern", ispatternM);
         StartCoroutine(RandomPattern());
     }
-
     private void LeftAttackRBoff()
     {
-        
         LeftArm.SetActive(false);
     }
     private void RightAttackRBoff()
@@ -180,7 +185,6 @@ public class BossAttackSpawner : MonoBehaviour
         RightArm.SetActive(false);
 
     }
-
     private void LeftHandAttack()
     {
         LeftHandAtk.SetActive(true);
@@ -196,5 +200,18 @@ public class BossAttackSpawner : MonoBehaviour
     private void RightHandAttackF()
     {
         RightHandAtk.SetActive(false);
+    }
+    private void BossHeadHitBoxOn()
+    {
+        Bosshead.SetActive(true);
+    }
+    private void BossHeadHitBoxOff()
+    {
+        Bosshead.SetActive(false);
+    }
+    private void BossIsDying()
+    {
+        Bossheadhp.isDead = false;
+        anim.SetBool("isDead", false);
     }
 }
