@@ -8,6 +8,8 @@ TagManager:
   - Weapon
   - Trap
   - DeepOne
+  - Door
+  - DeadEnemy
   layers:
   - Default
   - TransparentFX

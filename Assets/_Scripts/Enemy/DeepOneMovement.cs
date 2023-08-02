@@ -21,7 +21,8 @@ public class DeepOneMovement : MonoBehaviour
 
     private bool enemydead = false;
 
-
+    private bool PlayerFind = true;
+    public GameObject EnemyFind;
 
     private void Start()
     {
@@ -76,6 +77,11 @@ public class DeepOneMovement : MonoBehaviour
     private void MoveTowardsPlayer()
     {
         // 플레이어 쪽으로 이동
+        if (PlayerFind)
+        {
+            EnemyFind.SetActive(true);
+            PlayerFind = false;
+        }
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
         Vector2 direction = player.position - transform.position;
         animator.SetFloat("EnemyMoveX", direction.x);
@@ -86,6 +92,11 @@ public class DeepOneMovement : MonoBehaviour
     private void Attack()
     {
         // 공격 실행
+        if (PlayerFind)
+        {
+            EnemyFind.SetActive(true);
+            PlayerFind = false;
+        }
         UnityEngine.Debug.Log("DeepOne attacks!");
         Vector2 direction = player.position - transform.position;
     

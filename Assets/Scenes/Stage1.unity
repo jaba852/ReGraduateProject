@@ -226,12 +226,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3453755164640503881, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: objectsToPlace.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3453755164640503881, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: cornerObjectPlacementChance
       value: 0.005
       objectReference: {fileID: 0}
+    - target: {fileID: 3453755164640503881, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: objectsToPlace.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8524c0d11d3389f4c898f91fc83c046b, type: 2}
     - target: {fileID: 3453755164640503886, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
