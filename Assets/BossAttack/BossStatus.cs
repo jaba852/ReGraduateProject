@@ -23,7 +23,6 @@ public class BossStatus : MonoBehaviour
     {
         currentNeutralizeGauge -= damage;
 
-        Debug.Log("보스 피격" + damage);
         if (currentNeutralizeGauge < 0)
         {
             isNeutralize = true;

@@ -30,7 +30,7 @@ public class DashCharge : MonoBehaviour
     {
         if (warriorMovement != null && dashChargeText != null)
         {
-            dashChargeText.text = warriorMovement.dashCharges.ToString();
+            dashChargeText.text = warriorMovement.stats.dashStack.ToString();
         }
     }
 }

@@ -47,7 +47,7 @@ public class StatusUI : MonoBehaviour
         MSpeed.text = "이동속도: " + stats.movementSpeed.ToString();
         VDash.text = "대쉬가속도: " + stats.dashVelocity.ToString();
         TDash.text = "대쉬시간: " + stats.dashingTime.ToString();
-        RRAtack.text = "공격범위배수: " + stats.atkRangeRatio.ToString();
+        RRAtack.text = "공격범위배수: " + stats.atkRangeScale.ToString();
         MAttack.text = "공격시이동거리: " + stats.AttackMove.ToString();
         SAttack.text = "공격속도: " + stats.atkSpeed.ToString();
         Power.text = "공격력: " + stats.power.ToString();

@@ -221,42 +221,28 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.33333334
-    functionName: BasicAttackON
+    functionName: OnFirstAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.41666666
-    functionName: BasicAttackOFF
+    functionName: OffFirstAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5833333
-    functionName: BasicAttackON
+    functionName: OnFirstAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.6666667
-    functionName: BasicAttackOFF
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.68333334
-    functionName: BasicAttackOFF
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.7
-    functionName: BasicAttackOFF
+    functionName: OffFirstAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -264,6 +250,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.85
     functionName: CheckAttackPhase
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.85
+    functionName: atkMoveStop
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

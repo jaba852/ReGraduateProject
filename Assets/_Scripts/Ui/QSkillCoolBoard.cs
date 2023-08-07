@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class QSkillCoolBoard : MonoBehaviour
 {
     public Image skillCoolImage; // Q 스킬 쿨다운 이미지 참조
-    public WarriorMovement warriorMovement; // 대쉬 쿨다운 정보를 가져오기 위해 워리어 움직임을 참조합니다.
+    public WarriorMovement warriorMovement;
 
     private bool skillQAvailable = true; // Q 스킬이 사용 가능한 상태인지 나타내는 플래그
 
