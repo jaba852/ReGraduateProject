@@ -67,7 +67,8 @@ public class EnemyReaction : MonoBehaviour
     }
 
     public void Stun(float stunDuration)
-    {        
+    {
+        rb.simulated = false;
         stunEffect.SetActive(true); // 빙글빙글 효과 활성화
         Debug.Log(stunEffect);
         Debug.Log(stunEffect2);
@@ -85,7 +86,7 @@ public class EnemyReaction : MonoBehaviour
     }
     private void ReleaseStun()
     {
-
+        rb.simulated = true;
         animator.SetBool("isEnemyStun", false); // 애니메이션 종료
     }
 }

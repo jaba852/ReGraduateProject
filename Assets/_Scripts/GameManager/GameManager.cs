@@ -2,12 +2,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static bool isPaused = false; // ���� �Ͻ����� ���θ� ������ ����
     public GameObject pauseCanvas; // �Ͻ������� ��Ÿ�� ĵ����
     public GameObject settingsCanvas; // ȯ�漳�� ��ư
+    public GameObject talkCanvas;
+    public TextMeshProUGUI talkText;
+    public bool isTalkAction = false;
+
     [SerializeField] Texture2D cursorimage;
     private void Awake()
     {
@@ -18,7 +23,7 @@ public class GameManager : MonoBehaviour
         // ĵ���� ��Ȱ��ȭ
         pauseCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
-
+   
 
     }
 
@@ -87,5 +92,20 @@ public class GameManager : MonoBehaviour
     {
         // ���� ����
         Application.Quit();
+    }
+
+    public void TalkAction(GameObject scanObj) 
+    {
+        if (isTalkAction)
+        {
+            isTalkAction = false;
+            talkCanvas.SetActive(false);
+        }
+        else
+        {
+            isTalkAction = true;
+            talkCanvas.SetActive(true);
+            talkText.text = scanObj.name;
+        }
     }
 }

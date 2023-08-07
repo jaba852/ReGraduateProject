@@ -11,7 +11,7 @@ public class EnemyStatus : MonoBehaviour
     private DeepOneMovement DeeponeMvmt;
     private CloseEnemyMovement CloseEnemyMvmt;
     public int expReward = 10; // 적 처치 시 플레이어가 얻는 경험치량
-
+ 
 
 
     public void Start()

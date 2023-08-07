@@ -42,7 +42,7 @@ Transform:
   - {fileID: 5659291355710219299}
   - {fileID: 3060630239057356870}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &283459755811666219
 SpriteRenderer:
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01daeca1e8acd84bb40ab1f2b33c1b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 20
+  detectionRange: 10
   attackRange: 5
   moveSpeed: 3
   attackDelay: 2
