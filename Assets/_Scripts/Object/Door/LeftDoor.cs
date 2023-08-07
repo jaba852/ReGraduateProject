@@ -1,26 +1,40 @@
 using UnityEngine;
+using System.Collections;
 
 public class LeftDoor : MonoBehaviour
-{
+{ 
     private GameObject playerObject;
-    private GameObject mainCamera; // 메인 카메라 참조 변수 추가
+    private GameObject mainCamera;
     private bool canMove = false;
+    private Animator animator;
     [SerializeField]
     private float moveDistance = 12f;
 
-    [SerializeField] // 적이 보일 때 변경할 스프라이트를 참조하기 위한 변수
-    private Sprite alternateSprite;
-
-    private Sprite originalSprite;
-    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
-        mainCamera = Camera.main.gameObject; // 메인 카메라 참조
+        mainCamera = Camera.main.gameObject;
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalSprite = spriteRenderer.sprite;
+        animator = GetComponent<Animator>();
+
+        // 애니메이션을 시작합니다.
+        StartCoroutine(AnimateLoop());
+    }
+
+    private IEnumerator AnimateLoop()
+    {
+        float waitTime = 0.5f; // 대기 시간 (예: 2초)
+
+        while (true)
+        {
+            bool areEnemiesVisible = IsEnemyVisible();
+            Debug.Log(areEnemiesVisible);
+            // Portal 상태 실행
+            animator.SetBool("PortalTrigger", areEnemiesVisible);
+
+            yield return new WaitForSeconds(waitTime);
+        }
     }
 
     private void Update()
@@ -38,17 +52,6 @@ public class LeftDoor : MonoBehaviour
 
             // 2D 맵에서 플레이어 오브젝트를 이동시킴
             playerObject.transform.position = playerPosition;
-        }
-
-        // 적이 보이는지 확인하고 스프라이트를 변경
-        bool areEnemiesVisible = IsEnemyVisible();
-        if (areEnemiesVisible)
-        {
-            spriteRenderer.sprite = alternateSprite;
-        }
-        else
-        {
-            spriteRenderer.sprite = originalSprite;
         }
     }
 

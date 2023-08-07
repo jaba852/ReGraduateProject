@@ -19,8 +19,9 @@ public class CloseEnemyMovement : MonoBehaviour
     private CloseEnemyAttackManager attackManager;
 
     private bool enemydead = false;
-    private bool PlayerFind=true;
+    private bool PlayerFind=false;
     public GameObject EnemyFind;
+   
     
     private void Start()
     {
@@ -38,12 +39,13 @@ public class CloseEnemyMovement : MonoBehaviour
 
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-            if (distanceToPlayer <= detectionRange && distanceToPlayer > attackRange)
+            if (distanceToPlayer <= detectionRange && distanceToPlayer > attackRange || PlayerFind)
             {
 
                 // 적군이 플레이어를 감지하고 벽에 가려지지 않은 경우에만 이동
                 if (!IsWallBetweenEnemyAndPlayer())
                 {
+                    PlayerFind = true;
                     MoveTowardsPlayer();
                 }
                 else
@@ -55,6 +57,7 @@ public class CloseEnemyMovement : MonoBehaviour
             {
 
                 // 플레이어가 공격 사거리 내에 있으면 공격 실행
+                PlayerFind = true;
                 Attack();
                 UnityEngine.Debug.Log("플레이어감지");
             }
@@ -80,7 +83,7 @@ public class CloseEnemyMovement : MonoBehaviour
         if (PlayerFind)
         {
             EnemyFind.SetActive(true);
-            PlayerFind = false;
+    
         }
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
         Vector2 direction = player.position - transform.position;
@@ -95,7 +98,7 @@ public class CloseEnemyMovement : MonoBehaviour
         if (PlayerFind)
         {
             EnemyFind.SetActive(true);
-            PlayerFind = false;
+         
         }
     
         UnityEngine.Debug.Log("Enemy attacks!");
