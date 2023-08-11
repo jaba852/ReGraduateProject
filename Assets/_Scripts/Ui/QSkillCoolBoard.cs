@@ -6,6 +6,7 @@ public class QSkillCoolBoard : MonoBehaviour
 {
     public Image skillCoolImage; // Q 스킬 쿨다운 이미지 참조
     public WarriorMovement warriorMovement;
+    public WarriorStatus stats;
 
     private bool skillQAvailable = true; // Q 스킬이 사용 가능한 상태인지 나타내는 플래그
 
@@ -19,7 +20,7 @@ public class QSkillCoolBoard : MonoBehaviour
         if (warriorMovement.canUseSkillQ != skillQAvailable)
         {
             skillQAvailable = warriorMovement.canUseSkillQ; // Q 스킬 사용 가능 상태를 업데이트
-            if (!skillQAvailable) StartCoroutine(SkillCoolDownVisualize(warriorMovement.skillQCooldownTime)); // 쿨다운 시작
+            if (!skillQAvailable) StartCoroutine(SkillCoolDownVisualize(stats.QCoolDown)); // 쿨다운 시작
         }
     }
 

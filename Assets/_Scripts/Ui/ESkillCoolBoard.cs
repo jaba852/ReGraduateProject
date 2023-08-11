@@ -6,6 +6,7 @@ public class ESkillCoolBoard : MonoBehaviour
 {
     public Image skillCoolImage; // E 스킬 쿨다운 이미지 참조
     public WarriorMovement warriorMovement; // 대쉬 쿨다운 정보를 가져오기 위해 워리어 움직임을 참조합니다.
+    public WarriorStatus stats;
 
     private bool skillEAvailable = true; // E 스킬이 사용 가능한 상태인지 나타내는 플래그
 
@@ -19,7 +20,7 @@ public class ESkillCoolBoard : MonoBehaviour
         if (warriorMovement.canUseSkillE != skillEAvailable)
         {
             skillEAvailable = warriorMovement.canUseSkillE; // E 스킬 사용 가능 상태를 업데이트
-            if (!skillEAvailable) StartCoroutine(SkillCoolDownVisualize(warriorMovement.skillECooldownTime)); // 쿨다운 시작
+            if (!skillEAvailable) StartCoroutine(SkillCoolDownVisualize(stats.ECoolDown)); // 쿨다운 시작
         }
     }
 

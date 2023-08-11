@@ -371,14 +371,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.5833334
-    functionName: PatternBattack
+    functionName: RightHandAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.5833334
-    functionName: RightHandAttack
+  - time: 1.6666666
+    functionName: PatternBattack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -4,55 +4,37 @@ using UnityEngine.UI;
 public class StatusUI : MonoBehaviour
 {
     public WarriorStatus stats;
-    public Text MHp;
-    public Text CHp;
     public Text MSpeed;
-    public Text VDash;
-    public Text TDash;
-    public Text RRAtack;
-    public Text MAttack;
     public Text SAttack;
     public Text Power;
     public Text attackAdd;
-    public Text invincibleD;
+    public Text DashStack;
+    public Text DashCoolDown;
+    public Text QCoolDown;
+    public Text ECoolDown;
     public GameObject canvas;
+    public GameObject SkillCanvas;
 
     private void Start()
     {
-
-        stats = GetComponent<WarriorStatus>();
-        MHp = GameObject.Find("MaxHp").GetComponent<Text>();
-        CHp = GameObject.Find("CurrentHp").GetComponent<Text>();
-        MSpeed = GameObject.Find("MoveSpeed").GetComponent<Text>();
-        VDash = GameObject.Find("DashVelocity").GetComponent<Text>();
-        TDash = GameObject.Find("DashTime").GetComponent<Text>();
-        RRAtack = GameObject.Find("AttackRangeRatio").GetComponent<Text>();
-        MAttack = GameObject.Find("MoveAttack").GetComponent<Text>();
-        SAttack = GameObject.Find("AttackSpeed").GetComponent<Text>();
-        Power = GameObject.Find("Power").GetComponent<Text>();
-        attackAdd= GameObject.Find("AttackAdd").GetComponent<Text>();
-        invincibleD = GameObject.Find("InvincibleDuration").GetComponent<Text>();
-
         canvas.SetActive(false);
-        
+        SkillCanvas.SetActive(false);
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             canvas.SetActive(!canvas.activeSelf);
+            SkillCanvas.SetActive(!SkillCanvas.activeSelf);
         }
-        MHp.text = "최대체력: " + stats.maxHealth.ToString();
-        CHp.text = "현재체력: " + stats.currentHealth.ToString();
         MSpeed.text = "이동속도: " + stats.movementSpeed.ToString();
-        VDash.text = "대쉬가속도: " + stats.dashVelocity.ToString();
-        TDash.text = "대쉬시간: " + stats.dashingTime.ToString();
-        RRAtack.text = "공격범위배수: " + stats.atkRangeScale.ToString();
-        MAttack.text = "공격시이동거리: " + stats.AttackMove.ToString();
         SAttack.text = "공격속도: " + stats.atkSpeed.ToString();
         Power.text = "공격력: " + stats.power.ToString();
         attackAdd.text = "추가데미지: " + stats.attackAddness.ToString();
-        invincibleD.text = "무적시간: " + stats.invincibleDuration.ToString();
+        DashStack.text = "구르기 최대 스택: " + stats.dashStack.ToString();
+        DashCoolDown.text = "구르기 쿨타임: " + stats.DashCoolDown.ToString();
+        QCoolDown.text = "Q스킬 쿨타임: " + stats.QCoolDown.ToString();
+        ECoolDown.text = "E스킬 쿨타임: " + stats.ECoolDown.ToString();
     }
     
 }   
