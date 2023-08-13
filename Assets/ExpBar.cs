@@ -36,7 +36,7 @@ public class ExpBar : MonoBehaviour
     public void UpdateExpUI()
     {
         expbar.value = stats.playerExp;
-        expText.text = "Exp : " + stats.playerExp.ToString() + "/" + stats.maxExp.ToString();
+        expText.text = stats.playerExp.ToString() + "\n" + stats.maxExp.ToString();
         LevelText.text = stats.playerLevel.ToString();
     }
 }

@@ -36,6 +36,6 @@ public class HealthBar : MonoBehaviour
     public void UpdateHealthUI()
     {
         healthBar.value = stats.currentHealth;
-        HPText.text = "HP : " + stats.currentHealth.ToString() + "/" + stats.maxHealth.ToString();
+        HPText.text = stats.currentHealth.ToString() + "\n" + stats.maxHealth.ToString();
     }
 }

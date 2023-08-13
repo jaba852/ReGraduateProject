@@ -18,7 +18,9 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField]
     private Tilemap roomTile, colliderTile; // 방과 통로를 그릴 Tilemap
     [SerializeField]
-    private TileBase roomFloor, corridorFloor, wall; // 방과 통로의 타일   
+    private TileBase roomFloor, corridorFloor; // 방과 통로의 타일   
+    [SerializeField]
+    private RuleTile wall;
     [SerializeField]
     private int roomCount = 10; // 생성할 방의 개수
     [SerializeField]
@@ -191,7 +193,6 @@ public class DungeonGenerator : MonoBehaviour
         {
             dungeonTiles.UnionWith(room.FloorTiles);
         }
-        dungeonTiles.UnionWith(dungeonData.Path);
 
         HashSet<Vector2Int> colliderTiles = new HashSet<Vector2Int>();
         foreach (Vector2Int tilePosition in dungeonTiles)
@@ -210,9 +211,9 @@ public class DungeonGenerator : MonoBehaviour
 
             if (hasAdjacentTile)
             {
-                for (int x = tilePosition.x - 1; x <= tilePosition.x + 1; x++)
+                for (int x = tilePosition.x - 2; x <= tilePosition.x + 2; x++)
                 {
-                    for (int y = tilePosition.y - 1; y <= tilePosition.y + 1; y++)
+                    for (int y = tilePosition.y - 2; y <= tilePosition.y + 2; y++)
                     {
                         Vector2Int newPosition = new Vector2Int(x, y);
                         if (!dungeonTiles.Contains(newPosition))
