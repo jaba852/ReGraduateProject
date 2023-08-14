@@ -10,8 +10,7 @@ public class BossAttack : MonoBehaviour
 
     private void Awake()
     {
-        BossAtkAnim = GetComponent<Animator>();
-        AtkCollider = GetComponent<CircleCollider2D>();
+        AtkCollider.enabled = false;
     }
     private void Start()
     {
@@ -33,5 +32,22 @@ public class BossAttack : MonoBehaviour
         BossAtkAnim.SetInteger("BossAttackStep", BossAtkStep);
         Destroy(gameObject);
 
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            // 트리거가 발생한 경우 실행할 코드 작성
+            Debug.Log("Trigger detected!");
+        }
+    }
+
+    public void enablecollider()
+    {
+        AtkCollider.enabled = true;
+    }
+    public void disablecollider()
+    {
+        AtkCollider.enabled = false;
     }
 }
