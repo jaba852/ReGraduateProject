@@ -43,6 +43,7 @@ public class Inventory : MonoBehaviour
     {
         SlotCount = 5; // 인벤토리개수
         itemDatabase = FindObjectOfType<ItemDatabase>();
+
     }
 
     public bool AddItem()
@@ -75,4 +76,5 @@ public class Inventory : MonoBehaviour
 
 
     }
+
 }
