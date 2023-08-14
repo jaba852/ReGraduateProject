@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static UnityEngine.Rendering.DebugUI;
 using UnityEngine.UI;
 
 public class ItemTooltip : MonoBehaviour
