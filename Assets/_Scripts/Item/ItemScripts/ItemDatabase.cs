@@ -18,7 +18,7 @@ public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
 
-    public List<ItemData> items = new List<ItemData>();
+    public  List<ItemData> items = new List<ItemData>();
     private int getItemCount;
     public List<Sprite> ItemsList = new List<Sprite>();
     public List<int> itemindex = new List<int>();
@@ -43,6 +43,7 @@ public class ItemDatabase : MonoBehaviour
         {
             itemTooltip = FindObjectOfType<ItemTooltip>();
         }
+
     }
 
     private void Start()
@@ -154,6 +155,7 @@ public class ItemDatabase : MonoBehaviour
     {
         return itemTooltip;
     }
+
 }
 
 

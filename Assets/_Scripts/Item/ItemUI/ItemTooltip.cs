@@ -23,5 +23,4 @@ public class ItemTooltip : MonoBehaviour
         Panel.SetActive(false);
     }
 
-
 }
