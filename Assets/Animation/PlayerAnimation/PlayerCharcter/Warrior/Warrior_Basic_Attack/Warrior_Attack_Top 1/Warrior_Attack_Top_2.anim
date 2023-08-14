@@ -247,7 +247,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.9166667
-    functionName: AttackEvent
+    functionName: CheckAttackPhase
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

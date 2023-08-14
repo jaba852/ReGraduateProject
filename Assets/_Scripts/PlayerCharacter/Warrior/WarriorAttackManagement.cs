@@ -21,7 +21,6 @@ public class WarriorAttackManagement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("공격가능" + isAttacking);
         if (isAttacking)
         {
             isAttacking = false;
@@ -111,18 +110,27 @@ public class WarriorAttackManagement : MonoBehaviour
             enemyStatus.TakeDamage(damage);
             Debug.Log(damage);
             if (enemyStatus.currentHealth < 0)
-            { 
+            {
+                AtkStats.GainExperience(1);
             }
         }
         if (bossStatus != null)
         {
             Debug.Log("보스무력 " + damage);
             bossStatus.TakeNeutralizeGauge(damage);
+            if (bossStatus.currentNeutralizeGauge < 0)
+            {
+                AtkStats.GainExperience(1);
+            }
         }
         if (bossHeadHP != null)
         {
             Debug.Log(damage);
             bossHeadHP.TakeBossHeadDamage(damage);
+            if (bossHeadHP.BossHeadHealthPower < 0)
+            {
+                AtkStats.GainExperience(1);
+            }
         }
 
     }

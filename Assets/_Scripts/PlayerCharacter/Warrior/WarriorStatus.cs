@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ public class WarriorStatus : MonoBehaviour
 
     [Header("플레이어 보유 경험치")]
     [SerializeField] public int playerExp = 0;
+
+    [Header("플레이어 요구 경험치")]
+    [SerializeField] public int maxExp = 10;
 
     [Header("피격 깜빡이 시간")]
     [SerializeField] public float blinkTime = 1f;
@@ -61,7 +65,13 @@ public class WarriorStatus : MonoBehaviour
     [SerializeField] public float invincibleDuration = 1f;
 
     [Header("구르기 쿨타임")]
-    [SerializeField] public float DashCoolDown = 3f;
+    [SerializeField] public int DashCoolDown = 10;
+
+    [Header("Q스킬 쿨타임")]
+    [SerializeField] public int QCoolDown = 10;
+
+    [Header("E스킬 쿨타임")]
+    [SerializeField] public int ECoolDown = 15;
 
     [Header("2타 기본공격 배율")]
     [SerializeField] public float SecondDamageScale = 2f;
@@ -71,6 +81,7 @@ public class WarriorStatus : MonoBehaviour
 
     [Header("E스킬 데미지 배수")]
     [SerializeField] public float ESkillDamageScale = 3f;
+
 
     [Header("여기서부터 스킬트리 0이라면 미습득 1,2,3이라면 해당하는걸 습득")]
     [SerializeField] public int SkillTree1 = 0;
@@ -86,7 +97,10 @@ public class WarriorStatus : MonoBehaviour
     [Header("죽었는가")]
     public bool deadCount;
 
-    public HealthBar healthBar;
+
+    public event Action HealthChanged;
+
+    public event Action ExpChanged;
 
     private bool isInvincible = false; // 피격 무적 상태를 나타내는 변수
 
@@ -95,14 +109,7 @@ public class WarriorStatus : MonoBehaviour
         // 스텟 초기화
         LoadPlayerStats();
 
-        healthBar.SetMaxHealth(maxHealth);
         deadCount = false;
-    }
-    private void Update()
-    {
-        healthBar.SetMaxHealth(maxHealth);
-        healthBar.SetHealth(currentHealth);
-
     }
     private void OnDestroy()
     {
@@ -115,6 +122,7 @@ public class WarriorStatus : MonoBehaviour
         // 스텟 값들을 PlayerPrefs에서 불러옴
         playerLevel = PlayerPrefs.GetInt("playerLevel", playerLevel);
         playerExp = PlayerPrefs.GetInt("playerExp", playerExp);
+        maxExp = PlayerPrefs.GetInt("maxExp", maxExp);
         maxHealth = PlayerPrefs.GetInt("Player_MaxHealth", maxHealth);
         currentHealth = PlayerPrefs.GetInt("Current_Health", currentHealth);
         movementSpeed = PlayerPrefs.GetFloat("Movement_Speed", movementSpeed);
@@ -130,7 +138,9 @@ public class WarriorStatus : MonoBehaviour
         power = PlayerPrefs.GetInt("Power", power);
         attackAddness = PlayerPrefs.GetInt("Attack_Addness", attackAddness);
         invincibleDuration = PlayerPrefs.GetFloat("InvincibleDuration", invincibleDuration);
-        DashCoolDown = PlayerPrefs.GetFloat("DashCoolDown", DashCoolDown);
+        DashCoolDown = PlayerPrefs.GetInt("DashCoolDown", DashCoolDown);
+        QCoolDown = PlayerPrefs.GetInt("QCoolDown", QCoolDown);
+        ECoolDown = PlayerPrefs.GetInt("ECoolDown", ECoolDown);
         SecondDamageScale = PlayerPrefs.GetFloat("SecondDamageScale", SecondDamageScale);
         QSkillDamageScale = PlayerPrefs.GetFloat("QSkillDamageScale", QSkillDamageScale);
         ESkillDamageScale = PlayerPrefs.GetFloat("ESkillDamageScale", ESkillDamageScale);
@@ -150,6 +160,7 @@ public class WarriorStatus : MonoBehaviour
         // 스텟 값을 PlayerPrefs에 저장
         PlayerPrefs.SetInt("playerLevel", playerLevel);
         PlayerPrefs.SetInt("playerExp", playerExp);
+        PlayerPrefs.SetInt("maxExp", maxExp);
         PlayerPrefs.SetInt("Player_MaxHealth", maxHealth);
         PlayerPrefs.SetInt("Current_Health", currentHealth);
         PlayerPrefs.SetFloat("Movement_Speed", movementSpeed);
@@ -165,7 +176,9 @@ public class WarriorStatus : MonoBehaviour
         PlayerPrefs.SetInt("Power", power);
         PlayerPrefs.SetInt("Attack_Addness", attackAddness);
         PlayerPrefs.SetFloat("InvincibleDuration", invincibleDuration);
-        PlayerPrefs.SetFloat("DashCoolDown", DashCoolDown);
+        PlayerPrefs.SetInt("DashCoolDown", DashCoolDown);
+        PlayerPrefs.SetInt("QCoolDown", QCoolDown);
+        PlayerPrefs.SetInt("ECoolDown", ECoolDown);
         PlayerPrefs.SetFloat("SecondDamageScale", SecondDamageScale);
         PlayerPrefs.SetFloat("QSkillDamageScale", QSkillDamageScale);
         PlayerPrefs.SetFloat("ESkillDamageScale", ESkillDamageScale);
@@ -191,6 +204,8 @@ public class WarriorStatus : MonoBehaviour
 
         currentHealth -= damage;
         Debug.Log("플레이어 피격" + damage);
+        HealthChanged?.Invoke();
+
         if (currentHealth <= 0)
         {
             deadCount = true;
@@ -203,7 +218,6 @@ public class WarriorStatus : MonoBehaviour
             StartCoroutine(invincibility());
         }
     }
-
     private IEnumerator PlayerHit()
     {
         if (deadCount)
@@ -232,12 +246,13 @@ public class WarriorStatus : MonoBehaviour
 
         isInvincible = false; // 피격 무적 상태 비활성화
     }
-
     public void InitializePlayerStats()
     {
         playerLevel = 1;
 
         playerExp = 0;
+
+        maxExp = 10;
 
         maxHealth = 100;
         
@@ -267,7 +282,11 @@ public class WarriorStatus : MonoBehaviour
 
         invincibleDuration = 1f;
 
-        DashCoolDown = 3f;
+        DashCoolDown = 10;
+
+        QCoolDown = 10;
+
+        ECoolDown = 15;
 
         SecondDamageScale = 2f;
 
@@ -310,5 +329,26 @@ public class WarriorStatus : MonoBehaviour
             Debug.LogWarning("Rigidbody2D 컴포넌트를 찾을 수 없습니다!");
         }
     }
+    public void GainExperience(int amount)
+    {
+        playerExp += amount;
 
+        ExpChanged?.Invoke();
+        while (playerExp >= maxExp)
+        {
+            playerLevel++;
+            playerExp -= maxExp;
+            CalculateNextLevelXP();
+        }
+    }
+    private void CalculateNextLevelXP()
+    {
+        maxExp = (int)(maxExp * 1.1f);
+        ExpChanged?.Invoke();
+
+    }
+    public void MaxHpPlusMinus()
+    {
+        HealthChanged?.Invoke();
+    }
 }
