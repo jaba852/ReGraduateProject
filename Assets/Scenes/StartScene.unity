@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 57291015}
   - component: {fileID: 57291014}
   - component: {fileID: 57291013}
-  - component: {fileID: 57291017}
   - component: {fileID: 57291018}
+  - component: {fileID: 57291019}
   m_Layer: 5
   m_Name: GameStartButton
   m_TagString: Untagged
@@ -209,10 +209,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 57291017}
-        m_TargetAssemblyTypeName: LoadingSceneController, Assembly-CSharp
+      - m_Target: {fileID: 57291019}
+        m_TargetAssemblyTypeName: MoveLoading, Assembly-CSharp
         m_MethodName: LoadSceneAsync
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -259,18 +259,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57291011}
   m_CullTransparentMesh: 1
---- !u!114 &57291017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 57291011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd27bfd5b45b144ea5a23d30abf2f4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &57291018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +273,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0, b: 0, a: 1}
   pressColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &57291019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57291011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa63fdb5794b0941a91743af82a44e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &98960969
 GameObject:
   m_ObjectHideFlags: 0
