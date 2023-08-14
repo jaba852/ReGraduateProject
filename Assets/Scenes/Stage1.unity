@@ -234,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1750515870, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3453755164640503881, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: objectsToPlace.Array.size
