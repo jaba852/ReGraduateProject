@@ -16,13 +16,14 @@ public class InventoryUI : MonoBehaviour
     private ItemTooltip itemTooltip;
     private void Start()
     {
+        itemDatabase = FindObjectOfType<ItemDatabase>();
+        itemTooltip = FindObjectOfType<ItemTooltip>();
         inven = Inventory.Instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();
         inven.onSlotCountChange += SlotChange;
         inven.onChangeItem += RedrawSlotUI;
         InventoryPanel.SetActive(activeInventory);
-        itemDatabase = FindObjectOfType<ItemDatabase>();
-        itemTooltip = FindObjectOfType<ItemTooltip>();
+
     }
 
     private void SlotChange(int val)

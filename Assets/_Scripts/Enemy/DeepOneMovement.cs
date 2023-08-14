@@ -43,7 +43,14 @@ public class DeepOneMovement : MonoBehaviour
             if (distanceToPlayer <= detectionRange && distanceToPlayer > attackRange || PlayerFind)
             {
                 // 적군이 플레이어를 감지하고 벽에 가려지지 않은 경우에만 이동
-                if (!IsWallBetweenEnemyAndPlayer())
+                if (distanceToPlayer <= attackRange && !enemydead)
+                {
+                    // 플레이어가 공격 사거리 내에 있으면 공격 실행
+                    PlayerFind = true;
+                    Attack();
+                    UnityEngine.Debug.Log("플레이어감지");
+                }
+                else if (!IsWallBetweenEnemyAndPlayer())
                 {
                     PlayerFind = true;
                     MoveTowardsPlayer();
@@ -53,13 +60,7 @@ public class DeepOneMovement : MonoBehaviour
                     animator.SetBool("isEnemyMove", false);
                 }
             }
-            else if (distanceToPlayer <= attackRange && !enemydead)
-            {
-                // 플레이어가 공격 사거리 내에 있으면 공격 실행
-                PlayerFind = true;
-                Attack();
-                UnityEngine.Debug.Log("플레이어감지");
-            }
+            
         }
         else
         {

@@ -71,7 +71,7 @@ public class CharacterPlacement : MonoBehaviour
                 int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
                 GameObject doorObjectPrefab = simpleDoorObjectTop[randomIndex];
                 GameObject doorObject = Instantiate(doorObjectPrefab);
-                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y + 0.9f, 0f);
+                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y - 0.2f, 0f);
             }
 
         }
@@ -84,7 +84,7 @@ public class CharacterPlacement : MonoBehaviour
                 int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
                 GameObject doorObjectPrefab = simpleDoorObjectBottom[randomIndex];
                 GameObject doorObject = Instantiate(doorObjectPrefab);
-                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y - 0.9f, 0f);
+                doorObject.transform.position = new Vector3(doorPosition.x + 0.5f, doorPosition.y - 0.0f, 0f);
             }
 
 
@@ -98,7 +98,7 @@ public class CharacterPlacement : MonoBehaviour
                 int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
                 GameObject doorObjectPrefab = simpleDoorObjectLeft[randomIndex];
                 GameObject doorObject = Instantiate(doorObjectPrefab);
-                doorObject.transform.position = new Vector3(doorPosition.x - 0.9f, doorPosition.y + 0.5f, 0f);
+                doorObject.transform.position = new Vector3(doorPosition.x + 1.0f, doorPosition.y + 0.3f, 0f);
             }
 
 
@@ -112,7 +112,7 @@ public class CharacterPlacement : MonoBehaviour
                 int randomIndex = UnityEngine.Random.Range(0, doorObjectPrefabs.Count);
                 GameObject doorObjectPrefab = simpleDoorObjectRight[randomIndex];
                 GameObject doorObject = Instantiate(doorObjectPrefab);
-                doorObject.transform.position = new Vector3(doorPosition.x + 0.9f, doorPosition.y + 0.5f, 0f);
+                doorObject.transform.position = new Vector3(doorPosition.x - 0.2f, doorPosition.y + 0.3f, 0f);
             }
 
 
