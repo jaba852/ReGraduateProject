@@ -107,6 +107,11 @@ public class WarriorAttackManagement : MonoBehaviour
 
         if (enemyStatus != null)
         {
+            if (attackType == AttackType.SkillQ && AtkStats.SkillTree1 ==1)
+            {
+                enemyStatus.EnemyStunDamage(0.5 * damage, 3);
+                return;
+            }
             enemyStatus.TakeDamage(damage);
             Debug.Log(damage);
             if (enemyStatus.currentHealth < 0)

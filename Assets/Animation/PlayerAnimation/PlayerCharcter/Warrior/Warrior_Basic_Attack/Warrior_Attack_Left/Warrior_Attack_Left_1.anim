@@ -255,6 +255,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.8333333
+    functionName: BasicAttackingOff
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.85
     functionName: CheckAttackPhase
     data: 
@@ -264,13 +271,6 @@ AnimationClip:
     messageOptions: 0
   - time: 0.85
     functionName: atkMoveStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.85
-    functionName: BasicAttackingOff
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

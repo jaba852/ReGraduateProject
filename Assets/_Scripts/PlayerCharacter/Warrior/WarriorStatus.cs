@@ -106,17 +106,41 @@ public class WarriorStatus : MonoBehaviour
 
     private void Start()
     {
+
+        ExpChanged?.Invoke();
+        HealthChanged?.Invoke();
         // 스텟 초기화
         LoadPlayerStats();
 
         deadCount = false;
     }
+    private void Update()
+    {
+        SkillTree1Change();
+    }
+    private bool St1 = true;
+    private void SkillTree1Change()
+    {
+        if (SkillTree1 == 2 && St1)
+        {
+            maxExp = maxExp - 5;
+            St1 = false;
+            ExpChanged?.Invoke();
+        }
+        if (SkillTree1 == 3 && St1)
+        {
+            power = power + 2;
+            St1 = false;
+        }
+    }
+
     private void OnDestroy()
     {
         // 게임 종료 또는 씬 전환 시 스텟 저장
         SavePlayerStats();
     }
-    private void LoadPlayerStats()
+
+    public void LoadPlayerStats()
     {
         currentHealth = maxHealth;
         // 스텟 값들을 PlayerPrefs에서 불러옴
@@ -347,6 +371,7 @@ public class WarriorStatus : MonoBehaviour
         ExpChanged?.Invoke();
 
     }
+
     public void MaxHpPlusMinus()
     {
         HealthChanged?.Invoke();

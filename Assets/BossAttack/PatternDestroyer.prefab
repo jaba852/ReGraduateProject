@@ -98,6 +98,7 @@ MonoBehaviour:
   AtkCollider: {fileID: 1522539837968564281}
   BossAtkAnim: {fileID: 7650441661487413962}
   BossAtkStep: 0
+  Atk: {fileID: 229181341328472082, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
 --- !u!95 &7650441661487413962
 Animator:
   serializedVersion: 5
@@ -118,6 +119,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &1522539837968564281
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -255,6 +257,7 @@ MonoBehaviour:
   AtkCollider: {fileID: 3664080064497075007}
   BossAtkAnim: {fileID: 1110615409558668843}
   BossAtkStep: 0
+  Atk: {fileID: 229181341328472082, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
 --- !u!95 &1110615409558668843
 Animator:
   serializedVersion: 5
@@ -275,6 +278,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &3664080064497075007
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -412,6 +416,7 @@ MonoBehaviour:
   AtkCollider: {fileID: 5370194374300187533}
   BossAtkAnim: {fileID: 8621498789654519416}
   BossAtkStep: 0
+  Atk: {fileID: 229181341328472082, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
 --- !u!95 &8621498789654519416
 Animator:
   serializedVersion: 5
@@ -432,6 +437,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &5370194374300187533
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -569,6 +575,7 @@ MonoBehaviour:
   AtkCollider: {fileID: 4245072643716770810}
   BossAtkAnim: {fileID: 6783742695544167565}
   BossAtkStep: 0
+  Atk: {fileID: 229181341328472082, guid: a2ad437a1c2c4a6428b22a044f28aa74, type: 3}
 --- !u!95 &6783742695544167565
 Animator:
   serializedVersion: 5
@@ -589,6 +596,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &4245072643716770810
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -7,9 +7,10 @@ public class BossAttack : MonoBehaviour
     public CircleCollider2D AtkCollider;
     public Animator BossAtkAnim;
     public int BossAtkStep =0;
-
+    private WarriorStatus Atk;
     private void Awake()
     {
+        Atk= FindObjectOfType<WarriorStatus>();
         AtkCollider.enabled = false;
     }
     private void Start()
@@ -37,8 +38,7 @@ public class BossAttack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // 트리거가 발생한 경우 실행할 코드 작성
-            Debug.Log("Trigger detected!");
+            Atk.TakeDamagePlayer(20);
         }
     }
 

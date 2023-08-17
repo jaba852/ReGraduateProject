@@ -49,7 +49,7 @@ Tilemap:
   m_TileColorArray: []
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -91,7 +91,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647771535}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.34939, y: 41.957413, z: 1.1505992}
+  m_LocalPosition: {x: 0, y: 0, z: 1.1505992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 1750515873}
   - component: {fileID: 1750515872}
   - component: {fileID: 1750515874}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: roomCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3453755164640503880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.34939, y: 41.957413, z: 1.1505992}
+  m_LocalPosition: {x: 0, y: 0, z: 1.1505992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToPlace:
   - {fileID: 11400000, guid: 8524c0d11d3389f4c898f91fc83c046b, type: 2}
-  cornerObjectPlacementChance: 0.1
+  cornerObjectPlacementChance: 0.005
   objectPrefab: {fileID: 8822911626867129864, guid: b692066b831fb8840a4eb2b008983578, type: 3}
   OnFinished:
     m_PersistentCalls:
@@ -411,7 +411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3453755165584079767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.34939, y: 41.957413, z: 1.1505992}
+  m_LocalPosition: {x: 0, y: 0, z: 1.1505992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -436,14 +436,18 @@ MonoBehaviour:
   doorObjectPrefabs:
   - {fileID: 6622367613672607052, guid: e9549cf3d9695cb45bd477be0f6ca04e, type: 3}
   exitPortalPrefab: {fileID: 466687832610999445, guid: 387c3b1fa46640f47956e43c33cc9382, type: 3}
-  itemBoxPrefab: {fileID: 0}
+  itemBoxPrefab: {fileID: 3259188502874222949, guid: c09ecf0318d7b3544935ad8f24d94f05, type: 3}
   playerRoomIndex: 0
-  roomEnemiesCount: 000000000a0000000a0000000a00000000000000
+  roomEnemiesCount: 0000000005000000050000000500000000000000
   showGizmo: 0
-  simpleDoorObjectTop: []
-  simpleDoorObjectBottom: []
-  simpleDoorObjectLeft: []
-  simpleDoorObjectRight: []
+  simpleDoorObjectTop:
+  - {fileID: 2276195149105162033, guid: 261c1d42ca14bc142b4f5a72f1fd3206, type: 3}
+  simpleDoorObjectBottom:
+  - {fileID: 3301087082005850887, guid: 50bcd6a479faecb4ea4518c5834d68a8, type: 3}
+  simpleDoorObjectLeft:
+  - {fileID: 7030479948039385618, guid: ec062571a38c2aa4a960068e3c1171f3, type: 3}
+  simpleDoorObjectRight:
+  - {fileID: 8248964049641083943, guid: bc28f5ada469680439372be22d561610, type: 3}
 --- !u!1 &3453755166274454276
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3453755166612212922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.34939, y: 41.957413, z: 1.1505992}
+  m_LocalPosition: {x: 0, y: 0, z: 1.1505992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -540,9 +544,9 @@ MonoBehaviour:
   RoomSizeInt: 20
   roomTile: {fileID: 205802037}
   colliderTile: {fileID: 1750515873}
-  roomFloor: {fileID: 11400000, guid: 471853985ed4b5242ad12af71ace0cf6, type: 2}
+  roomFloor: {fileID: 11400000, guid: e579c367c4a18c346afb091aa80558b7, type: 2}
   corridorFloor: {fileID: 11400000, guid: 55eb6110ddcd44740b089224360cc11c, type: 2}
-  wall: {fileID: 0}
+  wall: {fileID: 11400000, guid: 1fb50fb80da04bf4ca5ad687116cfa77, type: 2}
   roomCount: 5
   branchCount: 3
   OnFinishedRoomGeneration:
