@@ -102,7 +102,7 @@ public class WarriorStatus : MonoBehaviour
 
     public event Action ExpChanged;
 
-    private bool isInvincible = false; // 피격 무적 상태를 나타내는 변수
+    public static bool isInvincible = false; // 피격 무적 상태를 나타내는 변수
 
     private void Start()
     {
@@ -117,6 +117,14 @@ public class WarriorStatus : MonoBehaviour
     private void Update()
     {
         SkillTree1Change();
+        SkillTree3Change();
+        SkillTree5Change();
+        SkillTree7Change();
+        SkillTree10Change();
+        SkillTree13Change();
+        SkillTree15Change();
+        SkillTree18Change();
+        SkillTree20Change();       
     }
     private bool St1 = true;
     private void SkillTree1Change()
@@ -130,6 +138,165 @@ public class WarriorStatus : MonoBehaviour
         if (SkillTree1 == 3 && St1)
         {
             power = power + 2;
+            St1 = false;
+        }
+    }
+
+    private void SkillTree3Change()
+    {
+        if (SkillTree3 == 1 && St1)
+        {
+            dashStack = dashStack + 1; //대쉬 최대 횟수 증가
+            St1 = false;          
+        }
+        if (SkillTree3 == 2 && St1)
+        {
+            dashVelocity = dashVelocity + 2;
+            St1 = false; //대쉬 가속도 증가
+            
+        }
+        if (SkillTree3 == 3 && St1)
+        {
+            DashCoolDown = DashCoolDown - 2;
+            St1 = false;  //대쉬 쿨다운 감소
+        }
+    }
+
+    private void SkillTree5Change()
+    {
+        if (SkillTree5 == 1 && St1)
+        {
+            movementSpeed = movementSpeed + 1; //이동 속도 증가
+            St1 = false;
+        }
+        if (SkillTree5 == 2 && St1)
+        {
+            atkSpeed = atkSpeed + 0.3f; // 공격속도 증가
+            St1 = false; 
+
+        }
+        if (SkillTree5 == 3 && St1)
+        {
+            maxHealth = maxHealth + 50; //최대 체력 증가
+            St1 = false;  
+        }
+    }
+
+    private void SkillTree7Change()
+    {
+        if (SkillTree7 == 1 && St1)
+        {
+            QCoolDown = QCoolDown - 3; //q쿨타임 감소
+            St1 = false;
+        }
+        if (SkillTree7 == 2 && St1)
+        {
+            ECoolDown = ECoolDown - 4; // e쿨타임 감소
+            St1 = false;
+
+        }
+        if (SkillTree7 == 3 && St1)
+        {
+            QSkillRangeScale = QSkillRangeScale + 0.2f; //q스킬 범위증가
+            ESkillRangeScale = ESkillRangeScale + 1; //e스킬 범위증가
+            St1 = false;
+        }
+    }
+
+    private void SkillTree10Change()
+    {
+        if (SkillTree10 == 1 && St1)
+        {
+            ESkillDamageScale = ESkillDamageScale + 2; //E스킬 데미지 배율 증가
+            St1 = false;
+        }
+        // 매니지먼트에서 E스킬 이속감소 추가
+
+        if (SkillTree10 == 3 && St1)     // e스킬 시전중 무적
+        {
+            WarriorMovement.SkillEinvincibility = true;
+
+            St1 = false;
+        }
+    }
+
+    private void SkillTree13Change()
+    {
+        if (SkillTree13 == 1 && St1)
+        {
+            WarriorMovement.SkillQBoost = true;   //스킬Q의 시전 속도 증가
+            St1 = false;
+        }
+        if (SkillTree13 == 2 && St1)
+        {
+            WarriorMovement.SkillEBoost = true;  //스킬E의 시전 속도 증가
+            St1 = false;
+
+        }
+        if (SkillTree13 == 3 && St1)
+        {
+            QCoolDown = QCoolDown - 1;
+            ECoolDown = ECoolDown - 1; //Q스킬과 E스킬 쿨타임 1초씩 감소
+            St1 = false;
+        }
+    }
+
+    private void SkillTree15Change()
+    {
+        if (SkillTree15 == 1 && St1)
+        {
+            movementSpeed = movementSpeed + 1; //이동 속도 증가
+            St1 = false;
+        }
+        if (SkillTree15 == 2 && St1)
+        {
+            atkSpeed = atkSpeed + 0.3f; // 공격속도 증가
+            St1 = false;
+
+        }
+        if (SkillTree15 == 3 && St1)
+        {
+            maxHealth = maxHealth + 50; //최대 체력 증가
+            St1 = false;
+        }
+    }
+
+    private void SkillTree18Change()
+    {
+        if (SkillTree18 == 1 && St1)
+        {
+            movementSpeed = movementSpeed + 1; //이동 속도 증가
+            St1 = false;
+        }
+        if (SkillTree18 == 2 && St1)
+        {
+            atkSpeed = atkSpeed + 0.3f; // 공격속도 증가
+            St1 = false;
+
+        }
+        if (SkillTree18 == 3 && St1)
+        {
+            maxHealth = maxHealth + 50; //최대 체력 증가
+            St1 = false;
+        }
+    }
+
+    private void SkillTree20Change()
+    {
+        if (SkillTree20 == 1 && St1)
+        {
+            movementSpeed = movementSpeed + 1; //이동 속도 증가
+            St1 = false;
+        }
+        if (SkillTree20 == 2 && St1)
+        {
+            atkSpeed = atkSpeed + 0.3f; // 공격속도 증가
+            St1 = false;
+
+        }
+        if (SkillTree20 == 3 && St1)
+        {
+            maxHealth = maxHealth + 50; //최대 체력 증가
             St1 = false;
         }
     }

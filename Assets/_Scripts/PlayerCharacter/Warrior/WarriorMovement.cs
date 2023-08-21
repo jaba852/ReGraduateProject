@@ -27,6 +27,12 @@ public class WarriorMovement : MonoBehaviour
     
     public bool canUseSkillQ = true; //
     public bool canUseSkillE = true; //
+    public static bool SkillEinvincibility = false;
+    private static bool SkillEinvincibility2 = false;
+    public static bool SkillQBoost = false;
+    public static bool SkillEBoost = false;
+    private static bool QBoostStart = false;
+    private static bool EBoostStart = false;
 
     public AudioClip WarriorattacksoundClip; // Warrior 공격 사운드 클립
     public AudioClip WarriorSecondattacksoundClip; // Warrior 두번째공격 사운드 클립
@@ -47,7 +53,7 @@ public class WarriorMovement : MonoBehaviour
 
     private float Horizontal;
     private float Vertical;
-    private bool usingSkillE = false;
+    private bool usingSkillE = false; 
     private bool EskillMoveOff = false;
     private bool usingSkillQ = false;
     private bool isBasicAttacking = false;
@@ -284,6 +290,7 @@ public class WarriorMovement : MonoBehaviour
         {
             if (Input.GetKey(KeySetting.keys[KeyAction.Skill1]))
             {
+                
                 usingSkillQ = true;
                 mousePos = Input.mousePosition;
                 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -303,8 +310,18 @@ public class WarriorMovement : MonoBehaviour
                     direction = new Vector2(0, Mathf.Sign(direction.y));
                 }
 
+                
                 anim.SetFloat("MovementX", direction.x);
                 anim.SetFloat("MovementY", direction.y);
+                if (SkillQBoost)
+                {
+                    QBoostStart = true;
+                    if (QBoostStart)
+                    {
+                        anim.speed = 2.0f;
+                    }
+
+                }
                 anim.SetBool("SkillQ", usingSkillQ);
                 QAtk.position = new Vector3(rb.position.x + direction.x, rb.position.y + direction.y, 0);
                 StartCoroutine(SkillCooldownQ());
@@ -322,6 +339,14 @@ public class WarriorMovement : MonoBehaviour
             if (Input.GetKey(KeySetting.keys[KeyAction.Skill2]))
             {
                 usingSkillE = true;
+                if (SkillEinvincibility == true)
+                {
+                    SkillEinvincibility2 = true;
+                    if (SkillEinvincibility2 == true)
+                    {
+                        WarriorStatus.isInvincible = true;
+                    }
+                }
                 mousePos = Input.mousePosition;
                 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
                 direction = (worldPos - transform.position).normalized;
@@ -340,14 +365,24 @@ public class WarriorMovement : MonoBehaviour
                     direction = new Vector2(0, Mathf.Sign(direction.y));
                 }
 
+
                 rb.velocity = direction * stats.AttackMove; // 여기서 움직임을 설정합니다.
                 anim.SetFloat("MovementX", rb.velocity.x);
                 anim.SetFloat("MovementY", rb.velocity.y);
+                if (SkillEBoost)
+                {
+                    EBoostStart = true;
+                    if (EBoostStart)
+                    {
+                        anim.speed = 2.0f;
+                    }
+
+                }             
                 anim.SetBool("SkillE", usingSkillE);
                 EAtk.position = new Vector3(rb.position.x + direction.x, rb.position.y + direction.y, 0);
                 StartCoroutine(SkillCooldownE());
             }
-        }
+        }     
     }
 
     public void CheckAttackPhase()  // 공격 단계를 확인하기 위한 함수
@@ -424,6 +459,8 @@ public class WarriorMovement : MonoBehaviour
     }
     private void QSkillAnimOff()
     {
+        anim.speed = 1.0f;
+        QBoostStart = false;
         usingSkillQ = false;
         anim.SetBool("SkillQ", usingSkillQ);
     }
@@ -436,6 +473,10 @@ public class WarriorMovement : MonoBehaviour
     }
     private void ESkillAnimOff()
     {
+        anim.speed = 1.0f;
+        EBoostStart = false;
+        SkillEinvincibility2 = false;
+        WarriorStatus.isInvincible = false;
         usingSkillE = false;
         anim.SetBool("SkillE", usingSkillE);
     }
