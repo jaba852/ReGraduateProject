@@ -7,12 +7,14 @@ public class RightDoor : MonoBehaviour
     private GameObject mainCamera;
     private bool canMove = false;
     private Animator animator;
+    private TopDoor topDoor;
     [SerializeField]
     private float moveDistance = 12f;
 
 
     private void Start()
     {
+        topDoor = FindObjectOfType<TopDoor>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
         mainCamera = Camera.main.gameObject;
 
@@ -20,6 +22,7 @@ public class RightDoor : MonoBehaviour
 
         // 애니메이션을 시작합니다.
         StartCoroutine(AnimateLoop());
+
     }
 
     private IEnumerator AnimateLoop()
@@ -53,6 +56,7 @@ public class RightDoor : MonoBehaviour
             playerObject.transform.position = playerPosition;
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

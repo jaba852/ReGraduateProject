@@ -30,8 +30,8 @@ public class BottomDoor : MonoBehaviour
         {
             bool areEnemiesVisible = IsEnemyVisible();
             Debug.Log(areEnemiesVisible);
-                // Portal 상태 실행
-                animator.SetBool("PortalTrigger", areEnemiesVisible);
+            // Portal 상태 실행
+            animator.SetBool("PortalTrigger", areEnemiesVisible);
 
             yield return new WaitForSeconds(waitTime);
         }
