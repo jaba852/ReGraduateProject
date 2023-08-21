@@ -5,7 +5,7 @@ public class CloseEnemyMovement : MonoBehaviour
 {
     public float detectionRange = 10f; // 적군 감지 범위
     public float attackRange = 5f; // 공격 사거리
-    public float moveSpeed = 3f; // 이동 속도
+    public static float moveSpeed = 3f; // 이동 속도
     public float attackDelay = 2f; // 공격 딜레이
 
     public LayerMask wallLayer; // 벽 레이어

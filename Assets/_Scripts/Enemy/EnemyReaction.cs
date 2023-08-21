@@ -74,6 +74,20 @@ public class EnemyReaction : MonoBehaviour
         Debug.Log(stunEffect2);
         StartCoroutine(RecoverFromStun(stunDuration));
 
+    } 
+
+    public void Slow(float SlowDuration)
+    {
+        StartCoroutine(SlowDownForSeconds(SlowDuration)); // 3초 동안 이동 속도를 줄임               
+    }
+
+    private IEnumerator SlowDownForSeconds(float seconds)
+    {
+        CloseEnemyMovement.moveSpeed = CloseEnemyMovement.moveSpeed / 2; // 이동 속도를 줄임
+
+        yield return new WaitForSeconds(seconds); // 지정한 시간 동안 대기
+
+        CloseEnemyMovement.moveSpeed = CloseEnemyMovement.moveSpeed *2; // 다시 원래의 이동 속도로 복원
     }
 
     private IEnumerator RecoverFromStun(float stunDuration)

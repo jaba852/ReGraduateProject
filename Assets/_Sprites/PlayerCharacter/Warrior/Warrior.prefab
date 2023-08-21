@@ -135,7 +135,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -871,7 +870,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &229181341328472082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,7 +1094,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1955,7 +1952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "\uB300\uC26C \uC2A4\uD0AC\uC758 \uC2DC\uC804\uC18D\uB3C4\uB97C \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -2485,7 +2482,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2621,7 +2617,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2878,7 +2873,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "\uB300\uC26C \uC2A4\uD0AC\uC758 \uCD5C\uB300 \uD69F\uC218\uB97C 1\uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -3135,7 +3130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "\uCD5C\uB300\uCCB4\uB825\uC774 50 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -3263,7 +3258,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -3963,7 +3957,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -4160,7 +4153,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "E\uC2A4\uD0AC\uC5D0 \uB9DE\uC740 \uC801\uC740 3\uCD08\uAC04 \uC774\uB3D9\uC18D\uB3C4\uAC00
+    \uAC10\uC18C\uB429\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -4295,7 +4289,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "Q\uC2A4\uD0AC\uACFC E\uC2A4\uD0AC \uCFE8\uD0C0\uC784\uC774 1\uCD08\uC529
+    \uAC10\uC18C\uB429\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -5798,7 +5793,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -6195,7 +6189,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -6464,7 +6457,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "\uB300\uC26C\uC2A4\uD0AC\uC758 \uCFE8\uD0C0\uC784\uC744 2\uCD08 \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -6599,7 +6592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "E\uC2A4\uD0AC\uC758 \uCFE8\uD0C0\uC784\uC774 4\uCD08 \uAC10\uC18C\uB429\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -7149,7 +7142,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -7889,7 +7881,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "E\uC2A4\uD0AC\uC758 \uC2DC\uC804\uC18D\uB3C4\uAC00 \uBE68\uB77C\uC9D1\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -8017,7 +8009,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -8151,7 +8142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "\uC774\uB3D9\uC18D\uB3C4\uAC00 1\uC99D\uAC00\uB429\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -8867,7 +8858,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -10000,7 +9990,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "Q\uC2A4\uD0AC\uACFC E\uC2A4\uD0AC\uC758 \uBC94\uC704\uAC00 \uC18C\uD3ED
+    \uC99D\uAC00\uD569\uB2C8\uB2E4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -11009,7 +11000,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "Q\uC2A4\uD0AC\uC758 \uCFE8\uD0C0\uC784\uC774 3\uCD08 \uAC10\uC18C\uB429\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -11481,7 +11472,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "Q\uC2A4\uD0AC\uC758 \uC2DC\uC804\uC18D\uB3C4\uAC00 \uBE68\uB77C\uC9D1\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -12813,7 +12804,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "E\uC2A4\uD0AC \uC2DC\uC804\uC911\uC5D0 \uD53C\uD574\uB97C \uBC1B\uC9C0
+    \uC54A\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -13007,7 +12999,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -13382,7 +13373,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -14601,7 +14591,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -16289,7 +16278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "\uACF5\uACA9\uC18D\uB3C4\uAC00 0.3\uC99D\uAC00\uD569\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
@@ -16559,7 +16548,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -17964,7 +17952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC\uC124\uBA85"
+  m_text: "E\uC2A4\uD0AC\uC758 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}
   m_sharedMaterial: {fileID: 93665699814645775, guid: 3cf90265f7231834eacba9a0f0815466, type: 2}

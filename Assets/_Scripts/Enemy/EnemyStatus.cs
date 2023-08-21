@@ -50,6 +50,19 @@ public class EnemyStatus : MonoBehaviour
         }
 
     }
+
+    public void EnemySlow(float SlowDuration)
+    {
+        Debug.Log("利 浇肺快");        
+        animatorToChange.SetBool("isEnemyHit", true);      
+        enemyreaction.Knockback();
+        enemyreaction.Slow(SlowDuration);
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
+    }
     private void Die()
     {
         Debug.Log("enemy林陛 10檬第家戈");
