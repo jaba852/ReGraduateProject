@@ -119,6 +119,21 @@ public class WarriorAttackManagement : MonoBehaviour
                 AtkStats.GainExperience(1);
             }
         }
+
+        if (enemyStatus != null)
+        {
+            if (attackType == AttackType.SkillE && AtkStats.SkillTree10 == 2)
+            {
+                enemyStatus.EnemySlow(3);
+                return;
+            }
+            enemyStatus.TakeDamage(damage);
+            Debug.Log(damage);
+            if (enemyStatus.currentHealth < 0)
+            {
+                AtkStats.GainExperience(1);
+            }
+        }
         if (bossStatus != null)
         {
             Debug.Log("보스무력 " + damage);

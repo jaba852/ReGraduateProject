@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class ItemData
@@ -23,6 +24,9 @@ public class ItemDatabase : MonoBehaviour
     public List<int> itemindex = new List<int>();
     private ItemInformation itemInformation;
     private ItemTooltip itemTooltip;
+ 
+
+
 
     private void Awake()
     {
@@ -154,7 +158,11 @@ public class ItemDatabase : MonoBehaviour
     {
         return itemTooltip;
     }
-
+    public bool UsedMace() 
+    {
+        Debug.Log(itemindex.Contains(2));
+        return itemindex.Contains(2);
+    }
 }
 
 

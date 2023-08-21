@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
@@ -14,6 +15,28 @@ public class InventoryUI : MonoBehaviour
     public Transform slotHolder;
     public ItemDatabase itemDatabase;
     private ItemTooltip itemTooltip;
+    private GameObject PlayerObject;
+    private bool PlayerUi=false;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlayerObject = GameObject.FindGameObjectWithTag("Player");
+        if (PlayerObject != null)
+        { PlayerUi = true; }
+
+    }
+
+
     private void Start()
     {
         itemDatabase = FindObjectOfType<ItemDatabase>();
@@ -44,7 +67,7 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && PlayerUi)
         {
             activeInventory = !activeInventory;
             InventoryPanel.SetActive(activeInventory);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class ItemController : MonoBehaviour
@@ -26,7 +27,23 @@ public class ItemController : MonoBehaviour
     private bool isUsing = true;
     private ItemData item;
     private SpriteRenderer itemImage;
-   
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Start(); // Start 메서드 내용을 여기서 호출
+    }
+
+
     public void Awake()
     {
         ItemInformation = FindObjectOfType<ItemInformation>();
