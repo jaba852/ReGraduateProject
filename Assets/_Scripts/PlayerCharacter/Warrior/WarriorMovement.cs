@@ -313,7 +313,7 @@ public class WarriorMovement : MonoBehaviour
                 
                 anim.SetFloat("MovementX", direction.x);
                 anim.SetFloat("MovementY", direction.y);
-                if (SkillQBoost)
+                if (SkillQBoost == true)
                 {
                     QBoostStart = true;
                     if (QBoostStart)
@@ -369,7 +369,7 @@ public class WarriorMovement : MonoBehaviour
                 rb.velocity = direction * stats.AttackMove; // 여기서 움직임을 설정합니다.
                 anim.SetFloat("MovementX", rb.velocity.x);
                 anim.SetFloat("MovementY", rb.velocity.y);
-                if (SkillEBoost)
+                if (SkillEBoost == true)
                 {
                     EBoostStart = true;
                     if (EBoostStart)

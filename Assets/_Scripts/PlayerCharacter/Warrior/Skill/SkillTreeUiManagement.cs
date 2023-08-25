@@ -41,6 +41,7 @@ public class SkillTreeUiManagement : MonoBehaviour
     private void OnButtonClick(int buttonIndex)
     {
         UpdateButtonStates();
+        ActivateCanvas(buttonIndex);
     }
 
     // 버튼 활성화 상태 업데이트 함수
