@@ -4,18 +4,17 @@ using UnityEngine;
 using UnityEditor;
 
 public enum KeyAction { Up, Down, Left, Right, Dash, Skill1, Skill2, KeyCount }
-
 public static class KeySetting
 {
     public static Dictionary<KeyAction, KeyCode> keys = new Dictionary<KeyAction, KeyCode>();
 }
 
 public class KeySettingManager : MonoBehaviour
-{
+{   public GameObject KeyDuplicatemassage;
     KeyCode[] defaultKeys = new KeyCode[] { KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.Space, KeyCode.Q, KeyCode.E };
 
     private void Awake()
-    {
+    {   KeyDuplicatemassage.SetActive(false);
         for (int i = 0; i < (int)KeyAction.KeyCount; i++)
         {
             KeySetting.keys.Add((KeyAction)i, defaultKeys[i]);
@@ -27,10 +26,10 @@ public class KeySettingManager : MonoBehaviour
         Event keyEvent = Event.current;
         if (keyEvent.isKey && key != -1)
         {
-            // ÇöÀç ÀÔ·ÂµÈ Å°¸¦ °¡Á®¿È
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Âµï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             KeyCode newKey = keyEvent.keyCode;
 
-            // Áßº¹µÈ Å°°¡ ÀÖ´ÂÁö È®ÀÎ
+            // ï¿½ßºï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
             bool isDuplicate = false;
             foreach (var pair in KeySetting.keys)
             {
@@ -41,14 +40,15 @@ public class KeySettingManager : MonoBehaviour
                 }
             }
 
-            // Áßº¹µÈ Å°°¡ ÀÖ´Ù¸é °æ°í Ã¢À» ¶ç¿ì°í ±âÁ¸ Å°·Î À¯Áö
+            // ï¿½ßºï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (isDuplicate)
             {
-
+                //EditorUtility.DisplayDialog("Warning", "The key is already assigned to another action.", "OK");
+                KeyDuplicatemassage.SetActive(true);
             }
             else
             {
-                // Áßº¹µÈ Å°°¡ ¾øÀ¸¸é »õ·Î¿î Å°·Î º¯°æ
+                // ï¿½ßºï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 KeySetting.keys[(KeyAction)key] = newKey;
             }
 
@@ -61,5 +61,9 @@ public class KeySettingManager : MonoBehaviour
     public void ChangeKey(int num)
     {
         key = num;
+    }
+    public void imageclose()
+    {
+        KeyDuplicatemassage.SetActive(false);
     }
 }

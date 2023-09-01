@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject settingsCanvas; // ȯ�漳�� ��ư
     public GameObject talkCanvas;
     public TextMeshProUGUI talkText;
+    public GameObject KeyDuplicatemassage;
     public bool isTalkAction = false;
 
     [SerializeField] Texture2D cursorimage;
@@ -58,14 +59,19 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        Debug.Log("����۹�ư");
-        // ���� �Ͻ����� ���� ó��
-        isPaused = false;
-        Time.timeScale = 1; // ���� �ð��� 1�� �����Ͽ� �簳
-
-        // ĵ���� ��Ȱ��ȭ
-        pauseCanvas.SetActive(false);
+        if(KeyDuplicatemassage.activeSelf == true)
+        {
+        KeyDuplicatemassage.SetActive(false);
+        }
+        else if(settingsCanvas.activeSelf == true)
+        {
         settingsCanvas.SetActive(false);
+        }
+        else{
+        pauseCanvas.SetActive(false);     
+        isPaused = false;
+        Time.timeScale = 1;
+        }
 
     }
 
