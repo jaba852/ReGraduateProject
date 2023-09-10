@@ -9,7 +9,6 @@ public class WarriorMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private Vector2 MovementInput;
-    public LayerMask enemyLayers;
 
     private Vector2 dashingDir;
     public static bool isDashing;
@@ -24,7 +23,7 @@ public class WarriorMovement : MonoBehaviour
 
     //대쉬
     public bool isCooldownRunning = false;
-    
+
     public bool canUseSkillQ = true; //
     public bool canUseSkillE = true; //
     public static bool SkillEinvincibility = false;
@@ -53,10 +52,12 @@ public class WarriorMovement : MonoBehaviour
 
     private float Horizontal;
     private float Vertical;
-    private bool usingSkillE = false; 
+    private bool usingSkillE = false;
     private bool EskillMoveOff = false;
     private bool usingSkillQ = false;
     private bool isBasicAttacking = false;
+
+    public GameObject Uicanvas;
     public void Awake()    //  시작되면서 스테이터스,rigidbody,애니메이터 컴포넌트 호출
     {
         stats = GetComponent<WarriorStatus>();
@@ -65,7 +66,7 @@ public class WarriorMovement : MonoBehaviour
         // 게임 오브젝트에 AudioSource 컴포넌트를 추가
         audioSource = GetComponent<AudioSource>();
         currentDashStack = stats.dashStack;
-       }
+    }
     public void Update()
     {
         if (GameManager.isPaused == false)
@@ -80,8 +81,8 @@ public class WarriorMovement : MonoBehaviour
             {
                 Move();
             }
-            
-            
+
+
             Attack();
             if (stats.deadCount)
             {
@@ -96,10 +97,10 @@ public class WarriorMovement : MonoBehaviour
 
     public void Move() //  이동,구르기 애니메이션과 움직임 처리하는 함수
     {
-        
+
         if (stats.deadCount == false)
         {
-            
+
             Horizontal = 0;
             Vertical = 0;
             bool dashInput = false;
@@ -151,7 +152,7 @@ public class WarriorMovement : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
             }
-            
+
 
             if (dashInput && canDash && currentDashStack > 0)
             {
@@ -180,8 +181,10 @@ public class WarriorMovement : MonoBehaviour
     }
     private void Attack()   //  공격 애니메이션을 처리하는 함수
     {
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        if (Uicanvas.activeSelf)
+        {
             return;
+        }
         if (stats.deadCount == false)
         {
             attackInterval = attackInterval / stats.atkSpeed;
@@ -199,7 +202,7 @@ public class WarriorMovement : MonoBehaviour
                     lastAttackTime = Time.time;
                 }
             }
-            if (isAttack )
+            if (isAttack)
             {
                 if (Input.GetMouseButtonDown(0) && usingSkillE == false && usingSkillQ == false)
                 {
@@ -252,7 +255,7 @@ public class WarriorMovement : MonoBehaviour
                         Debug.Log("이동 작동");
                         rb.velocity = direction * stats.AttackMove;
                     }
-                    else if(EskillMoveOff == true)
+                    else if (EskillMoveOff == true)
                     {
                         Debug.Log("이동 멈춤");
                         rb.velocity = Vector2.zero;
@@ -269,14 +272,14 @@ public class WarriorMovement : MonoBehaviour
                     }
                     else if (AttackCount == 2)                      //두번째 공격
                     {
-                        rb.velocity = direction * stats.AttackMove ;
+                        rb.velocity = direction * stats.AttackMove;
                         anim.SetFloat("MovementX", rb.velocity.x);
                         anim.SetFloat("MovementY", rb.velocity.y);
                         SAtk.position = new Vector3(rb.position.x + direction.x, rb.position.y + direction.y, 0);
                     }
                 }
             }
-            
+
         }
     }
 
@@ -290,7 +293,7 @@ public class WarriorMovement : MonoBehaviour
         {
             if (Input.GetKey(KeySetting.keys[KeyAction.Skill1]))
             {
-                
+
                 usingSkillQ = true;
                 mousePos = Input.mousePosition;
                 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -310,7 +313,7 @@ public class WarriorMovement : MonoBehaviour
                     direction = new Vector2(0, Mathf.Sign(direction.y));
                 }
 
-                
+
                 anim.SetFloat("MovementX", direction.x);
                 anim.SetFloat("MovementY", direction.y);
                 if (SkillQBoost == true)
@@ -377,12 +380,12 @@ public class WarriorMovement : MonoBehaviour
                         anim.speed = 2.0f;
                     }
 
-                }             
+                }
                 anim.SetBool("SkillE", usingSkillE);
                 EAtk.position = new Vector3(rb.position.x + direction.x, rb.position.y + direction.y, 0);
                 StartCoroutine(SkillCooldownE());
             }
-        }     
+        }
     }
 
     public void CheckAttackPhase()  // 공격 단계를 확인하기 위한 함수
@@ -507,7 +510,7 @@ public class WarriorMovement : MonoBehaviour
         canUseSkillQ = false;
         yield return new WaitForSeconds(stats.QCoolDown);
         canUseSkillQ = true;
-    }  
+    }
     private IEnumerator SkillCooldownE()
     {
         canUseSkillE = false;

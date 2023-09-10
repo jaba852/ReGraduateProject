@@ -8,7 +8,15 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            playerTransform = playerObject.transform;
+        }
+        else
+        {
+            Debug.LogError("Player not found in the scene.");
+        }
     }
 
     void Update()
@@ -49,5 +57,4 @@ public class CameraController : MonoBehaviour
 
         return closestRoomCenterPos;
     }
-
 }

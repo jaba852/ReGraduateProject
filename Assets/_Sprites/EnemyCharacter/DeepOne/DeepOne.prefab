@@ -42,7 +42,7 @@ Transform:
   - {fileID: 5659291355710219299}
   - {fileID: 6050412605874574158}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &283459755811666219
 SpriteRenderer:
@@ -178,6 +178,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1956169148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ MonoBehaviour:
   attackDelay: 2
   wallLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   EnemyFind: {fileID: 6050412605874574155}
 --- !u!114 &-8022715097765678376
 MonoBehaviour:
