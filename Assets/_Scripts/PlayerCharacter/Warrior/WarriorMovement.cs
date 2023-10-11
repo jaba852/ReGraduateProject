@@ -34,9 +34,8 @@ public class WarriorMovement : MonoBehaviour
     private static bool EBoostStart = false;
 
     public AudioClip WarriorattacksoundClip; // Warrior 공격 사운드 클립
+    public AudioClip WarriorFSattacksoundClip; // Warrior 첫공격 두번째 사운드 클립
     public AudioClip WarriorSecondattacksoundClip; // Warrior 두번째공격 사운드 클립
-    public AudioClip EnemyHitsoundClip; // 적 피격 사운드 클립
-    public AudioClip BoxHitClip; // 상자피격 사운드 클립
     private AudioSource audioSource; // 오디오 소스 컴포넌트
     private Vector3 mousePos;
     private Vector3 worldPos;
@@ -57,6 +56,7 @@ public class WarriorMovement : MonoBehaviour
     private bool usingSkillQ = false;
     private bool isBasicAttacking = false;
 
+    public int atkSoundCount = 0;
     public GameObject Uicanvas;
     public void Awake()    //  시작되면서 스테이터스,rigidbody,애니메이터 컴포넌트 호출
     {
@@ -77,7 +77,7 @@ public class WarriorMovement : MonoBehaviour
             }
             UseSkillE();
             UseSkillQ();
-            if (usingSkillE == false && usingSkillQ == false)
+            if (usingSkillE == false && usingSkillQ == false && AttackCount==0)
             {
                 Move();
             }
@@ -211,7 +211,6 @@ public class WarriorMovement : MonoBehaviour
                         mousePos = Input.mousePosition;
                         worldPos = Camera.main.ScreenToWorldPoint(mousePos);
                         direction = (worldPos - transform.position).normalized;
-                        Debug.Log(direction);
 
                     }
                 };
@@ -443,8 +442,16 @@ public class WarriorMovement : MonoBehaviour
     }
     private void OnFirstAttack()
     {
-        audioSource.PlayOneShot(WarriorattacksoundClip); // Warrior 공격 사운드
+        if (atkSoundCount == 0)
+        {
+            audioSource.PlayOneShot(WarriorattacksoundClip); // Warrior 1-1공격 사운드
+        }
+        if (atkSoundCount == 1)
+        {
+            audioSource.PlayOneShot(WarriorFSattacksoundClip); // Warrior 1-1공격 사운드
+        }
         FirstATKM.isAttacking = true;
+        atkSoundCount++;
 
     }
     private void OffFirstAttack()
@@ -497,13 +504,12 @@ public class WarriorMovement : MonoBehaviour
     }
     private void BasicAttackingOn()
     {
-        Debug.Log("켜짐");
         isBasicAttacking = true;
     }
     private void BasicAttackingOff()
     {
-        Debug.Log("꺼짐");
         isBasicAttacking = false;
+        atkSoundCount = 0;
     }
     private IEnumerator SkillCooldownQ()
     {

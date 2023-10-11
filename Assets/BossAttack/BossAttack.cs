@@ -8,6 +8,7 @@ public class BossAttack : MonoBehaviour
     public Animator BossAtkAnim;
     public int BossAtkStep =0;
     private WarriorStatus Atk;
+    public AudioSource bosssound;
     private void Awake()
     {
         Atk= FindObjectOfType<WarriorStatus>();
@@ -45,6 +46,8 @@ public class BossAttack : MonoBehaviour
     public void enablecollider()
     {
         AtkCollider.enabled = true;
+        if (bosssound != null)
+        bosssound.Play();
     }
     public void disablecollider()
     {

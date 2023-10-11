@@ -5,26 +5,24 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Weapon
-  - Trap
-  - DeepOne
-  - Door
-  - DeadEnemy
-  - PortalTop
+  - PortalBottom
   - PortalLeft
   - PortalRight
-  - PortalBottom
+  - PortalTop
+  - DeadEnemy
+  - DeepOne
+  - Door
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - player
+  - Enemy
   - Water
   - UI
-  - FogOfWarMain
-  - FogOfWarSecondary
-  - Enemy
-  - Wall
+  - Player
+  - BossEnter
+  - 
+  - 
   - 
   - 
   - 
@@ -50,10 +48,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: FogOfWar
-    uniqueID: 4146234047
-    locked: 0
-  - name: Player
-    uniqueID: 3525315013
     locked: 0

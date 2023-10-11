@@ -131,6 +131,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 690841965696760518, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 690841965696760518, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ba197932aa262b4a9169aaaf89e8069, type: 3}
     - target: {fileID: 5015863295157716522, guid: 628eb7c5d15da3f43baca0781967fabf, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -208,6 +216,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.8207547
       objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: enemyPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 283459755811666217, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
     - target: {fileID: 3453755166274454276, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: m_Name
       value: ProceduralMapGenerator

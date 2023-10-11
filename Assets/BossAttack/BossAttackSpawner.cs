@@ -36,7 +36,13 @@ public class BossAttackSpawner : MonoBehaviour
     public GameObject Bosshead;
     public BossHeadHP Bossheadhp;
 
+    public BossEnterTrigger bossenter;
 
+    public bool entrance = false;
+
+    public AudioSource handATK;
+
+    public MoveLoading MLSCene;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -51,8 +57,10 @@ public class BossAttackSpawner : MonoBehaviour
     {
         patternCount = 0;
         anim.SetBool("isIdle", isidle);
-        StartCoroutine(RandomPattern());
+        
+        
     }
+    
     private void Update()
     {
         if (RightStun.isNeutralize)
@@ -75,6 +83,21 @@ public class BossAttackSpawner : MonoBehaviour
             anim.SetBool("isDead", Bossheadhp.isDead);
         }
 
+        Debug.Log("패턴시작" + bossenter.hasInteracted);
+        if (bossenter.hasInteracted && entrance == false)
+        {
+            entrance = true;
+            Debug.Log("입장");
+            StartCoroutine(BossEnterWait());
+
+        }
+
+    }
+    private IEnumerator BossEnterWait()
+    {
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(RandomPattern());
+
     }
     private void StunRecover()
     {
@@ -90,7 +113,7 @@ public class BossAttackSpawner : MonoBehaviour
     }
     private IEnumerator RandomPattern()
     {
-
+        
         yield return new WaitForSeconds(patternDelay);
         Debug.Log("패턴 카운트" + patternCount);
         if (patternCount == 5)
@@ -136,7 +159,10 @@ public class BossAttackSpawner : MonoBehaviour
         for (int i = 0; i < repeatCount; i++)
         {
             Instantiate(BossAttackPrefabs, PatternA + spacing * i, quaternion.identity);
-            Instantiate(BossAttackPrefabs, PatternA - spacing * i - new Vector3Int(3, 0, 0), quaternion.identity);
+            if (i<2)
+            {
+                Instantiate(BossAttackPrefabs, PatternA - spacing * i - new Vector3Int(3, 0, 0), quaternion.identity);
+            }
             yield return new WaitForSeconds(attackDelay);
         }
 
@@ -187,6 +213,7 @@ public class BossAttackSpawner : MonoBehaviour
     }
     private void LeftHandAttack()
     {
+        handATK.Play();
         LeftHandAtk.SetActive(true);
     }
     private void LeftHandAttackF()
@@ -195,6 +222,8 @@ public class BossAttackSpawner : MonoBehaviour
     }
     private void RightHandAttack()
     {
+        handATK.Play();
+
         RightHandAtk.SetActive(true);
     }
     private void RightHandAttackF()
@@ -213,5 +242,14 @@ public class BossAttackSpawner : MonoBehaviour
     {
         Bossheadhp.isDead = false;
         anim.SetBool("isDead", false);
+    }
+
+    public void BossTrueDead()
+    {
+        
+    }
+    public void endingScene()
+    {
+        MLSCene.LoadSceneAsync();
     }
 }

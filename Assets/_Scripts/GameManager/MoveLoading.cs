@@ -5,17 +5,20 @@ using UnityEngine.UI;
 
 public class MoveLoading : MonoBehaviour
 {
-  
+
+    public static int sceneNum = 0;
 
     public void LoadSceneAsync()
-    {   int sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        StartCoroutine(LoadSceneAsyncCoroutine(sceneBuildIndex));
+    {   
+        sceneNum = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(LoadSceneAsyncCoroutine(sceneNum));
        
     }
 
-    private IEnumerator LoadSceneAsyncCoroutine(int sceneBuildIndex)
-    {    PlayerPrefs.SetInt("sceneIndex",sceneBuildIndex);
-        if (sceneBuildIndex == 1) 
+    private IEnumerator LoadSceneAsyncCoroutine(int num)
+    {    
+        PlayerPrefs.SetInt("sceneIndex", num);
+        if (num == 1) 
         {
             ResetPlayerStats();
         }

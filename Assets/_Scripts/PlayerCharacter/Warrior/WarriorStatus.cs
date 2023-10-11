@@ -102,7 +102,14 @@ public class WarriorStatus : MonoBehaviour
 
     public event Action ExpChanged;
 
+
+    public AudioClip level;
+    public AudioSource levelup;
     public static bool isInvincible = false; // 피격 무적 상태를 나타내는 변수
+
+    public GameObject destroy1;
+    public GameObject destroy2;
+    public GameObject destroy3;
 
     private void Start()
     {
@@ -110,6 +117,7 @@ public class WarriorStatus : MonoBehaviour
         ExpChanged?.Invoke();
         HealthChanged?.Invoke();
         // 스텟 초기화
+        
         LoadPlayerStats();
 
         deadCount = false;
@@ -420,6 +428,9 @@ public class WarriorStatus : MonoBehaviour
         if (currentHealth <= 0)
         {
             deadCount = true;
+            Destroy(destroy1);
+            Destroy(destroy2);
+            Destroy(destroy3);
             GetComponent<Animator>().SetBool("isDead", deadCount);
             InitializePlayerStats(); // 스텟 초기화
         }
@@ -550,6 +561,7 @@ public class WarriorStatus : MonoBehaviour
             playerLevel++;
             playerExp -= maxExp;
             CalculateNextLevelXP();
+            levelup.PlayOneShot(level);
         }
     }
     private void CalculateNextLevelXP()

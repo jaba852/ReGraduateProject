@@ -13,9 +13,11 @@ public class BossHandAttack : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("asdasdasdasda");
         if (collision.gameObject.CompareTag("Player"))
         {
             warriorStatus.TakeDamagePlayer(10);
+            Debug.Log("222222");
         }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class WarriorAttackManagement : MonoBehaviour
 {
     private enum AttackType { BasicAttack_1, BasicAttack_2, SkillQ, SkillE}
+    public AudioClip EnemyHitsoundClip; // 적 피격 사운드 클립
+    public AudioSource audioSource; // 오디오 소스 컴포넌트
 
     private AttackType attackType;
     private float attackRange;
@@ -28,10 +30,12 @@ public class WarriorAttackManagement : MonoBehaviour
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange);
             foreach (Collider2D enemyCollider in hitEnemies)
             {
-             if (enemyCollider.CompareTag("Enemy"))
-             {
+            if (enemyCollider.CompareTag("Enemy")|| enemyCollider.CompareTag("DeepOne"))
+            {
                 HandleEnemyCollision(enemyCollider);
-             }
+                audioSource.PlayOneShot(EnemyHitsoundClip); // Warrior 1-1공격 사운드
+
+            }
             }
             
         }

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject talkCanvas;
     public TextMeshProUGUI talkText;
     public bool isTalkAction = false;
-
+    public GameObject gmBreaker;
     [SerializeField] Texture2D cursorimage;
     private void Awake()
     {
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         // ESC Ű�� ������ �� �Ͻ�����/���� ��� ����
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            
             if (isPaused)
             {
                 ResumeGame();
@@ -62,8 +63,7 @@ public class GameManager : MonoBehaviour
         // ���� �Ͻ����� ���� ó��
         isPaused = false;
         Time.timeScale = 1; // ���� �ð��� 1�� �����Ͽ� �簳
-
-        // ĵ���� ��Ȱ��ȭ
+        
         pauseCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
 
@@ -72,16 +72,14 @@ public class GameManager : MonoBehaviour
 
     public void GoToScene()
     {
-        Debug.Log("����۹�ư");
         isPaused = false;
 
-        Time.timeScale = 1; // ���� �ð��� 1�� �����Ͽ� �簳
+        Time.timeScale = 1;
         pauseCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
-        // ������ ������ �̵�
         SceneManager.LoadScene(1);
 
-
+        DestroyObject(gmBreaker);
     }
     public void OpenSettings()
     {

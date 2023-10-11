@@ -153,10 +153,7 @@ public class CloseEnemyAttackManager : MonoBehaviour
                 StartCoroutine(ResetSoundFlags());
             }
             warriorStatus.TakeDamagePlayer(10);
-            UnityEngine.Debug.Log("적 데미지");
-
         }
-
     }
 
     IEnumerator ResetSoundFlags()

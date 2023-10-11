@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class LoadingSceneController : MonoBehaviour
 {   
     public Image progressfill;
-    void Start(){
-        if(PlayerPrefs.GetInt("sceneIndex")!= null){
+    void Start()
+    {
+        if(PlayerPrefs.GetInt("sceneIndex")!= null)
+        {
         int sceneBuildIndex = PlayerPrefs.GetInt("sceneIndex") + 1;
         
         StartCoroutine(LoadSceneAsyncCoroutine(sceneBuildIndex));
@@ -15,11 +17,7 @@ public class LoadingSceneController : MonoBehaviour
         else 
         SceneManager.LoadSceneAsync(1);
     }
-    /*public void LoadSceneAsync(int sceneBuildIndex)
-    {  // SceneManager.LoadSceneAsync(5);
-       // StartCoroutine(LoadSceneAsyncCoroutine(sceneBuildIndex));
-        
-    }*/
+
 
     private IEnumerator LoadSceneAsyncCoroutine(int sceneBuildIndex)
     {   yield return null;

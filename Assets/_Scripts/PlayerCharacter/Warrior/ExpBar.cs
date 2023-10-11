@@ -23,6 +23,12 @@ public class ExpBar : MonoBehaviour
         stats.ExpChanged += UpdateExpUI;
 
     }
+    private void Update()
+    {
+        UpdateExpUI();
+
+
+    }
     private void OnDestroy()
     {
         stats.ExpChanged -= UpdateExpUI;
@@ -36,7 +42,11 @@ public class ExpBar : MonoBehaviour
     public void UpdateExpUI()
     {
         expbar.value = stats.playerExp;
-        expText.text = stats.playerExp.ToString() + "\n" + stats.maxExp.ToString();
+
+        float expPercentage = (float)stats.playerExp / stats.maxExp * 100f;
+        expText.text = expPercentage.ToString("0") + "%";
+
         LevelText.text = stats.playerLevel.ToString();
     }
+
 }

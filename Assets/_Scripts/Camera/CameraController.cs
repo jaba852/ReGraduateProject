@@ -21,6 +21,16 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            playerTransform = playerObject.transform;
+        }
+        else
+        {
+            Debug.LogError("Player not found in the scene.");
+        }
+
         if (playerTransform == null)
             return;
 

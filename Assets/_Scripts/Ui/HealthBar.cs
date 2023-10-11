@@ -23,6 +23,10 @@ public class HealthBar : MonoBehaviour
         stats.HealthChanged += UpdateHealthUI;
 
     }
+    private void Update()
+    {
+        UpdateHealthUI();
+    }
     private void OnDestroy()
     {
         stats.HealthChanged -= UpdateHealthUI;
@@ -35,7 +39,8 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealthUI()
     {
+        float healthPercentage = (float)stats.currentHealth / stats.maxHealth * 100f;
         healthBar.value = stats.currentHealth;
-        HPText.text = stats.currentHealth.ToString() + "\n" + stats.maxHealth.ToString();
+        HPText.text = healthPercentage.ToString("0") + "%";
     }
 }
