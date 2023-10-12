@@ -217,6 +217,10 @@ PrefabInstance:
       value: 0.8207547
       objectReference: {fileID: 0}
     - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: playerRoomIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: enemyPrefabs.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -224,6 +228,74 @@ PrefabInstance:
       propertyPath: enemyPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 283459755811666217, guid: 49a3e92f7b19c4a428665f6a1565fe44, type: 3}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[4]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[5]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[6]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[7]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[8]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[9]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[10]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[11]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[12]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[13]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[14]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[15]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[16]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[17]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[18]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755165584079764, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomEnemiesCount.Array.data[19]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3453755166274454276, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
       propertyPath: m_Name
       value: ProceduralMapGenerator
@@ -272,6 +344,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3453755166612212923, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: roomCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755166612212923, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: branchCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453755166612212923, guid: ae5c302883f99ec4b8aaae97740b4b49, type: 3}
+      propertyPath: corridorFloor
+      value: 
+      objectReference: {fileID: 11400000, guid: e579c367c4a18c346afb091aa80558b7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

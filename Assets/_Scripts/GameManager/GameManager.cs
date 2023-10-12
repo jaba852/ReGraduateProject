@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
         pauseCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
         SceneManager.LoadScene(1);
+        Destroy(gmBreaker);
 
-        DestroyObject(gmBreaker);
     }
     public void OpenSettings()
     {

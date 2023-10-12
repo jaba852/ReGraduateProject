@@ -173,7 +173,8 @@ public class BossAttackSpawner : MonoBehaviour
         for (int i = 0; i < repeatCount; i++)
         {
             Instantiate(BossAttackPrefabs, PatternB - spacing * i, quaternion.identity);
-            Instantiate(BossAttackPrefabs, PatternB + spacing * i + new Vector3Int(3, 0, 0), quaternion.identity);
+            if (i < 2)
+                Instantiate(BossAttackPrefabs, PatternB + spacing * i + new Vector3Int(3, 0, 0), quaternion.identity);
             yield return new WaitForSeconds(attackDelay);
         }
     }

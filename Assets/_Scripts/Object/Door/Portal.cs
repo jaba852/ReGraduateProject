@@ -11,6 +11,7 @@ public class Portal : MonoBehaviour
     private bool canMove = true; // 초기에는 이동 가능
     private Collider2D portalCollider; // 트리거 콜라이더
 
+    private bool isportal;
     private void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -30,9 +31,19 @@ public class Portal : MonoBehaviour
         while (true)
         {
             bool areEnemiesVisible = IsEnemyVisible();
+            bool areDeeponeVisible = IsDeepOneVisible();
+            
+            if (areEnemiesVisible || areDeeponeVisible)
+            {
+                isportal = true;
+            }
+            else
+            {
+                isportal = false;
+            }
             //Debug.Log(areEnemiesVisible);
             // Portal 상태 실행
-            animator.SetBool("PortalTrigger", areEnemiesVisible);
+            animator.SetBool("PortalTrigger", isportal);
 
             yield return new WaitForSeconds(waitTime);
         }
@@ -40,7 +51,7 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !IsEnemyVisible() && canMove)
+        if (collision.CompareTag("Player") && !IsEnemyVisible() && canMove && !IsDeepOneVisible())
         {
             MovePlayer();
             StartCoroutine(DisablePortalForCooldown());
@@ -89,6 +100,20 @@ public class Portal : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             Vector3 screenPoint = mainCamera.GetComponent<Camera>().WorldToViewportPoint(enemy.transform.position);
+            bool onScreen = screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+            if (onScreen)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool IsDeepOneVisible()
+    {
+        GameObject[] DeepOnes = GameObject.FindGameObjectsWithTag("DeepOne");
+        foreach (GameObject DeepOne in DeepOnes)
+        {
+            Vector3 screenPoint = mainCamera.GetComponent<Camera>().WorldToViewportPoint(DeepOne.transform.position);
             bool onScreen = screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
             if (onScreen)
             {

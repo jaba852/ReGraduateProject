@@ -56,7 +56,7 @@ public class WarriorStatus : MonoBehaviour
     [SerializeField] public float atkSpeed = 1f;
 
     [Header("공격력")]
-    [SerializeField] public int power = 10;
+    [SerializeField] public int power = 20;
 
     [Header("추가데미지")]
     [SerializeField] public int attackAddness = 1;
@@ -498,7 +498,7 @@ public class WarriorStatus : MonoBehaviour
 
         atkSpeed = 1f;
         
-        power = 10;
+        power = 20;
 
         attackAddness = 1;
 
@@ -553,6 +553,10 @@ public class WarriorStatus : MonoBehaviour
     }
     public void GainExperience(int amount)
     {
+        playerExp += amount;
+        playerExp += amount;
+        playerExp += amount;
+        playerExp += amount;
         playerExp += amount;
 
         ExpChanged?.Invoke();

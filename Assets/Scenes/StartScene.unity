@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 57291013}
   - component: {fileID: 57291018}
   - component: {fileID: 57291019}
+  - component: {fileID: 57291020}
   m_Layer: 5
   m_Name: GameStartButton
   m_TagString: Untagged
@@ -221,6 +222,18 @@ MonoBehaviour:
           m_StringArgument: 1
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 57291020}
+        m_TargetAssemblyTypeName: WarriorStatus, Assembly-CSharp
+        m_MethodName: InitializePlayerStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &57291014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +298,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa63fdb5794b0941a91743af82a44e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &57291020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57291011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9508ccb8521ac5a44bfe7be3018d0d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRenderer: {fileID: 0}
+  playerLevel: 1
+  playerExp: 0
+  maxExp: 10
+  blinkTime: 1
+  maxHealth: 100
+  currentHealth: 0
+  movementSpeed: 5
+  dashVelocity: 5
+  dashingTime: 0.9
+  dashStack: 1
+  atkRangeScale: 1
+  SecondAtkRangeScale: 1.5
+  QSkillRangeScale: 0.8
+  ESkillRangeScale: 2
+  AttackMove: 2
+  atkSpeed: 1
+  power: 10
+  attackAddness: 1
+  invincibleDuration: 1
+  DashCoolDown: 10
+  QCoolDown: 10
+  ECoolDown: 15
+  SecondDamageScale: 2
+  QSkillDamageScale: 2
+  ESkillDamageScale: 3
+  SkillTree1: 0
+  SkillTree3: 0
+  SkillTree5: 0
+  SkillTree7: 0
+  SkillTree10: 0
+  SkillTree13: 0
+  SkillTree15: 0
+  SkillTree18: 0
+  SkillTree20: 0
+  deadCount: 0
+  level: {fileID: 0}
+  levelup: {fileID: 0}
+  destroy1: {fileID: 0}
+  destroy2: {fileID: 0}
+  destroy3: {fileID: 0}
 --- !u!1 &98960969
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +430,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: -1
@@ -678,8 +744,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: da554cd5e8ce6da4393a0eb2746548d4, type: 3}
-    m_FontSize: 52
+    m_Font: {fileID: 12800000, guid: 28e66e8ceef21814eac28ed5638e6994, type: 3}
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
@@ -920,7 +986,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: da554cd5e8ce6da4393a0eb2746548d4, type: 3}
+    m_Font: {fileID: 12800000, guid: 28e66e8ceef21814eac28ed5638e6994, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -1513,6 +1579,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5194300531253689164, guid: 4e6af0c6bbae61a4f8d47fe35f8f8501, type: 3}
+      propertyPath: cursorimage
+      value: 
+      objectReference: {fileID: 2800000, guid: 2e71a8202d3b4a3448ec85ced5a40265, type: 3}
     - target: {fileID: 5194300531253689165, guid: 4e6af0c6bbae61a4f8d47fe35f8f8501, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1962,7 +2032,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: da554cd5e8ce6da4393a0eb2746548d4, type: 3}
+    m_Font: {fileID: 12800000, guid: 28e66e8ceef21814eac28ed5638e6994, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0

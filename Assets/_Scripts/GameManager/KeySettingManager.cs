@@ -18,10 +18,12 @@ public class KeySettingManager : MonoBehaviour
     {
         for (int i = 0; i < (int)KeyAction.KeyCount; i++)
         {
-            KeySetting.keys.Add((KeyAction)i, defaultKeys[i]);
+            if (!KeySetting.keys.ContainsKey((KeyAction)i))
+            {
+                KeySetting.keys.Add((KeyAction)i, defaultKeys[i]);
+            }
         }
     }
-
     private void OnGUI()
     {
         Event keyEvent = Event.current;

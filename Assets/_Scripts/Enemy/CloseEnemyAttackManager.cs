@@ -152,7 +152,7 @@ public class CloseEnemyAttackManager : MonoBehaviour
                 isPlayerHitSoundPlaying = true;
                 StartCoroutine(ResetSoundFlags());
             }
-            warriorStatus.TakeDamagePlayer(10);
+            warriorStatus.TakeDamagePlayer(5);
         }
     }
 
